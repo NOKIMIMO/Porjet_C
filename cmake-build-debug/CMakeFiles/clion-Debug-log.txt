@@ -1,4 +1,4 @@
-"C:\Users\ACER PREDATOR\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\232.9921.42\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/ACER PREDATOR/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/bin/ninja/win/x64/ninja.exe" -G Ninja -S E:\cours\Porjet_C -B E:\cours\Porjet_C\cmake-build-debug
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: E:/cours/Porjet_C/cmake-build-debug
+C:\WINDOWS\system32\wsl.exe --distribution Ubuntu --exec /bin/bash -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/e/cours/Porjet_C/cmake-build-debug && /usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' -S /mnt/e/cours/Porjet_C -B /mnt/e/cours/Porjet_C/cmake-build-debug"
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: /mnt/e/cours/Porjet_C/cmake-build-debug

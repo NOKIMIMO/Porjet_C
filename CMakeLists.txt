@@ -3,9 +3,10 @@ project(Porjet_C C)
 
 set(CMAKE_C_STANDARD 23)
 
-set(SDL2_PATH "C:\\dev\\SDL2")
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
+find_package(SDL2_ttf REQUIRED)  # Add this line to find SDL_ttf
 
 add_executable(Porjet_C hello_sdl.c)
-target_link_libraries(Porjet_C ${SDL2_LIBRARY})
+
+target_link_libraries(Porjet_C PRIVATE ${SDL2_LIBRARIES} ${SDL2_TTF_LIBRARIES})  # Link against SDL2_ttf
+target_include_directories(Porjet_C PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})  # Include SDL2_ttf headers

@@ -1,4 +1,11 @@
+
+#ifndef SDL_FALLTHROUGH
+#define SDL_FALLTHROUGH
+#endif
+
+
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,7 +32,7 @@ int main(int argc, char *argv[]) {
     SDL_Delay(500); // lag for vcxsrv to start
 
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 

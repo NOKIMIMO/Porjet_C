@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Porjet_C.exe"
-		},
-		{
-			"path" : "Porjet_C.pdb"
+			"path" : "Porjet_C"
 		}
 	],
 	"backtrace" : 1,
@@ -14,7 +11,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"include_directories"
+			"target_link_libraries",
+			"target_include_directories"
 		],
 		"files" : 
 		[
@@ -28,13 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 8,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
 				"parent" : 0
 			}
 		]
@@ -51,8 +55,9 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 2,
-					"path" : "C:/MinGW/include/SDL2"
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/usr/local/include/SDL2"
 				}
 			],
 			"language" : "C",
@@ -84,14 +89,24 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"backtrace" : 2,
+				"fragment" : "-L/usr/local/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/usr/local/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/local/lib/libSDL2.so",
 				"role" : "libraries"
 			}
 		],
 		"language" : "C"
 	},
 	"name" : "Porjet_C",
-	"nameOnDisk" : "Porjet_C.exe",
+	"nameOnDisk" : "Porjet_C",
 	"paths" : 
 	{
 		"build" : ".",

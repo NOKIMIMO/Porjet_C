@@ -4,29 +4,29 @@
 		"generator" : 
 		{
 			"multiConfig" : false,
-			"name" : "Ninja"
+			"name" : "Unix Makefiles"
 		},
 		"paths" : 
 		{
-			"cmake" : "C:/Users/ACER PREDATOR/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/bin/cmake/win/x64/bin/cmake.exe",
-			"cpack" : "C:/Users/ACER PREDATOR/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/bin/cmake/win/x64/bin/cpack.exe",
-			"ctest" : "C:/Users/ACER PREDATOR/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/bin/cmake/win/x64/bin/ctest.exe",
-			"root" : "C:/Users/ACER PREDATOR/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/bin/cmake/win/x64/share/cmake-3.26"
+			"cmake" : "/usr/local/bin/cmake",
+			"cpack" : "/usr/local/bin/cpack",
+			"ctest" : "/usr/local/bin/ctest",
+			"root" : "/usr/local/share/cmake-3.26"
 		},
 		"version" : 
 		{
 			"isDirty" : false,
 			"major" : 3,
 			"minor" : 26,
-			"patch" : 4,
-			"string" : "3.26.4",
+			"patch" : 0,
+			"string" : "3.26.0",
 			"suffix" : ""
 		}
 	},
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-9159cac6029f3d675575.json",
+			"jsonFile" : "codemodel-v2-e994952f5e2a1c7a0dd3.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-035d37074b478bccb36f.json",
+			"jsonFile" : "cache-v2-cf13cb0625ff86bbca74.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cmakeFiles-v1-0dd39f458fb9cdb751c2.json",
+			"jsonFile" : "cmakeFiles-v1-13400431049d71f3fc6b.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -53,7 +53,7 @@
 			}
 		},
 		{
-			"jsonFile" : "toolchains-v1-b9f54c8316c94d6c0aa8.json",
+			"jsonFile" : "toolchains-v1-1a22d9ad962073fe4f39.json",
 			"kind" : "toolchains",
 			"version" : 
 			{
@@ -66,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-035d37074b478bccb36f.json",
+			"jsonFile" : "cache-v2-cf13cb0625ff86bbca74.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -76,7 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-			"jsonFile" : "cmakeFiles-v1-0dd39f458fb9cdb751c2.json",
+			"jsonFile" : "cmakeFiles-v1-13400431049d71f3fc6b.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -86,7 +86,7 @@
 		},
 		"codemodel-v2" : 
 		{
-			"jsonFile" : "codemodel-v2-9159cac6029f3d675575.json",
+			"jsonFile" : "codemodel-v2-e994952f5e2a1c7a0dd3.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -96,7 +96,7 @@
 		},
 		"toolchains-v1" : 
 		{
-			"jsonFile" : "toolchains-v1-b9f54c8316c94d6c0aa8.json",
+			"jsonFile" : "toolchains-v1-1a22d9ad962073fe4f39.json",
 			"kind" : "toolchains",
 			"version" : 
 			{
