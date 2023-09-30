@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/mnt/c/MinGW/lib/cmake/SDL2_ttf"
+			"value" : "/usr/local/lib/cmake/SDL2_ttf"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

@@ -69,32 +69,127 @@ include CMakeFiles/Porjet_C.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Porjet_C.dir/flags.make
 
-CMakeFiles/Porjet_C.dir/hello_sdl.c.o: CMakeFiles/Porjet_C.dir/flags.make
-CMakeFiles/Porjet_C.dir/hello_sdl.c.o: /mnt/e/cours/Porjet_C/hello_sdl.c
-CMakeFiles/Porjet_C.dir/hello_sdl.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Porjet_C.dir/hello_sdl.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/hello_sdl.c.o -MF CMakeFiles/Porjet_C.dir/hello_sdl.c.o.d -o CMakeFiles/Porjet_C.dir/hello_sdl.c.o -c /mnt/e/cours/Porjet_C/hello_sdl.c
+CMakeFiles/Porjet_C.dir/main.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/main.c.o: /mnt/e/cours/Porjet_C/main.c
+CMakeFiles/Porjet_C.dir/main.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Porjet_C.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/main.c.o -MF CMakeFiles/Porjet_C.dir/main.c.o.d -o CMakeFiles/Porjet_C.dir/main.c.o -c /mnt/e/cours/Porjet_C/main.c
 
-CMakeFiles/Porjet_C.dir/hello_sdl.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/hello_sdl.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/hello_sdl.c > CMakeFiles/Porjet_C.dir/hello_sdl.c.i
+CMakeFiles/Porjet_C.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/main.c > CMakeFiles/Porjet_C.dir/main.c.i
 
-CMakeFiles/Porjet_C.dir/hello_sdl.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/hello_sdl.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/hello_sdl.c -o CMakeFiles/Porjet_C.dir/hello_sdl.c.s
+CMakeFiles/Porjet_C.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/main.c -o CMakeFiles/Porjet_C.dir/main.c.s
+
+CMakeFiles/Porjet_C.dir/init.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/init.c.o: /mnt/e/cours/Porjet_C/init.c
+CMakeFiles/Porjet_C.dir/init.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Porjet_C.dir/init.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/init.c.o -MF CMakeFiles/Porjet_C.dir/init.c.o.d -o CMakeFiles/Porjet_C.dir/init.c.o -c /mnt/e/cours/Porjet_C/init.c
+
+CMakeFiles/Porjet_C.dir/init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/init.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/init.c > CMakeFiles/Porjet_C.dir/init.c.i
+
+CMakeFiles/Porjet_C.dir/init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/init.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/init.c -o CMakeFiles/Porjet_C.dir/init.c.s
+
+CMakeFiles/Porjet_C.dir/destroy.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/destroy.c.o: /mnt/e/cours/Porjet_C/destroy.c
+CMakeFiles/Porjet_C.dir/destroy.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Porjet_C.dir/destroy.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/destroy.c.o -MF CMakeFiles/Porjet_C.dir/destroy.c.o.d -o CMakeFiles/Porjet_C.dir/destroy.c.o -c /mnt/e/cours/Porjet_C/destroy.c
+
+CMakeFiles/Porjet_C.dir/destroy.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/destroy.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/destroy.c > CMakeFiles/Porjet_C.dir/destroy.c.i
+
+CMakeFiles/Porjet_C.dir/destroy.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/destroy.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/destroy.c -o CMakeFiles/Porjet_C.dir/destroy.c.s
+
+CMakeFiles/Porjet_C.dir/setGet.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/setGet.c.o: /mnt/e/cours/Porjet_C/setGet.c
+CMakeFiles/Porjet_C.dir/setGet.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Porjet_C.dir/setGet.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/setGet.c.o -MF CMakeFiles/Porjet_C.dir/setGet.c.o.d -o CMakeFiles/Porjet_C.dir/setGet.c.o -c /mnt/e/cours/Porjet_C/setGet.c
+
+CMakeFiles/Porjet_C.dir/setGet.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/setGet.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/setGet.c > CMakeFiles/Porjet_C.dir/setGet.c.i
+
+CMakeFiles/Porjet_C.dir/setGet.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/setGet.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/setGet.c -o CMakeFiles/Porjet_C.dir/setGet.c.s
+
+CMakeFiles/Porjet_C.dir/func.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/func.c.o: /mnt/e/cours/Porjet_C/func.c
+CMakeFiles/Porjet_C.dir/func.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Porjet_C.dir/func.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/func.c.o -MF CMakeFiles/Porjet_C.dir/func.c.o.d -o CMakeFiles/Porjet_C.dir/func.c.o -c /mnt/e/cours/Porjet_C/func.c
+
+CMakeFiles/Porjet_C.dir/func.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/func.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/func.c > CMakeFiles/Porjet_C.dir/func.c.i
+
+CMakeFiles/Porjet_C.dir/func.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/func.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/func.c -o CMakeFiles/Porjet_C.dir/func.c.s
+
+CMakeFiles/Porjet_C.dir/combat.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/combat.c.o: /mnt/e/cours/Porjet_C/combat.c
+CMakeFiles/Porjet_C.dir/combat.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/Porjet_C.dir/combat.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/combat.c.o -MF CMakeFiles/Porjet_C.dir/combat.c.o.d -o CMakeFiles/Porjet_C.dir/combat.c.o -c /mnt/e/cours/Porjet_C/combat.c
+
+CMakeFiles/Porjet_C.dir/combat.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/combat.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/combat.c > CMakeFiles/Porjet_C.dir/combat.c.i
+
+CMakeFiles/Porjet_C.dir/combat.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/combat.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/combat.c -o CMakeFiles/Porjet_C.dir/combat.c.s
+
+CMakeFiles/Porjet_C.dir/visual.c.o: CMakeFiles/Porjet_C.dir/flags.make
+CMakeFiles/Porjet_C.dir/visual.c.o: /mnt/e/cours/Porjet_C/visual.c
+CMakeFiles/Porjet_C.dir/visual.c.o: CMakeFiles/Porjet_C.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Porjet_C.dir/visual.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Porjet_C.dir/visual.c.o -MF CMakeFiles/Porjet_C.dir/visual.c.o.d -o CMakeFiles/Porjet_C.dir/visual.c.o -c /mnt/e/cours/Porjet_C/visual.c
+
+CMakeFiles/Porjet_C.dir/visual.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Porjet_C.dir/visual.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/e/cours/Porjet_C/visual.c > CMakeFiles/Porjet_C.dir/visual.c.i
+
+CMakeFiles/Porjet_C.dir/visual.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Porjet_C.dir/visual.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/e/cours/Porjet_C/visual.c -o CMakeFiles/Porjet_C.dir/visual.c.s
 
 # Object files for target Porjet_C
 Porjet_C_OBJECTS = \
-"CMakeFiles/Porjet_C.dir/hello_sdl.c.o"
+"CMakeFiles/Porjet_C.dir/main.c.o" \
+"CMakeFiles/Porjet_C.dir/init.c.o" \
+"CMakeFiles/Porjet_C.dir/destroy.c.o" \
+"CMakeFiles/Porjet_C.dir/setGet.c.o" \
+"CMakeFiles/Porjet_C.dir/func.c.o" \
+"CMakeFiles/Porjet_C.dir/combat.c.o" \
+"CMakeFiles/Porjet_C.dir/visual.c.o"
 
 # External object files for target Porjet_C
 Porjet_C_EXTERNAL_OBJECTS =
 
-Porjet_C: CMakeFiles/Porjet_C.dir/hello_sdl.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/main.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/init.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/destroy.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/setGet.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/func.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/combat.c.o
+Porjet_C: CMakeFiles/Porjet_C.dir/visual.c.o
 Porjet_C: CMakeFiles/Porjet_C.dir/build.make
-Porjet_C: /usr/local/lib/libSDL2.so
 Porjet_C: CMakeFiles/Porjet_C.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Porjet_C"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable Porjet_C"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Porjet_C.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

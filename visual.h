@@ -1,0 +1,4 @@
+#ifndef PORJET_C_VISUAL_H
+#define PORJET_C_VISUAL_H
+
+#endif //PORJET_C_VISUAL_H

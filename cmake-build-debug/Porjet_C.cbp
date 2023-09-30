@@ -5,7 +5,7 @@
 		<Option title="Porjet_C"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\SDL2\;CMake Files\..\..\..\c\;CMake Files\..\..\..\c\MinGW\;CMake Files\..\..\..\c\MinGW\lib\;CMake Files\..\..\..\c\MinGW\lib\cmake\;CMake Files\..\..\..\c\MinGW\lib\cmake\SDL2_ttf\;"/>
+		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
@@ -24,7 +24,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include/SDL2"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
@@ -44,7 +43,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include/SDL2"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
@@ -78,23 +76,50 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/e/cours/Porjet_C/hello_sdl.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/combat.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/combat.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/destroy.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/destroy.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/func.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/func.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/init.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/init.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/main.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/setGet.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/setGet.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/struct.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/visual.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/visual.h">
 			<Option target="Porjet_C"/>
 		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-		<Unit filename="/mnt/e/cours/Porjet_C/../../../../usr/local/lib/cmake/SDL2/sdl2-config-version.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\SDL2\"/>
-		</Unit>
-		<Unit filename="/mnt/e/cours/Porjet_C/../../../../usr/local/lib/cmake/SDL2/sdl2-config.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\SDL2\"/>
-		</Unit>
-		<Unit filename="/mnt/e/cours/Porjet_C/../../../c/MinGW/lib/cmake/SDL2_ttf/sdl2_ttf-config-version.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\c\MinGW\lib\cmake\SDL2_ttf\"/>
-		</Unit>
-		<Unit filename="/mnt/e/cours/Porjet_C/../../../c/MinGW/lib/cmake/SDL2_ttf/sdl2_ttf-config.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\c\MinGW\lib\cmake\SDL2_ttf\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
