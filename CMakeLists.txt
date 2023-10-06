@@ -17,4 +17,6 @@ add_executable(Porjet_C main.c
         func.c
         combat.c
         visual.h
-        visual.c)
+        visual.c
+        lifeCycle.h
+        lifeCycle.c)

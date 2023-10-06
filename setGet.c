@@ -20,7 +20,15 @@ int get_momentum_P(Player * player){
     return player->momentum;
 }
 
-//get
+int get_xp_P(Player * player) {
+    return player->exp;
+}
+int get_level_P(Player * player){
+    return player->level;
+}
+
+
+//set
 void set_vie_P(Player * player, int vie){
     player->vie = vie;
 }
@@ -36,7 +44,12 @@ void set_speed_P(Player * player, int speed){
 void set_momentum_P(Player * player, int momentum){
     player->momentum = (momentum<0)?0:momentum;
 }
-
+void set_xp_P(Player * player,int xp){
+    player->exp = xp;
+}
+void set_level_P(Player * player,int level){
+    player->level = level;
+}
 //Player Equip
 void set_weapon_P(Player * player, Weapon * weapon){
     player->weapon = weapon;
@@ -84,6 +97,12 @@ int get_def_M(Monster * monster) {
 int get_speed_M(Monster * monster) {
     return monster->speed;
 }
+int get_level_M(Monster * monster){
+    return monster->level;
+}
+int get_momentum_M(Monster * monster){
+    return monster->momentum;
+}
 
 //setters
 void set_vie_M(Monster * monster, int vie) {
@@ -94,4 +113,8 @@ void set_def_M(Monster * monster,int def) {
 }
 void set_speed_M(Monster * monster,int speed) {
     monster->speed = (speed<0)?0:speed;
+}
+
+void set_momentum_M(Monster * monster, int momentum){
+    monster->momentum = (momentum<0)?0:momentum;
 }

@@ -225,6 +225,30 @@ init.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/init.c.s
 .PHONY : init.c.s
 
+lifeCycle.o: lifeCycle.c.o
+.PHONY : lifeCycle.o
+
+# target to build an object file
+lifeCycle.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.o
+.PHONY : lifeCycle.c.o
+
+lifeCycle.i: lifeCycle.c.i
+.PHONY : lifeCycle.i
+
+# target to preprocess a source file
+lifeCycle.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.i
+.PHONY : lifeCycle.c.i
+
+lifeCycle.s: lifeCycle.c.s
+.PHONY : lifeCycle.s
+
+# target to generate assembly for a file
+lifeCycle.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.s
+.PHONY : lifeCycle.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -318,6 +342,9 @@ help:
 	@echo "... init.o"
 	@echo "... init.i"
 	@echo "... init.s"
+	@echo "... lifeCycle.o"
+	@echo "... lifeCycle.i"
+	@echo "... lifeCycle.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

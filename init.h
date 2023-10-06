@@ -1,6 +1,9 @@
 #ifndef PORJET_C_INIT_H
 #define PORJET_C_INIT_H
 #include "struct.h"
+#include "init.h"
+#include "func.h"
+#include "setGet.h"
 
 Monster createMonster();
 Player create_player(int og_vie,

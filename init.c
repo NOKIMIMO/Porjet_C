@@ -1,16 +1,18 @@
 //
 // Created by ACER PREDATOR on 29/09/2023.
 //
-#include "struct.h"
 #include "init.h"
-#include "func.h"
+
 
 Monster create_monster(){
     Monster monstre = {
-            .vie = getRNGint(80,100),
-            .def = getRNGint(2,10),
-            .dmg = getRNGint(8,16),
-            .speed = getRNGint(1,5)
+            // a changer le systeme pour que le niveaux soit basé sur le turn
+            .level = get_RNG_int(1,3),
+            //
+            .vie = get_RNG_int(80,100),
+            .def = get_RNG_int(2,10),
+            .dmg = get_RNG_int(8,16),
+            .speed = get_RNG_int(1,5)
     };
     return monstre;
 }

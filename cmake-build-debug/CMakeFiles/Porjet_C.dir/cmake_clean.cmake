@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Porjet_C.dir/func.c.o.d"
   "CMakeFiles/Porjet_C.dir/init.c.o"
   "CMakeFiles/Porjet_C.dir/init.c.o.d"
+  "CMakeFiles/Porjet_C.dir/lifeCycle.c.o"
+  "CMakeFiles/Porjet_C.dir/lifeCycle.c.o.d"
   "CMakeFiles/Porjet_C.dir/main.c.o"
   "CMakeFiles/Porjet_C.dir/main.c.o.d"
   "CMakeFiles/Porjet_C.dir/setGet.c.o"

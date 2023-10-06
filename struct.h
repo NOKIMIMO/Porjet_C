@@ -25,6 +25,7 @@ typedef struct Armor{
 }Armor;
 
 typedef struct Monster{
+    int level;
     int vie;
     int def;
     int dmg;
