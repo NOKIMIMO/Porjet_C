@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+#include "init.h"
+#include "combat.h"
 
 int get_RNG_int(int min, int max);
+void wait(int milliseconds);
 #endif //PORJET_C_FUNC_H

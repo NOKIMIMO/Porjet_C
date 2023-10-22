@@ -8,123 +8,123 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug"/>
+				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Porjet_C">
-				<Option output="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Porjet_C" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug"/>
+				<Option output="/mnt/e/cours/Porjet_C/cmake-build-debug/Porjet_C" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 Porjet_C"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 Porjet_C"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Porjet_C/fast">
-				<Option output="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Porjet_C" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug"/>
+				<Option output="/mnt/e/cours/Porjet_C/cmake-build-debug/Porjet_C" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 Porjet_C/fast"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 Porjet_C/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug"/>
+				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug"/>
+				<Option working_dir="/mnt/e/cours/Porjet_C/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/e/cours/Porjet_C/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/combat.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/combat.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/combat.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/combat.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/destroy.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/destroy.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/destroy.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/destroy.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/func.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/func.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/func.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/func.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/init.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/init.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/init.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/init.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/lifeCycle.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/lifeCycle.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/lifeCycle.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/lifeCycle.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/main.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/main.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/setGet.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/setGet.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/setGet.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/setGet.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/struct.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/struct.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/visual.c">
+		<Unit filename="/mnt/e/cours/Porjet_C/visual.c">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/visual.h">
+		<Unit filename="/mnt/e/cours/Porjet_C/visual.h">
 			<Option target="Porjet_C"/>
 		</Unit>
-		<Unit filename="/mnt/d/GitHubRepo/Porjet_C/CMakeLists.txt">
+		<Unit filename="/mnt/e/cours/Porjet_C/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

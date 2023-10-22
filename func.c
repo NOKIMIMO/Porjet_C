@@ -8,3 +8,7 @@ int get_RNG_int(int min, int max){
     srand(seed);
     return (rand() % (max - min + 1)) + min;
 }
+void wait(int milliseconds) {
+    clock_t start_time = clock();
+    while (clock() < start_time + (CLOCKS_PER_SEC * milliseconds / 1000));
+}

@@ -11,18 +11,18 @@ enum Armor_type{
     ring,
 };
 
-typedef struct Weapon{
-    int dmg;
-    int speed;
-}Weapon;
-
 typedef struct Armor{
     int name;
     int mana;
     int def;
     int speed;
-    enum armor_type;
+    enum Armor_type armor_type;
 }Armor;
+
+typedef struct Weapon{
+    int dmg;
+    int speed;
+}Weapon;
 
 typedef struct Monster{
     int level;

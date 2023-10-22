@@ -43,3 +43,30 @@ Player create_player(int og_vie,
     };
     return player;
 }
+
+Weapon *create_weapon(int dmg, int speed) {
+    Weapon *weapon = (Weapon *)malloc(sizeof(Weapon));
+    if (weapon == NULL) {
+        // Handle allocation failure, for example, return NULL or exit the program
+        return NULL;
+    }
+
+    weapon->dmg = dmg;
+    weapon->speed = speed;
+    return weapon;
+}
+
+Armor *create_armor(int name, int mana, int def, int speed, enum Armor_type armor_type) {
+    Armor *armor = (Armor *)malloc(sizeof(Armor));
+    if (armor == NULL) {
+        // Handle allocation failure, for example, return NULL or exit the program
+        return NULL;
+    }
+
+    armor->name = name;
+    armor->mana = mana;
+    armor->def = def;
+    armor->speed = speed;
+    armor->armor_type = armor_type;
+    return armor;
+}

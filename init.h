@@ -1,11 +1,10 @@
 #ifndef PORJET_C_INIT_H
 #define PORJET_C_INIT_H
 #include "struct.h"
-#include "init.h"
 #include "func.h"
 #include "setGet.h"
 
-Monster createMonster();
+Monster create_monster();
 Player create_player(int og_vie,
                      int og_mana,
                      int vie,
@@ -18,6 +17,8 @@ Player create_player(int og_vie,
                      Armor * leg_piece,
                      Armor * ring);
 
+Weapon * create_weapon(int dmg, int speed);
+Armor * create_armor(int name, int mana, int def, int speed, enum Armor_type armor_type);
 
 
 #endif //PORJET_C_INIT_H

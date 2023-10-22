@@ -420,8 +420,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/mnt/d/GitHubRepo/Porjet_C/cmake-build-debug",
-		"source" : "/mnt/d/GitHubRepo/Porjet_C"
+		"build" : "/mnt/e/cours/Porjet_C/cmake-build-debug",
+		"source" : "/mnt/e/cours/Porjet_C"
 	},
 	"version" : 
 	{
