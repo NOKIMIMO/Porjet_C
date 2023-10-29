@@ -103,6 +103,9 @@ int get_level_M(Monster * monster){
 int get_momentum_M(Monster * monster){
     return monster->momentum;
 }
+char * get_name_M(Monster * monster){
+    return monster->name;
+}
 
 //setters
 void set_vie_M(Monster * monster, int vie) {

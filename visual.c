@@ -12,7 +12,6 @@ void clearAll(){
 void moveCursor(int x, int y){
     printf("\033[%d;%dH", y, x);
 }
-
 void buildBoxInteraction(int width, int height,int x, int y){
     moveCursor(x,y);
 
@@ -39,6 +38,8 @@ void buildBoxInteraction(int width, int height,int x, int y){
     printf("╝\n");
 }
 void buildInteraction(int x, int y, char **str, int selectedIndex, int itemCount) {
+    clearFromTo(x, y, x + 10, y + 4);
+    moveCursor(x, y);
     for (int i = 0; i < itemCount; i++) {
         if (str[i] == NULL || str[i][0] == '\0' || str[i][0] == '\n') {
             // Skip empty or NULL entries
@@ -52,7 +53,6 @@ void buildInteraction(int x, int y, char **str, int selectedIndex, int itemCount
         }
     }
 }
-
 void printLife(int x, int y, int currentLife, int maxLife){
     int currentBars = currentLife / 10;
     int maxBars = maxLife / 10;
@@ -75,6 +75,43 @@ void printLife(int x, int y, int currentLife, int maxLife){
     printf(" %d/%d", currentLife, maxLife);
     moveCursor(0,30);
 }
+void printMana(int x, int y, int currentMana, int maxMana){
+    int currentBars = currentMana / 10;
+    int maxBars = maxMana / 10;
+
+    printf("\033[%d;%dH", y, x);
+    printf("MP: ");
+
+    // Set the text color to blue (ANSI escape code)
+    printf("\033[34m");
+
+    for (int i = 0; i < currentBars; i++){
+        printf("█");
+    }
+
+    for (int i = 0; i < maxBars - currentBars; i++){
+        printf("#");
+    }
+    // Reset text color to default (ANSI escape code)
+    printf("\033[0m");
+    printf(" %d/%d", currentMana, maxMana);
+    moveCursor(0,30);
+}
+void clearAt(int x, int y) {
+    printf("\033[%d;%dH ", y, x);
+}
+void clearFromTo(int x1, int y1, int x2, int y2){
+    for (int i = y1; i <= y2; i++){
+        for (int j = x1; j <= x2; j++){
+            clearAt(j, i);
+        }
+    }
+}
+void buildBasic(Player player){
+    printLife(3,2, get_vie_P(&player),100);
+    printMana(3,3, get_mana_P(&player),100);
+    buildBoxInteraction(60,10,0,13);
+}
 void killVisual(){
     // Restore the terminal
     system("stty icanon");
@@ -82,36 +119,24 @@ void killVisual(){
     printf("\033[?1049l"); // Exit alternate screen
     clearAll();
 }
-void attackVisual(Monster * monster,Player * player){
-    clearAll();
+int attackVisual(Monster ** monster,Player * player, int nb_monster){
     int selectedIndex = 0;
-    char *options[] = {
-            "10",
-            "20",
-            "30",
-    };
-    int itemCount = sizeof(options) / sizeof(options[0]);
+    char **options = malloc(sizeof(char*)*nb_monster+1);
+    for (int i = 0; i < nb_monster; i++) {
+        options[i] = get_name_M(&(*monster)[i]);
+    }
+    options[nb_monster] = "flee";
     while (1) {
-        printLife(3,2, get_vie_P(player),100);
-        printLife(3,4, get_vie_M(monster),100);
-        buildBoxInteraction(60,10,0,10);
-        buildInteraction(5, 12, options, selectedIndex, itemCount);
+        buildInteraction(5, 15, options, selectedIndex, nb_monster+1);
         moveCursor(50, 50);
         int c = getchar();
-        if (c == 10 || c == 13) {
-            // Check for the ENTER key
-            switch (selectedIndex) {
-                case 0:
-                    set_vie_M(monster,get_vie_M(monster)- get_player_dmg(player,monster));
-                    return;
-                case 1:
-                    set_vie_M(monster,get_vie_M(monster)-20);
-                    return;
-                case 2:
-                    set_vie_M(monster,get_vie_M(monster)-30);
-                    return;
-                default:
-                    break;
+        if (c == ' ') {
+            // Check for the SPACE key
+            if(selectedIndex==nb_monster){
+                return 0;
+            }else{
+                set_vie_M(&(*monster)[selectedIndex],get_vie_M(&(*monster)[selectedIndex])- get_player_dmg(player,&(*monster)[selectedIndex]));
+                return 1;
             }
         } else if (c == 27) {  // Check for the ESC key
             int nextChar = getchar();  // Read the next character in the escape sequence
@@ -119,29 +144,69 @@ void attackVisual(Monster * monster,Player * player){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex--;
-                    buildInteraction(5, 12, options, selectedIndex, itemCount);
+                    buildInteraction(5, 15, options, selectedIndex, nb_monster+1);
                     moveCursor(30,20);
-                } else if (arrowKey == 66 && selectedIndex < itemCount - 1) {  // Down arrow key (ASCII 66)
+                } else if (arrowKey == 66 && selectedIndex < nb_monster ) {  // Down arrow key (ASCII 66)
                     selectedIndex++;
-                    buildInteraction(5, 12, options, selectedIndex, itemCount);
+                    buildInteraction(5, 15, options, selectedIndex, nb_monster+1);
                     moveCursor(30, 20);
                 }
             } else {
                 break;
             }
         }
+
         wait(100);
-        clearAll();
+//        clearAll();
     }
+    free(options);
+    return 0;
 }
-void skillVisual(){
+int skillVisual(Monster ** monster,Player * player){
 
 }
-void itemVisual(){
+int itemVisual(Monster ** monster,Player * player){
 
 }
 
+void buildEnnemies(int x, int y, Monster * monster) {
+    char* monster_name = get_name_M(monster);
+    if (monster_name == NULL) {
+        // Gérer le cas où get_name_M renvoie NULL (une chaîne invalide)
+        monster_name="monstre_inconnu";
+    }
 
+    //max size 9
+    char entier_str[9];
+    moveCursor(x, y);
+    printf("╔═════");
+    printf("%s", monster_name);
+    int size = strlen(monster_name);
+    for (int i = 0; i < 12 - size; i++) {
+        printf("═");
+    }
+    printf("╗");
+    y++;
+    moveCursor(x,y);
+    printf("║                 ║");
+    y++;
+    moveCursor(x,y);
+    printf("║");
+    snprintf(entier_str, sizeof(get_vie_M(monster)), "%d", get_vie_M(monster));
+    printf("  HP: %s", entier_str);
+    size = strlen(entier_str);
+    for (int i = 0; i < 11 - size; i++) {
+        printf(" ");
+    }
+    printf("║");
+    y++;
+    moveCursor(x,y);
+    printf("║                 ║");
+    y++;
+    moveCursor(x,y);
+    printf("╚═════════════════╝");
+
+}
 int visual(){
     Player player= create_player(100,100,100,100,10,5,
                                  create_weapon( 10, 5),
@@ -150,12 +215,15 @@ int visual(){
                                  NULL,
                                  NULL);
 
-
-    Monster monster = create_monster();
-
+    //3 monstre max
+    int nb_monster = 2;
+    Monster * monster_list = malloc(sizeof(Monster)*nb_monster);
+    for (int i = 0; i < nb_monster; i++) {
+        monster_list[i] = create_monster();
+    }
     printf("\033[?1049h\033[H");
     system("stty -icanon min 1");
-    clearAll();
+//    clearAll();
     int selectedIndex = 0;
     char *options[] = {
             "Attack",
@@ -164,28 +232,33 @@ int visual(){
             "Flee"
     };
     int itemCount = sizeof(options) / sizeof(options[0]);
+    int action=0;
     while (1) {
-        printLife(3,2, get_vie_P(&player),100);
-        printLife(3,4, get_vie_M(&monster),100);
-        buildBoxInteraction(60,10,0,10);
-        buildInteraction(5, 12, options, selectedIndex, itemCount);
+        //build all
+        buildBasic(player);
+        //build ennemies
+        for (int i = 0; i < nb_monster; i++) {
+            buildEnnemies(5+(i*20),5,&monster_list[i]);
+        }
+        //build interaction
+        buildInteraction(5, 15, options, selectedIndex, itemCount);
         moveCursor(50, 50);
         int c = getchar();
 
-        if (c == 10 || c == 13) {  // Check for the ENTER key
+        if (c == ' ') {  // Check for the ENTER key
             switch (selectedIndex) {
                 case 0:
-                    attackVisual(&monster,&player);
+                    action = attackVisual(&monster_list,&player,nb_monster);
                     break;
                 case 1:
-                    skillVisual();
+                    action = skillVisual(&monster_list,&player);
                     break;
                 case 2:
-                    itemVisual();
+                    action = itemVisual(&monster_list,&player);
                     break;
                 case 3:
                     killVisual();
-                    break;
+                    return 0;
                 default:
                     break;
             }
@@ -195,12 +268,12 @@ int visual(){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex--;
-                    buildInteraction(5, 12, options, selectedIndex, itemCount);
-                    moveCursor(30,20);
+                    buildInteraction(5, 15, options, selectedIndex, itemCount);
+                    moveCursor(50,50);
                 } else if (arrowKey == 66 && selectedIndex < itemCount - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex++;
-                    buildInteraction(5, 12, options, selectedIndex, itemCount);
-                    moveCursor(30, 20);
+                    buildInteraction(5, 15, options, selectedIndex, itemCount);
+                    moveCursor(50, 50);
                 }
             } else {
                 killVisual();
@@ -210,8 +283,10 @@ int visual(){
 
 
         wait(100);
-        clearAll();
-    }
+        //ennemy turn
+        if(action ==1){
 
+        }
+    }
     return 0;
 }

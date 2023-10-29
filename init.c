@@ -7,6 +7,7 @@
 Monster create_monster(){
     Monster monstre = {
             // a changer le systeme pour que le niveaux soit basé sur le turn
+            .name = "truc",
             .level = get_RNG_int(1,3),
             //
             .vie = get_RNG_int(80,100),

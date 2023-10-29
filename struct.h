@@ -25,6 +25,7 @@ typedef struct Weapon{
 }Weapon;
 
 typedef struct Monster{
+    char* name;
     int level;
     int vie;
     int def;

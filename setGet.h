@@ -39,6 +39,7 @@ int get_def_M(Monster * monster);
 int get_speed_M(Monster * monster);
 int get_level_M(Monster * monster);
 int get_momentum_M(Monster * monster);
+char * get_name_M(Monster * monster);
 
 void set_vie_M(Monster * monster, int vie);
 void set_def_M(Monster * monster, int def);
