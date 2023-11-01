@@ -29,7 +29,7 @@ Monster create_monster(){
     return monstre;
 }
 
-Player create_player(int og_vie,
+Player* create_player(int og_vie,
                      int og_mana,
                      int vie,
                      int mana,
@@ -39,19 +39,20 @@ Player create_player(int og_vie,
                      Armor * chest_piece,
                      Armor * leg_piece,
                      Armor * ring){
-    Player player ={
-            .og_vie = og_vie,
-            .og_mana= og_mana,
-            .vie = vie,
-            .mana = mana,
-            .og_def= og_def,
-            .weapon = weapon,
-            .head_piece = head_piece,
-            .chest_piece = chest_piece,
-            .leg_piece = leg_piece,
-            .ring = ring,
-            .ac = 1
-    };
+    Player *player = malloc(sizeof(Player));
+    if (player != NULL) {
+        player->og_vie = og_vie;
+        player->og_mana = og_mana;
+        player->vie = vie;
+        player->mana = mana;
+        player->og_def = og_def;
+        player->weapon = weapon;
+        player->head_piece = head_piece;
+        player->chest_piece = chest_piece;
+        player->leg_piece = leg_piece;
+        player->ring = ring;
+        player->ac = 1;
+    }
     return player;
 }
 

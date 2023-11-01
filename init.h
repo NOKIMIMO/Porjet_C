@@ -6,7 +6,7 @@
 
 Monster create_monster();
 Monster dead_monster();
-Player create_player(int og_vie,
+Player * create_player(int og_vie,
                      int og_mana,
                      int vie,
                      int mana,

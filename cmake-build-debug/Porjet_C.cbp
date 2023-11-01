@@ -100,6 +100,12 @@
 		<Unit filename="/mnt/e/cours/Porjet_C/func.h">
 			<Option target="Porjet_C"/>
 		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/game.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/game.h">
+			<Option target="Porjet_C"/>
+		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/init.c">
 			<Option target="Porjet_C"/>
 		</Unit>

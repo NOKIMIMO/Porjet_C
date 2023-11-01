@@ -2,8 +2,8 @@
 #define PORJET_C_VISUAL_H
 #include "func.h"
 
-#define interaction_x 5
-#define interaction_y 15
+#define interaction_x 7
+#define interaction_y 22
 
 #define mob_pos_x 5
 #define mob_pos_y 5
@@ -24,8 +24,9 @@ int attackVisual(Monster * monster,Player * player, int nb_monster);
 int itemVisual(Monster * monster,Player * player);
 int skillVisual(Monster * monster,Player * player);
 void showHPReceived(int value, int x, int y);
+void buildMap(int x,int y,int width,int height,Player player);
 void showDMGReceived(int value, int x,Monster * monster, int y);
 //retourne 0 si tout c'est bien passé et exit normal, 1 si le joueur est mort, 2 si autre (bug)
-int visual();
+int visual(Player * player);
 
 #endif //PORJET_C_VISUAL_H

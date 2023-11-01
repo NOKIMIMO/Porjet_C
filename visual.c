@@ -19,15 +19,18 @@ void buildBoxInteraction(int width, int height,int x, int y){
     for (int i = 1; i < width - 1; i++){
         printf("═");
     }
-    printf("╗\n");
-
+    printf("╗");
+    y++;
+    moveCursor(x,y);
     // Print the sides of the box
     for (int i = 1; i < height - 1; i++){
         printf("║");
         for (int j = 1; j < width - 1; j++){
             printf(" ");  // Space inside the box
         }
-        printf("║\n");
+        printf("║");
+        y++;
+        moveCursor(x,y);
     }
 
     // Print the bottom row of the box
@@ -35,7 +38,9 @@ void buildBoxInteraction(int width, int height,int x, int y){
     for (int i = 1; i < width - 1; i++){
         printf("═");
     }
-    printf("╝\n");
+    printf("╝");
+    y++;
+    moveCursor(x,y);
 }
 void buildInteraction(int x, int y, char **str, int selectedIndex, int itemCount) {
     clearFromTo(x, y, x + 10, y + 4);
@@ -110,7 +115,7 @@ void clearFromTo(int x1, int y1, int x2, int y2){
 void buildBasic(Player player){
     printLife(3,2, get_vie_P(&player),100);
     printMana(3,3, get_mana_P(&player),100);
-    buildBoxInteraction(60,10,0,13);
+    buildBoxInteraction(60,10,interaction_x-5,interaction_y-2);
 }
 void showDeathMessage(int x, int y){
     clearFromTo(x,y,x+50,y+5);
@@ -138,6 +143,12 @@ void showDmgReceived(int value,Monster * monster,int x, int y){
 }
 void showHPReceived(int value, int x, int y){
 
+}
+void buildMap(int x,int y,int width,int height,Player player){
+    clearAll();
+    printLife(3,2, get_vie_P(&player),100);
+    printMana(3,3, get_mana_P(&player),100);
+    buildBoxInteraction(60,21,x,y);
 }
 int attackVisual(Monster * monster,Player * player, int nb_monster){
     int selectedIndex = 0;
@@ -243,12 +254,8 @@ void buildEnnemies(int x, int y, Monster * monster) {
     printf("╚═════════════════╝");
 
 }
-int visual(){
-    Player player= create_player(100,100,100,100,10,create_weapon( 100),
-                                 NULL,
-                                 create_armor( 10, 5, 5, chest_piece),
-                                 NULL,
-                                 NULL);
+int visual(Player * player){
+
 
     //3 monstre max
     int nb_monster = 2;
@@ -268,10 +275,10 @@ int visual(){
             "Flee"
     };
     int itemCount = sizeof(options) / sizeof(options[0]);
-    int action= get_ac_P(&player);
+    int action= get_ac_P(player);
     while (1) {
         //build all
-        buildBasic(player);
+        buildBasic(*player);
         //build ennemies
         for (int i = 0; i < nb_monster; i++) {
             if(strcmp(get_name_M(&monster_list[i]),"###DEAD###")!=0){
@@ -287,13 +294,13 @@ int visual(){
         if (c == ' ') {  // Check for the ENTER key
             switch (selectedIndex) {
                 case 0:
-                    action -= attackVisual(monster_list,&player,nb_monster);
+                    action -= attackVisual(monster_list,player,nb_monster);
                     break;
                 case 1:
-                    action -= skillVisual(monster_list,&player);
+                    action -= skillVisual(monster_list,player);
                     break;
                 case 2:
-                    action -= itemVisual(monster_list,&player);
+                    action -= itemVisual(monster_list,player);
                     break;
                 case 3:
                     //killVisual();
@@ -320,18 +327,18 @@ int visual(){
 
         wait(100);
         if(is_monster_list_empty(monster_list,nb_monster)){
-            //plus de monstre
+            //plus de monstre donc go map
             //TODO: faire naviguation
-
+            return 0;
         }
 
         //ennemy turn
         if(action ==0){
             for (int i = 0; i < nb_monster; ++i) {
                 if(strcmp(get_name_M(&monster_list[i]),"###DEAD###")!=0){
-                    int dmg_received = monster_attack(&player,&monster_list[i]);
+                    int dmg_received = monster_attack(player,&monster_list[i]);
                     showDmgReceived(dmg_received,&monster_list[i],interaction_x,interaction_y);
-                    if(get_vie_P(&player)<=0){
+                    if(get_vie_P(player)<=0){
                         showDeathMessage(interaction_x,interaction_y);
                         free(monster_list);
                         killVisual();
@@ -339,7 +346,7 @@ int visual(){
                     }
                 }
             }
-            action += get_ac_P(&player);
+            action += get_ac_P(player);
         }
 
     }
