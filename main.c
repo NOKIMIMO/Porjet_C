@@ -5,10 +5,16 @@
 
 //gcc -o hello_sdl hello_sdl.c
 int main(int argc, char *argv[]){
-    unsigned int seed = (unsigned int)clock(); // Utilisez clock() pour obtenir une graine basée sur le temps actuel
-    srand(seed);
-    for (int i = 0; i < 5; ++i) {
-        printf("%d\n",rand()%100);
+
+    int ret = visual();
+    if (ret==1){
+        //le joueur est mort
+        return 0;
+    }else if(ret == 0){
+        //Exit normal du joueur
+        return 0;
+    }else{
+        printf("Erreur");
+        return -1;
     }
-    return visual();
 }

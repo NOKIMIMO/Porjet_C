@@ -3,21 +3,6 @@
 //
 #include "combat.h"
 
-void advance_turn(Player * player, Monster * monster){
-    //player refresh en premier, balec
-    set_momentum_P(player,get_momentum_P(player)+get_speed_P(player));
-    if(get_momentum_P(player)>=100){
-        set_momentum_P(player,get_momentum_P(player)-100);
-        //player action
-    }
-    set_momentum_M(monster,get_momentum_M(monster)+get_speed_M(monster));
-    if(get_momentum_M(monster)>=100){
-        set_momentum_M(monster,get_momentum_M(monster)-100);
-        //monster action
-    }
-
-}
-
 int get_player_dmg(Player * player,Monster * monster){
     if(!player->weapon){
         //coup de poing
@@ -29,6 +14,23 @@ int get_player_dmg(Player * player,Monster * monster){
 }
 
 int get_monster_dmg(Player * player,Monster * monster){
-
     return monster->dmg - player->def;
+}
+
+int monster_attack(Player * player,Monster * monster){
+    int dmg = get_monster_dmg(player,monster);
+    if(dmg<0){
+        dmg = 0;
+    }
+    set_vie_P(player,get_vie_P(player)-dmg);
+    return dmg;
+}
+
+int is_monster_list_empty(Monster * monster_list,int nb_monster){
+    for (int i = 0; i < nb_monster; ++i) {
+        if(strcmp(get_name_M(&monster_list[i]),"###DEAD###")!=0){
+            return 0;
+        }
+    }
+    return 1;
 }

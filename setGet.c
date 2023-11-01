@@ -13,11 +13,8 @@ int get_mana_P(Player * player){
 int get_def_P(Player * player){
     return player->def;
 }
-int get_speed_P(Player * player){
-    return player->speed;
-}
-int get_momentum_P(Player * player){
-    return player->momentum;
+int get_ac_P(Player * player){
+    return player->ac;
 }
 
 int get_xp_P(Player * player) {
@@ -38,17 +35,14 @@ void set_mana_P(Player * player, int mana){
 void set_def_P(Player * player, int def){
     player->def = (def<0)?0:def;
 }
-void set_speed_P(Player * player, int speed){
-    player->speed = (speed<0)?0:speed;
-}
-void set_momentum_P(Player * player, int momentum){
-    player->momentum = (momentum<0)?0:momentum;
-}
 void set_xp_P(Player * player,int xp){
     player->exp = xp;
 }
 void set_level_P(Player * player,int level){
     player->level = level;
+}
+void set_ac_P(Player * player,int ac){
+    player->ac = ac;
 }
 //Player Equip
 void set_weapon_P(Player * player, Weapon * weapon){
@@ -94,15 +88,10 @@ int get_vie_M(Monster * monster) {
 int get_def_M(Monster * monster) {
     return monster->def;
 }
-int get_speed_M(Monster * monster) {
-    return monster->speed;
-}
 int get_level_M(Monster * monster){
     return monster->level;
 }
-int get_momentum_M(Monster * monster){
-    return monster->momentum;
-}
+
 char * get_name_M(Monster * monster){
     return monster->name;
 }
@@ -114,10 +103,4 @@ void set_vie_M(Monster * monster, int vie) {
 void set_def_M(Monster * monster,int def) {
     monster->def = (def<0)?0:def;
 }
-void set_speed_M(Monster * monster,int speed) {
-    monster->speed = (speed<0)?0:speed;
-}
 
-void set_momentum_M(Monster * monster, int momentum){
-    monster->momentum = (momentum<0)?0:momentum;
-}

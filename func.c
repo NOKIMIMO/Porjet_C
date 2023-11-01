@@ -6,6 +6,7 @@
 int get_RNG_int(int min, int max){
     unsigned int seed = (unsigned int)clock(); // Utilisez clock() pour obtenir une graine basée sur le temps actuel
     srand(seed);
+    wait(2);
     return (rand() % (max - min + 1)) + min;
 }
 void wait(int milliseconds) {

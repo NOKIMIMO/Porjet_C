@@ -5,20 +5,22 @@
 #include "setGet.h"
 
 Monster create_monster();
+Monster dead_monster();
 Player create_player(int og_vie,
                      int og_mana,
                      int vie,
                      int mana,
                      int og_def,
-                     int og_speed,
                      Weapon * weapon,
                      Armor * head_piece,
                      Armor * chest_piece,
                      Armor * leg_piece,
                      Armor * ring);
 
-Weapon * create_weapon(int dmg, int speed);
-Armor * create_armor(int name, int mana, int def, int speed, enum Armor_type armor_type);
+Weapon * create_weapon(int dmg);
+Armor * create_armor(int name, int mana, int def, enum Armor_type armor_type);
 
+Item * create_item(int name, int mana, int hp);
+Skill * create_skill(int name, int mana, int dmg);
 
 #endif //PORJET_C_INIT_H

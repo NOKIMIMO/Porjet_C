@@ -153,6 +153,30 @@ combat.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/combat.c.s
 .PHONY : combat.c.s
 
+deathScreen.o: deathScreen.c.o
+.PHONY : deathScreen.o
+
+# target to build an object file
+deathScreen.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.o
+.PHONY : deathScreen.c.o
+
+deathScreen.i: deathScreen.c.i
+.PHONY : deathScreen.i
+
+# target to preprocess a source file
+deathScreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.i
+.PHONY : deathScreen.c.i
+
+deathScreen.s: deathScreen.c.s
+.PHONY : deathScreen.s
+
+# target to generate assembly for a file
+deathScreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.s
+.PHONY : deathScreen.c.s
+
 destroy.o: destroy.c.o
 .PHONY : destroy.o
 
@@ -297,6 +321,30 @@ setGet.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/setGet.c.s
 .PHONY : setGet.c.s
 
+splashScreen.o: splashScreen.c.o
+.PHONY : splashScreen.o
+
+# target to build an object file
+splashScreen.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.o
+.PHONY : splashScreen.c.o
+
+splashScreen.i: splashScreen.c.i
+.PHONY : splashScreen.i
+
+# target to preprocess a source file
+splashScreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.i
+.PHONY : splashScreen.c.i
+
+splashScreen.s: splashScreen.c.s
+.PHONY : splashScreen.s
+
+# target to generate assembly for a file
+splashScreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.s
+.PHONY : splashScreen.c.s
+
 visual.o: visual.c.o
 .PHONY : visual.o
 
@@ -333,6 +381,9 @@ help:
 	@echo "... combat.o"
 	@echo "... combat.i"
 	@echo "... combat.s"
+	@echo "... deathScreen.o"
+	@echo "... deathScreen.i"
+	@echo "... deathScreen.s"
 	@echo "... destroy.o"
 	@echo "... destroy.i"
 	@echo "... destroy.s"
@@ -351,6 +402,9 @@ help:
 	@echo "... setGet.o"
 	@echo "... setGet.i"
 	@echo "... setGet.s"
+	@echo "... splashScreen.o"
+	@echo "... splashScreen.i"
+	@echo "... splashScreen.s"
 	@echo "... visual.o"
 	@echo "... visual.i"
 	@echo "... visual.s"

@@ -11,17 +11,27 @@ enum Armor_type{
     ring,
 };
 
+typedef struct Item {
+    int name;
+    int mana;
+    int hp;
+}Item;
+
+typedef struct Skill{
+    int name;
+    int mana;
+    int dmg;
+}Skill;
+
 typedef struct Armor{
     int name;
     int mana;
     int def;
-    int speed;
     enum Armor_type armor_type;
 }Armor;
 
 typedef struct Weapon{
     int dmg;
-    int speed;
 }Weapon;
 
 typedef struct Monster{
@@ -30,8 +40,7 @@ typedef struct Monster{
     int vie;
     int def;
     int dmg;
-    int speed;
-    int momentum;
+    char* sprite;
 }Monster;
 
 
@@ -45,8 +54,7 @@ typedef struct Player{
     int vie;
     int mana;
     int def;
-    int speed;
-    int momentum;
+    int ac;
     Weapon * weapon;
     Armor * head_piece;
     Armor * chest_piece;

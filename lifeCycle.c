@@ -25,15 +25,12 @@ void refresh_stat_P(Player * player){
     int vie = get_vie_P(player);
     int mana = get_mana_P(player);
     int def = get_def_P(player);
-    int speed = get_speed_P(player);
 
     vie += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
     mana += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
     def += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
-    speed += get_level_P(player)+get_RNG_int(0,1);
 
     set_vie_P(player,vie);
     set_mana_P(player,mana);
     set_def_P(player,def);
-    set_speed_P(player,speed);
 }
