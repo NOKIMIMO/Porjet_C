@@ -3,7 +3,7 @@
 #include <time.h>
 #include "visual.h"
 
-//gcc -o hello_sdl hello_sdl.c
+
 int main(int argc, char *argv[]){
     unsigned int seed = (unsigned int)clock(); // Utilisez clock() pour obtenir une graine basée sur le temps actuel
     srand(seed);
