@@ -13,3 +13,7 @@ void wait(int milliseconds) {
     clock_t start_time = clock();
     while (clock() < start_time + (CLOCKS_PER_SEC * milliseconds / 1000));
 }
+
+void mofidyMapAtPos(int x,int y,int ** map,int value){
+    map[y][x]=value;
+}

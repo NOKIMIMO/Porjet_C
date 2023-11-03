@@ -9,6 +9,8 @@ int get_def_P(Player * player);
 int get_xp_P(Player * player);
 int get_level_P(Player * player);
 int get_ac_P(Player * player);
+int get_pos_x_P(Player * player);
+int get_pos_y_P(Player * player);
 
 void set_vie_P(Player * player,int vie);
 void set_mana_P(Player * player,int mana);
@@ -16,6 +18,8 @@ void set_def_P(Player * player,int def);
 void set_xp_P(Player * player,int xp);
 void set_level_P(Player * player,int level);
 void set_ac_P(Player * player,int ac);
+void set_pos_x_P(Player * player,int pos_x);
+void set_pos_y_P(Player * player,int pos_y);
 
 void set_weapon_P(Player * player, Weapon * weapon);
 void set_head_piece_P(Player * player, Armor * head_piece);

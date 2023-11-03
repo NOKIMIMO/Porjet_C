@@ -3,9 +3,30 @@
 //
 #include "visual.h"
 
-void printAt(int x, int y, char *str){
+void printStrAt(int x, int y, char *str){
     printf("\033[%d;%dH%s", y, x, str);
 }
+void printCharAt(int x, int y, char str){
+    printf("\033[%d;%dH%c", y, x, str);
+}
+void printIntAt(int x, int y, int val){
+    printf("\033[%d;%dH%d", y, x, val);
+}
+void printCharIndices(int x,int y,const char *str) {
+    moveCursor(x, y);
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (i % 7 == 0 && i != 0) {
+            y++;
+            moveCursor(x, y);
+        }
+        if (str[i] == '\n' ) {
+            printf("%d : 'end' | ", i);
+            continue;
+        }
+        printf("%d : '%c' | ", i, str[i]);
+    }
+}
+
 void clearAll(){
     printf("\033[2J");
 }
@@ -112,6 +133,21 @@ void clearFromTo(int x1, int y1, int x2, int y2){
         }
     }
 }
+void printFromToLine(int x,int y,int width,char str){
+    moveCursor(x,y);
+    for (int j = 0; j < width; ++j) {
+        printf("%c",str);
+    }
+
+}
+void printFromToShape(int x1,int y1,int x2,int y2,char * str){
+    for (int i = y1; i <= y2; i++){
+        for (int j = x1; j <= x2; j++){
+            printStrAt(j, i, str);
+        }
+    }
+
+}
 void buildBasic(Player player){
     printLife(3,2, get_vie_P(&player),100);
     printMana(3,3, get_mana_P(&player),100);
@@ -144,11 +180,174 @@ void showDmgReceived(int value,Monster * monster,int x, int y){
 void showHPReceived(int value, int x, int y){
 
 }
-void buildMap(int x,int y,int width,int height,Player player){
+void printMap(int x,int y, int ** map){
+    int start_x=x;
+    int start_y=y;
+    for (int i = 0; i < 7; ++i) {
+        for (int j = 0; j <7 ; ++j) {
+            if(map[i][j]==0){
+                printFromToShape(x+1,y+1,x+3,y+3,"█");
+                x+=3;
+            }else if(map[i][j]==1){
+                printFromToShape(x+1,y+1,x+3,y+3,"░");
+                x+=3;
+            }else if(map[i][j]==2){
+                printFromToShape(x+1,y+1,x+3,y+3,"▓");
+                x+=3;
+            }else if(map[i][j]==3){
+                printFromToShape(x+1,y+1,x+3,y+3,"▒");
+                x+=3;
+            }
+        }
+        y+=3;
+        x= start_x;
+        moveCursor(x+3,y+1);
+    }
+}
+void buildMapGraph(int x,int y,Player player,int ** map){
     clearAll();
     printLife(3,2, get_vie_P(&player),100);
     printMana(3,3, get_mana_P(&player),100);
-    buildBoxInteraction(60,21,x,y);
+    buildBoxInteraction(60,23,x,y);
+    int cpt=0;
+    x++;
+    int start_x=x;
+    int start_y=y;
+    printMap(start_x,start_y,map);
+    while (1) {
+        moveCursor((get_pos_x_P(&player)+1)*3,(get_pos_y_P(&player)+1)*3+1);
+        int old_pos_x = get_pos_x_P(&player);
+        int old_pos_y = get_pos_y_P(&player);
+
+        //print player with red ■
+        printf("\033[31m");
+        printf("■");
+        //go back to white
+        printf("\033[0m");
+        moveCursor(50, 50);
+
+        int c = getchar();
+        if (c == ' ') {  // Check for the SPACE key
+            printf("\032[31m");
+            printIntAt(7,33,map[get_pos_y_P(&player)-1][get_pos_x_P(&player)-1]);
+            //go back to white
+            printf("\033[0m");
+
+        } else if (c == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                switch (arrowKey) {
+                    case 65:
+                        // Up arrow key (ASCII 65)
+                        //check if not out of bound and if not wall
+                        if(get_pos_y_P(&player)>0 && map[get_pos_y_P(&player)-2][get_pos_x_P(&player)-1]!=0){
+
+                            set_pos_y_P(&player,get_pos_y_P(&player)-1);
+
+                            if(map[old_pos_y-1][get_pos_x_P(&player)-1]==0){
+                                //celui n'est sensé jamais arriver mais qui c'est
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"█");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==1){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"░");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==2){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"▓");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==3){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"▒");
+                            }
+
+                        }
+                        break;
+                    case 66:
+                        // Down arrow key (ASCII 66)
+                        if(get_pos_y_P(&player)<7 && map[get_pos_y_P(&player)][get_pos_x_P(&player)-1]!=0){
+
+                            set_pos_y_P(&player,get_pos_y_P(&player)+1);
+
+                            if(map[old_pos_y-1][get_pos_x_P(&player)-1]==0){
+                                //celui n'est sensé jamais arriver mais qui c'est
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"█");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==1){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"░");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==2){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"▓");
+                            }else if(map[old_pos_y-1][get_pos_x_P(&player)-1]==3){
+                                printStrAt((get_pos_x_P(&player)+1)*3,(old_pos_y+1)*3+1,"▒");
+                            }
+
+                        }
+                        break;
+                    case 67:
+                        // Right arrow key
+                        if(get_pos_x_P(&player)<7 && map[get_pos_y_P(&player)-1][get_pos_x_P(&player)]!=0){
+
+                            set_pos_x_P(&player,get_pos_x_P(&player)+1);
+
+                            if(map[get_pos_y_P(&player)-1][old_pos_x-1]==0){
+                                //celui n'est sensé jamais arriver mais qui c'est
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"█");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==1){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"░");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==2){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"▓");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==3){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"▒");
+                            }
+
+                        }
+                        break;
+                        // Left arrow key
+                    case 68:
+                        if(get_pos_x_P(&player)>0 && map[get_pos_y_P(&player)-1][get_pos_x_P(&player)-2]!=0){
+
+                            set_pos_x_P(&player,get_pos_x_P(&player)-1);
+                            if(map[get_pos_y_P(&player)-1][old_pos_x-1]==0){
+                                //celui n'est sensé jamais arriver mais qui c'est
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"█");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==1){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"░");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==2){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"▓");
+                            }else if(map[get_pos_y_P(&player)-1][old_pos_x-1]==3){
+                                printStrAt((old_pos_x+1)*3,(get_pos_y_P(&player)+1)*3+1,"▒");
+                            }
+                        }
+                        break;
+
+                }
+            } else {
+                break;
+            }
+        }
+        if(map[get_pos_y_P(&player)-1][get_pos_x_P(&player)-1]==1){
+            //combat
+            int ret = visual(&player);
+            if(ret==1) {
+                //le joueur est mort
+                showDeathMessage(7, 35);
+                killVisual();
+                free(map);
+                return;
+            }else if(ret == 3) {
+                //fuite du joueur
+                printLife(3,2, get_vie_P(&player),100);
+                printMana(3,3, get_mana_P(&player),100);
+                buildBoxInteraction(60,23,x,y);
+                printMap(start_x,start_y,map);
+                set_pos_x_P(&player,old_pos_x);
+                set_pos_y_P(&player,old_pos_y);
+            }else{
+                mofidyMapAtPos(get_pos_x_P(&player)-1,get_pos_y_P(&player)-1,map,2);
+                printLife(3,2, get_vie_P(&player),100);
+                printMana(3,3, get_mana_P(&player),100);
+                buildBoxInteraction(60,23,x,y);
+                printMap(start_x,start_y,map);
+            }
+        }
+
+        wait(100);
+    }
+
 }
 int attackVisual(Monster * monster,Player * player, int nb_monster){
     int selectedIndex = 0;
@@ -258,7 +457,7 @@ int visual(Player * player){
 
 
     //3 monstre max
-    int nb_monster = 2;
+    int nb_monster = get_RNG_int(1,3);
     Monster * monster_list = malloc(sizeof(Monster)*nb_monster);
     for (int i = 0; i < nb_monster; i++) {
         monster_list[i] = create_monster();
@@ -291,7 +490,7 @@ int visual(Player * player){
         buildInteraction(interaction_x, interaction_y, options, selectedIndex, itemCount);
         moveCursor(50, 50);
         int c = getchar();
-        if (c == ' ') {  // Check for the ENTER key
+        if (c == ' ') {  // Check for the SPACE key
             switch (selectedIndex) {
                 case 0:
                     action -= attackVisual(monster_list,player,nb_monster);
@@ -305,7 +504,7 @@ int visual(Player * player){
                 case 3:
                     //killVisual();
                     clearAll();
-                    return 0;
+                    return 3;
                 default:
                     break;
             }
@@ -328,7 +527,7 @@ int visual(Player * player){
         wait(100);
         if(is_monster_list_empty(monster_list,nb_monster)){
             //plus de monstre donc go map
-            //TODO: faire naviguation
+            clearAll();
             return 0;
         }
 

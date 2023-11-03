@@ -23,7 +23,12 @@ int get_xp_P(Player * player) {
 int get_level_P(Player * player){
     return player->level;
 }
-
+int get_pos_x_P(Player * player){
+    return player->pos_x;
+}
+int get_pos_y_P(Player * player){
+    return player->pos_y;
+}
 
 //set
 void set_vie_P(Player * player, int vie){
@@ -43,6 +48,12 @@ void set_level_P(Player * player,int level){
 }
 void set_ac_P(Player * player,int ac){
     player->ac = ac;
+}
+void set_pos_x_P(Player * player,int pos_x){
+    player->pos_x = pos_x;
+}
+void set_pos_y_P(Player * player,int pos_y){
+    player->pos_y = pos_y;
 }
 //Player Equip
 void set_weapon_P(Player * player, Weapon * weapon){

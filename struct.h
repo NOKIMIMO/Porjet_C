@@ -45,6 +45,8 @@ typedef struct Monster{
 
 
 typedef struct Player{
+    int pos_x;
+    int pos_y;
     int level;
     int exp;
     int og_vie;

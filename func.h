@@ -11,4 +11,5 @@
 
 int get_RNG_int(int min, int max);
 void wait(int milliseconds);
+void mofidyMapAtPos(int x,int y,int ** map,int value);
 #endif //PORJET_C_FUNC_H

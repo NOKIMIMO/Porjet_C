@@ -30,6 +30,8 @@ Monster create_monster(){
 }
 
 Player* create_player(int og_vie,
+                     int pos_x,
+                     int pos_y,
                      int og_mana,
                      int vie,
                      int mana,
@@ -43,6 +45,8 @@ Player* create_player(int og_vie,
     if (player != NULL) {
         player->og_vie = og_vie;
         player->og_mana = og_mana;
+        player->pos_x = pos_x;
+        player->pos_y = pos_y;
         player->vie = vie;
         player->mana = mana;
         player->og_def = og_def;
@@ -104,4 +108,22 @@ Skill * create_skill(int name, int mana, int dmg){
     skill->mana = mana;
     skill->dmg = dmg;
     return skill;
+}
+
+int ** initMap(int rows, int cols){
+    int ** map = (int **)malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++) {
+        map[i] = (int *)malloc(cols * sizeof(int));
+    }
+
+    // Initialisation des valeurs du tableau
+    map[0][0] = 0; map[0][1] = 0; map[0][2] = 0; map[0][3] = 0; map[0][4] = 0; map[0][5] = 0; map[0][6] = 0;
+    map[1][0] = 0; map[1][1] = 0; map[1][2] = 1; map[1][3] = 1; map[1][4] = 3; map[1][5] = 0; map[1][6] = 0;
+    map[2][0] = 0; map[2][1] = 0; map[2][2] = 1; map[2][3] = 0; map[2][4] = 0; map[2][5] = 0; map[2][6] = 0;
+    map[3][0] = 0; map[3][1] = 0; map[3][2] = 1; map[3][3] = 1; map[3][4] = 1; map[3][5] = 0; map[3][6] = 0;
+    map[4][0] = 0; map[4][1] = 0; map[4][2] = 0; map[4][3] = 1; map[4][4] = 0; map[4][5] = 0; map[4][6] = 0;
+    map[5][0] = 0; map[5][1] = 0; map[5][2] = 0; map[5][3] = 2; map[5][4] = 2; map[5][5] = 0; map[5][6] = 0;
+    map[6][0] = 0; map[6][1] = 0; map[6][2] = 0; map[6][3] = 2; map[6][4] = 0; map[6][5] = 0; map[6][6] = 0;
+
+    return map;
 }

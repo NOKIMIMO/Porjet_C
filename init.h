@@ -7,6 +7,8 @@
 Monster create_monster();
 Monster dead_monster();
 Player * create_player(int og_vie,
+                     int pos_x,
+                     int pos_y,
                      int og_mana,
                      int vie,
                      int mana,
@@ -22,5 +24,6 @@ Armor * create_armor(int name, int mana, int def, enum Armor_type armor_type);
 
 Item * create_item(int name, int mana, int hp);
 Skill * create_skill(int name, int mana, int dmg);
+int ** initMap(int rows, int cols);
 
 #endif //PORJET_C_INIT_H
