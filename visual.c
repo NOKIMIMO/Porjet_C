@@ -206,6 +206,8 @@ void printMap(int x,int y, int ** map){
 }
 void buildMapGraph(int x,int y,Player player,int ** map){
     clearAll();
+    printf("\033[?1049h\033[H");
+    system("stty -icanon min 1");
     printLife(3,2, get_vie_P(&player),100);
     printMana(3,3, get_mana_P(&player),100);
     buildBoxInteraction(60,23,x,y);
@@ -214,6 +216,7 @@ void buildMapGraph(int x,int y,Player player,int ** map){
     int start_x=x;
     int start_y=y;
     printMap(start_x,start_y,map);
+
     while (1) {
         moveCursor((get_pos_x_P(&player)+1)*3,(get_pos_y_P(&player)+1)*3+1);
         int old_pos_x = get_pos_x_P(&player);
