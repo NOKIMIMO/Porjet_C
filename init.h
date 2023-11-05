@@ -12,14 +12,13 @@ Player * create_player(int og_vie,
                      int og_mana,
                      int vie,
                      int mana,
-                     int og_def,
                      Weapon * weapon,
                      Armor * head_piece,
                      Armor * chest_piece,
                      Armor * leg_piece,
                      Armor * ring);
 
-Weapon * create_weapon(int dmg);
+Weapon *create_weapon(int dmg,char * name);
 Armor * create_armor(char * name, int mana, int def, enum Armor_type armor_type);
 
 Item * create_item(char * name, int mana, int hp);

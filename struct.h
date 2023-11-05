@@ -7,7 +7,6 @@ enum Armor_type{
     head_piece,
     chest_piece,
     leg_piece,
-    boots,
     ring,
 };
 
@@ -31,6 +30,7 @@ typedef struct Armor{
 }Armor;
 
 typedef struct Weapon{
+    char * name;
     int dmg;
 }Weapon;
 

@@ -3,6 +3,16 @@
 //
 #include "combat.h"
 
+int get_player_dmg_stat(Player * player){
+    if(!player->weapon){
+        //coup de poing
+        return 1;
+    }
+    else{
+        return player->weapon->dmg;
+    }
+}
+
 int get_player_dmg(Player * player,Monster * monster){
     if(!player->weapon){
         //coup de poing

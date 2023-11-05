@@ -62,8 +62,8 @@ void buildBoxInteraction(int width, int height,int x, int y){
     y++;
     moveCursor(x,y);
 }
-void buildInteraction(int x, int y, char **str, int selectedIndex, int itemCount) {
-    clearFromTo(x, y, x + 10, y + 4);
+void buildInteraction(int x, int y,int x2,int y2, char **str, int selectedIndex, int itemCount) {
+    clearFromTo(x, y, x2, y2);
     moveCursor(x, y);
     for (int i = 0; i < itemCount; i++) {
         if (str[i] == NULL || str[i][0] == '\0' || str[i][0] == '\n') {
@@ -99,6 +99,20 @@ void printLife(int x, int y, int currentLife, int maxLife){
     printf("\033[0m");
     printf(" %d/%d", currentLife, maxLife);
     moveCursor(0,30);
+}
+void printDmg(int x, int y, int currentDmg){
+    clearFromTo(x,y,x+5,y);
+    printf("\033[%d;%dH", y, x);
+    printf("DMG: ");
+    printf("%d",currentDmg);
+    moveCursor(50,50);
+}
+void printDef(int x, int y, int currentDef){
+    clearFromTo(x,y,x+5,y);
+    printf("\033[%d;%dH", y, x);
+    printf("DEF: ");
+    printf("%d",currentDef);
+    moveCursor(50,50);
 }
 void printMana(int x, int y, int currentMana, int maxMana){
     int currentBars = currentMana / 10;
@@ -204,7 +218,7 @@ void printMap(int x,int y, int ** map){
     }
 }
 void itemInteraction(int x,int y, Player * player){
-    buildBoxInteraction(30,23,32+x-2,y-2);
+    buildBoxInteraction(30,23,42+x-2,y-2);
     //get hp potion number
     int hp_potion_number = get_potion_type_I(player,"Potion de vie");
     //get mana potion number
@@ -232,7 +246,7 @@ void itemInteraction(int x,int y, Player * player){
     int itemCount2 = sizeof(options2) / sizeof(options2[0]);
     int selectedIndex2 = 0;
     while(1){
-        buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+        buildInteraction(42+x, y,42+x+34,y+4, options2, selectedIndex2, itemCount2);
         moveCursor(50, 50);
         int c2 = getchar();
         if (c2 == ' ') {  // Check for the SPACE key
@@ -286,7 +300,7 @@ void itemInteraction(int x,int y, Player * player){
                     break;
                 case 3:
                     //back
-                    clearFromTo(32+x-2,y-2,32+x+30,y+23);
+                    clearFromTo(42+x-2,y-2,42+x+30,y+23);
                     return;
                 default:
                     break;
@@ -297,11 +311,184 @@ void itemInteraction(int x,int y, Player * player){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex2--;
-                    buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+                    buildInteraction(42+x, y,42+x+30,y+4, options2, selectedIndex2, itemCount2);
                     moveCursor(30,20);
                 } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex2++;
-                    buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+                    buildInteraction(42+x, y,42+x+30,y+4, options2, selectedIndex2, itemCount2);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+        wait(100);
+    }
+}
+int armorInteraction(int x,int y, Player *player ,int type){
+    buildBoxInteraction(40,23,42+x-2,y-2);
+    char **options = NULL;
+    int size = get_size_LA(get_listArmor_P(player));
+    int true_size=0;
+    int cpt=0;
+    switch (type) {
+        case head_piece:
+            //head piece
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==head_piece){
+                    true_size++;
+                }
+            }
+            options = (char **)malloc((true_size + 2) * sizeof(char *));
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==head_piece){
+                    char w_name [40];
+                    sprintf(w_name,"%s | %d MP | %d DEF", get_name_A(get_armor_LA(get_listArmor_P(player),i)),get_mana_A(get_armor_LA(get_listArmor_P(player),i)),get_def_A(get_armor_LA(get_listArmor_P(player),i)));
+                    options[cpt] = (char *)malloc(strlen(w_name) + 1);
+                    strcpy(options[cpt], w_name);
+                    cpt++;
+                }
+            }
+            break;
+        case chest_piece:
+            //chest piece
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==chest_piece){
+                    true_size++;
+                }
+            }
+            options = (char **)malloc((true_size + 2) * sizeof(char *));
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==chest_piece){
+                    char w_name [40];
+                    sprintf(w_name,"%s | %d MP | %d DEF", get_name_A(get_armor_LA(get_listArmor_P(player),i)),get_mana_A(get_armor_LA(get_listArmor_P(player),i)),get_def_A(get_armor_LA(get_listArmor_P(player),i)));
+                    options[cpt] = (char *)malloc(strlen(w_name) + 1);
+                    strcpy(options[cpt], w_name);
+                    cpt++;
+                }
+            }
+            break;
+        case leg_piece:
+            //leg piece
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==leg_piece){
+                    true_size++;
+                }
+            }
+            options = (char **)malloc((true_size + 2) * sizeof(char *));
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==leg_piece){
+                    char w_name [40];
+                    sprintf(w_name,"%s | %d MP | %d DEF", get_name_A(get_armor_LA(get_listArmor_P(player),i)),get_mana_A(get_armor_LA(get_listArmor_P(player),i)),get_def_A(get_armor_LA(get_listArmor_P(player),i)));
+                    options[cpt] = (char *)malloc(strlen(w_name) + 1);
+                    strcpy(options[cpt], w_name);
+                    cpt++;
+                }
+            }
+            break;
+        case ring:
+            //ring
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==ring){
+                    true_size++;
+                }
+            }
+            options = (char **)malloc((true_size + 2) * sizeof(char *));
+            for (int i = 0; i < size; ++i) {
+                if (get_armor_type_A(get_armor_LA(get_listArmor_P(player),i))==ring){
+                    char w_name [40];
+                    sprintf(w_name,"%s | %d MP | %d DEF", get_name_A(get_armor_LA(get_listArmor_P(player),i)),get_mana_A(get_armor_LA(get_listArmor_P(player),i)),get_def_A(get_armor_LA(get_listArmor_P(player),i)));
+                    options[cpt] = (char *)malloc(strlen(w_name) + 1);
+                    strcpy(options[cpt], w_name);
+                    cpt++;
+                }
+            }
+            break;
+        default:
+            return -1;
+    }
+    options[true_size]="Back";
+    int selectedIndex2 = 0;
+    while(1){
+        buildInteraction(42+x, y,42+x+30,y+true_size+1, options, selectedIndex2, true_size+1);
+        moveCursor(50, 50);
+        int c2 = getchar();
+        if (c2 == ' ') {  // Check for the SPACE key
+            if (selectedIndex2==true_size){
+                //back
+                clearFromTo(42+x-2,y-2,42+x+40,y+23);
+                for (int i = 0; i < true_size; i++) {
+                    free(options[i]);
+                }
+                free(options);
+                return 0;
+            }else{
+                //armor
+                //TODO : swap address of selected armor with current based on type
+                char * extractedString = strtok(options[selectedIndex2]," |");
+                swapArmorFromListArmorWithArmor(get_listArmor_P(player),type,player,extractedString);
+                clearFromTo(42+x-2,y-2,42+x+40,y+23);
+                return 1;
+            }
+        } else if (c2 == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex2--;
+                    buildInteraction(42+x, y,42+x+34,y+true_size, options, selectedIndex2, true_size+1);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex2 < true_size ) {  // Down arrow key (ASCII 66)
+                    selectedIndex2++;
+                    buildInteraction(42+x, y,42+x+34,y+true_size, options, selectedIndex2, true_size+1);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+        wait(100);
+    }
+}
+int weaponInteraction(int x,int y,Player * player){
+    buildBoxInteraction(30,23,42+x-2,y-2);
+    int size = get_size_LW(get_listWeapon_P(player));
+    char *options[size + 1];
+    for (int i = 0; i < size; ++i) {
+        char w_name [40];
+        sprintf(w_name,"%s | %d AD", get_weapon_LW(get_listWeapon_P(player),i)->name,get_weapon_LW(get_listWeapon_P(player),i)->dmg);
+        options[i]=w_name;
+    }
+    options[size]="Back";
+    int itemCount2 = sizeof(options) / sizeof(options[0]);
+    int selectedIndex2 = 0;
+
+    while(1){
+        buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
+        moveCursor(50, 50);
+        int c2 = getchar();
+        if (c2 == ' ') {  // Check for the SPACE key
+            if (selectedIndex2==size){
+                //back
+                clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                return 0;
+            }else{
+                //weapon
+                swapWeaponFromListWeaponWithPlayer(get_listWeapon_P(player),selectedIndex2,player);
+                clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                return 1;
+            }
+        } else if (c2 == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex2--;
+                    buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
+                    selectedIndex2++;
+                    buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
                     moveCursor(30, 20);
                 }
             } else {
@@ -313,45 +500,115 @@ void itemInteraction(int x,int y, Player * player){
 }
 void buildInventory(int x, int y, Player * player){
     clearAll();
-    printLife(3,2, get_vie_P(player),100);
-    printMana(3,3, get_mana_P(player),100);
-    buildBoxInteraction(30,23,x-2,y-2);
-    char const *options[] = {
-            "Weapon",
-            "Head Piece",
-            "Chest Piece",
-            "Leg Piece",
-            "Ring",
-            "Items",
+    printLife(3,2, get_vie_P(player), get_og_vie_P(player));
+    printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+    buildBoxInteraction(40,23,x-2,y-2);
+
+    char w_name [60];
+    sprintf(w_name,"Weapon : %s | %d AD", get_weapon_P(player)->name,get_weapon_P(player)->dmg);
+    char h_name[60];
+    if (get_head_piece_P(player)!=NULL){
+        sprintf(h_name,"Head : %s | %d DEF", get_head_piece_P(player)->name,get_head_piece_P(player)->def);
+    }else{
+        sprintf(h_name,"Head : None");
+    }
+    char c_name[60];
+    if (get_chest_piece_P(player)!=NULL){
+        sprintf(c_name,"Chest : %s | %d DEF", get_chest_piece_P(player)->name,get_chest_piece_P(player)->def);
+    }else{
+        sprintf(c_name,"Chest : None");
+    }
+    char l_name[60];
+    if (get_leg_piece_P(player)!=NULL){
+        sprintf(l_name,"Leg : %s | %d DEF", get_leg_piece_P(player)->name,get_leg_piece_P(player)->def);
+    }else{
+        sprintf(l_name,"Leg : None");
+    }
+    char r_name[60];
+    if (get_ring_P(player)!=NULL){
+        sprintf(r_name,"Ring : %s | %d DEF", get_ring_P(player)->name,get_ring_P(player)->def);
+    }else{
+        sprintf(r_name,"Ring : None");
+    }
+    char *options[] = {
+            w_name,
+            h_name,
+            c_name,
+            l_name,
+            r_name,
+            "Items :",
             "Back"
     };
     int itemCount = sizeof(options) / sizeof(options[0]);
     int selectedIndex = 0;
     while (1) {
-        buildInteraction(x, y, options, selectedIndex, itemCount);
+        buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
+        printDef(7,25, get_def_P(player));
+        printDmg(7,27, get_player_dmg_stat(player));
         moveCursor(50, 50);
         int c = getchar();
         if (c == ' ') {  // Check for the SPACE key
             switch (selectedIndex) {
                 case 0:
                     //weapon
+                    if (weaponInteraction(x,y,player) == 1){
+                        //changement, refresh coté gauche
+                        sprintf(w_name,"Weapon : %s | %d AD", get_weapon_P(player)->name,get_weapon_P(player)->dmg);
+                        options[0]=w_name;
+                        clearFromTo(42+x-2,y-2,42+x+34,y+23);
+                    }else{
+                        //pas de changement
+                        clearFromTo(42+x-2,y-2,42+x+34,y+23);
+                    }
                     break;
                 case 1:
+                    if (armorInteraction(x,y,player,0) == 1){
+                        sprintf(h_name,"Head : %s | %d DEF", get_head_piece_P(player)->name,get_head_piece_P(player)->def);
+                        options[1]=h_name;
+                        refresh_stat_armor_P(player);
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
                     //head piece
                     break;
                 case 2:
+                    if (armorInteraction(x,y,player,1) == 1){
+                        sprintf(c_name,"Chest : %s | %d DEF", get_chest_piece_P(player)->name,get_chest_piece_P(player)->def);
+                        options[2]=c_name;
+                        refresh_stat_armor_P(player);
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
                     //chest piece
                     break;
                 case 3:
+                    if (armorInteraction(x,y,player,2) == 1){
+                        sprintf(l_name,"Leg : %s | %d DEF", get_leg_piece_P(player)->name,get_leg_piece_P(player)->def);
+                        options[3]=l_name;
+                        refresh_stat_armor_P(player);
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
                     //leg piece
                     break;
                 case 4:
+                    if (armorInteraction(x,y,player,3) == 1){
+                        sprintf(r_name,"Ring : %s | %d DEF", get_ring_P(player)->name,get_ring_P(player)->def);
+                        options[4]=r_name;
+                        refresh_stat_armor_P(player);
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
                     //ring
                     break;
                 case 5:
                     //Items
                     itemInteraction(x,y,player);
-                    clearFromTo(32+x-2,y-2,32+x+30,y+23);
+                    clearFromTo(42+x-2,y-2,42+x+30,y+23);
                     break;
                 case 6:
                     //back
@@ -365,11 +622,11 @@ void buildInventory(int x, int y, Player * player){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex--;
-                    buildInteraction(x, y, options, selectedIndex, itemCount);
+                    buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
                     moveCursor(30,20);
                 } else if (arrowKey == 66 && selectedIndex < itemCount - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex++;
-                    buildInteraction(x, y, options, selectedIndex, itemCount);
+                    buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
                     moveCursor(30, 20);
                 }
             } else {
@@ -555,7 +812,7 @@ int attackVisual(Monster * monster,Player * player, int nb_monster){
     }
     options[nb_monster_alive] = "Back";
     while (1) {
-        buildInteraction(interaction_x, interaction_y, options, selectedIndex, nb_monster_alive+1);
+        buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, nb_monster_alive+1);
         moveCursor(50, 50);
         int c = getchar();
         if (c == ' ') {
@@ -579,11 +836,11 @@ int attackVisual(Monster * monster,Player * player, int nb_monster){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex--;
-                    buildInteraction(interaction_x, interaction_y, options, selectedIndex, nb_monster_alive+1);
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, nb_monster_alive+1);
                     moveCursor(30,20);
                 } else if (arrowKey == 66 && selectedIndex < nb_monster ) {  // Down arrow key (ASCII 66)
                     selectedIndex++;
-                    buildInteraction(interaction_x, interaction_y, options, selectedIndex, nb_monster_alive+1);
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, nb_monster_alive+1);
                     moveCursor(30, 20);
                 }
             } else {
@@ -675,7 +932,7 @@ int visual(Player * player){
             }
         }
         //build interaction
-        buildInteraction(interaction_x, interaction_y, options, selectedIndex, itemCount);
+        buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
         moveCursor(50, 50);
         int c = getchar();
         if (c == ' ') {  // Check for the SPACE key

@@ -6,6 +6,8 @@
 //Player
 int get_vie_P(Player * player);
 int get_mana_P(Player * player);
+int get_og_mana_P(Player * player);
+int get_og_vie_P(Player * player);
 int get_def_P(Player * player);
 int get_xp_P(Player * player);
 int get_level_P(Player * player);
@@ -15,6 +17,8 @@ int get_pos_y_P(Player * player);
 
 void set_vie_P(Player * player,int vie);
 void set_mana_P(Player * player,int mana);
+void set_og_mana_P(Player * player,int mana);
+void set_og_vie_P(Player * player,int vie);
 void set_def_P(Player * player,int def);
 void set_xp_P(Player * player,int xp);
 void set_level_P(Player * player,int level);
@@ -28,11 +32,14 @@ void set_head_piece_P(Player * player, Armor * head_piece);
 void set_chest_piece_P(Player * player, Armor * chest_piece);
 void set_leg_piece_P(Player * player, Armor * leg_piece);
 void set_ring_P(Player * player, Armor * ring);
+void set_armor_P(Player * player, Armor * armor, enum Armor_type armor_type);
 
 Weapon * get_weapon_P(Player * player);
 Armor * get_head_piece_P(Player * player);
 Armor * get_chest_piece_P(Player * player);
 Armor * get_leg_piece_P(Player * player);
+Armor * get_ring_P(Player * player);
+Armor * get_armor_P(Player * player, enum Armor_type armor_type);
 
 //Monster
 int get_vie_M(Monster * monster);
@@ -77,9 +84,9 @@ Weapon * get_weapon_LW(ListWeapon * list, int index);
 Armor * get_armor_LA(ListArmor * list, int index);
 
 //LIST
-ListItem * get_listItem_I(Inventory * inventory);
-ListWeapon * get_listWeapon_I(Inventory * inventory);
-ListArmor * get_listArmor_I(Inventory * inventory);
+//ListItem * get_listItem_I(Inventory * inventory);
+//ListWeapon * get_listWeapon_I(Inventory * inventory);
+//ListArmor * get_listArmor_I(Inventory * inventory);
 
 int get_size_LI(ListItem * list);
 int get_size_LW(ListWeapon * list);

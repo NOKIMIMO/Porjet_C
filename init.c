@@ -35,7 +35,6 @@ Player* create_player(int og_vie,
                      int og_mana,
                      int vie,
                      int mana,
-                     int og_def,
                      Weapon * weapon,
                      Armor * head_piece,
                      Armor * chest_piece,
@@ -49,7 +48,7 @@ Player* create_player(int og_vie,
         player->pos_y = pos_y;
         player->vie = vie;
         player->mana = mana;
-        player->og_def = og_def;
+        player->og_def = 0;
         player->weapon = weapon;
         player->head_piece = head_piece;
         player->chest_piece = chest_piece;
@@ -61,13 +60,14 @@ Player* create_player(int og_vie,
     return player;
 }
 
-Weapon *create_weapon(int dmg) {
+Weapon *create_weapon(int dmg,char * name) {
     Weapon *weapon = (Weapon *)malloc(sizeof(Weapon));
     if (weapon == NULL) {
         // Handle allocation failure, for example, return NULL or exit the program
         return NULL;
     }
 
+    weapon->name = name;
     weapon->dmg = dmg;
     return weapon;
 }

@@ -10,6 +10,12 @@ int get_vie_P(Player * player){
 int get_mana_P(Player * player){
     return player->mana;
 }
+int get_og_mana_P(Player * player){
+    return player->og_mana;
+}
+int get_og_vie_P(Player * player){
+    return player->og_vie;
+}
 int get_def_P(Player * player){
     return player->def;
 }
@@ -36,6 +42,12 @@ void set_vie_P(Player * player, int vie){
 }
 void set_mana_P(Player * player, int mana){
     player->mana = mana;
+}
+void set_og_mana_P(Player * player,int mana){
+    player->og_mana = mana;
+}
+void set_og_vie_P(Player * player,int vie){
+    player->og_vie = vie;
 }
 void set_def_P(Player * player, int def){
     player->def = (def<0)?0:def;
@@ -75,7 +87,25 @@ void set_leg_piece_P(Player * player, Armor * leg_piece){
 void set_ring_P(Player * player, Armor * ring){
     player->ring = ring;
 }
-
+void set_armor_P(Player * player, Armor * armor, enum Armor_type armor_type){
+    printf("%d",armor_type);
+    switch (armor_type){
+        case head_piece:
+            set_head_piece_P(player,armor);
+            break;
+        case chest_piece:
+            set_chest_piece_P(player,armor);
+            break;
+        case leg_piece:
+            set_leg_piece_P(player,armor);
+            break;
+        case ring:
+            set_ring_P(player,armor);
+            break;
+        default:
+            break;
+    }
+}
 Weapon * get_weapon_P(Player * player){
     return player->weapon;
 }
@@ -91,6 +121,20 @@ Armor * get_leg_piece_P(Player * player){
 Armor * get_ring_P(Player * player){
     return player->ring;
 }
+Armor * get_armor_P(Player * player, enum Armor_type armor_type){
+    switch (armor_type){
+        case head_piece:
+            return get_head_piece_P(player);
+        case chest_piece:
+            return get_chest_piece_P(player);
+        case leg_piece:
+            return get_leg_piece_P(player);
+        case ring:
+            return get_ring_P(player);
+        default:
+            return NULL;
+    }
+};
 void set_inventory_P(Player * player, Inventory * inventory){
     player->inventory = inventory;
 }
@@ -229,17 +273,6 @@ Armor * get_armor_LA(ListArmor * list, int index){
 
 //LIST
 
-ListItem * get_listItem_I(Inventory * inventory){
-    return inventory->listItem;
-}
-
-ListWeapon * get_listWeapon_I(Inventory * inventory){
-    return inventory->listWeapon;
-}
-
-ListArmor * get_listArmor_I(Inventory * inventory){
-    return inventory->listArmor;
-}
 
 int get_capacity_LI(ListItem * list){
     return list->capacity;

@@ -6,7 +6,7 @@
 #include "setGet.h"
 
 int get_player_dmg(Player * player,Monster * monster);
-
+int get_player_dmg_stat(Player * player);
 int get_monster_dmg(Player * player,Monster * monster);
 int monster_attack(Player * player,Monster * monster);
 
