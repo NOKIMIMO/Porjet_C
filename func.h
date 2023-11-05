@@ -12,4 +12,10 @@
 int get_RNG_int(int min, int max);
 void wait(int milliseconds);
 void mofidyMapAtPos(int x,int y,int ** map,int value);
+void addItemToListItem(ListItem* list, Item* item);
+void removeItemFromListItem(ListItem* list, int index);
+Item* getItemFromListItem(ListItem* list, int index);
+void addItemToPlayerInventory(Player* player, Item* item);
+void removeItemFromPlayerInventory(Player* player, int index);
+Item* getItemFromPlayerInventory(Player* player, int index);
 #endif //PORJET_C_FUNC_H

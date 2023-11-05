@@ -20,10 +20,14 @@ Player * create_player(int og_vie,
                      Armor * ring);
 
 Weapon * create_weapon(int dmg);
-Armor * create_armor(int name, int mana, int def, enum Armor_type armor_type);
+Armor * create_armor(char * name, int mana, int def, enum Armor_type armor_type);
 
-Item * create_item(int name, int mana, int hp);
-Skill * create_skill(int name, int mana, int dmg);
+Item * create_item(char * name, int mana, int hp);
+Skill * create_skill(char * name, int mana, int dmg);
 int ** initMap(int rows, int cols);
+ListArmor* create_list_armor(int capacity);
+ListWeapon* create_list_weapon(int capacity);
+ListItem* create_list_item(int capacity);
+Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int listArmorCapacity);
 
 #endif //PORJET_C_INIT_H

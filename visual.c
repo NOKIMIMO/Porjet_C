@@ -26,7 +26,6 @@ void printCharIndices(int x,int y,const char *str) {
         printf("%d : '%c' | ", i, str[i]);
     }
 }
-
 void clearAll(){
     printf("\033[2J");
 }
@@ -204,6 +203,184 @@ void printMap(int x,int y, int ** map){
         moveCursor(x+3,y+1);
     }
 }
+void itemInteraction(int x,int y, Player * player){
+    buildBoxInteraction(30,23,32+x-2,y-2);
+    //get hp potion number
+    int hp_potion_number = get_potion_type_I(player,"Potion de vie");
+    //get mana potion number
+    int mana_potion_number = get_potion_type_I(player,"Potion de mana");
+    //get potion double number
+    int potion_double_number = get_potion_type_I(player,"Potion double");
+
+    // "Potion de vie x hp_potion_number"
+    char po_hp[50];
+    sprintf(po_hp,"Potion de vie x %d",hp_potion_number);
+    // "Potion de mana x mana_potion_number"
+    char po_mana[50];
+    sprintf(po_mana,"Potion de mana x %d",mana_potion_number);
+    // "Potion double x potion_double_number"
+    char po_double[50];
+    sprintf(po_double,"Potion double x %d",potion_double_number);
+
+    char *options2[] = {
+            po_hp,
+            po_mana,
+            po_double,
+            "Back"
+    };
+
+    int itemCount2 = sizeof(options2) / sizeof(options2[0]);
+    int selectedIndex2 = 0;
+    while(1){
+        buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+        moveCursor(50, 50);
+        int c2 = getchar();
+        if (c2 == ' ') {  // Check for the SPACE key
+            switch (selectedIndex2) {
+                case 0:
+                    //potion de vie
+                    if(get_size_LI(get_listItem_P(player))>0){
+                        int size = get_size_LI(get_listItem_P(player));
+                        //si il y a des potions dans l'inventaire
+                        for (int i = 0; i < size; ++i) {
+                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion de vie")==0){
+                                set_vie_P(player,get_vie_P(player)+get_hp_I(getItemFromListItem(get_listItem_P(player),i)));
+                                printLife(3,2, get_vie_P(player),100);
+                                removeItemFromListItem(get_listItem_P(player),i);
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                    //potion de mana
+                    if(get_size_LI(get_listItem_P(player))>0){
+                        int size = get_size_LI(get_listItem_P(player));
+                        //si il y a des potions dans l'inventaire
+                        for (int i = 0; i < size; ++i) {
+                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion de mana")==0){
+                                set_mana_P(player, get_mana_P(player)+get_mana_I(getItemFromListItem(get_listItem_P(player),i)));
+                                printMana(3,3, get_mana_P(player),100);
+                                removeItemFromListItem(get_listItem_P(player),i);
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    //potion double
+                    if(get_size_LI(get_listItem_P(player))>0){
+                        int size = get_size_LI(get_listItem_P(player));
+                        //si il y a des potions dans l'inventaire
+                        for (int i = 0; i < size; ++i) {
+                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion double")==0){
+                                set_vie_P(player,get_vie_P(player)+get_hp_I(getItemFromListItem(get_listItem_P(player),i)));
+                                set_mana_P(player, get_mana_P(player)+get_mana_I(getItemFromListItem(get_listItem_P(player),i)));
+                                printLife(3,2, get_vie_P(player),100);
+                                printMana(3,3, get_mana_P(player),100);
+                                removeItemFromListItem(get_listItem_P(player),i);
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    //back
+                    clearFromTo(32+x-2,y-2,32+x+30,y+23);
+                    return;
+                default:
+                    break;
+            }
+        } else if (c2 == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex2--;
+                    buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
+                    selectedIndex2++;
+                    buildInteraction(32+x, y, options2, selectedIndex2, itemCount2);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+        wait(100);
+    }
+}
+void buildInventory(int x, int y, Player * player){
+    clearAll();
+    printLife(3,2, get_vie_P(player),100);
+    printMana(3,3, get_mana_P(player),100);
+    buildBoxInteraction(30,23,x-2,y-2);
+    char const *options[] = {
+            "Weapon",
+            "Head Piece",
+            "Chest Piece",
+            "Leg Piece",
+            "Ring",
+            "Items",
+            "Back"
+    };
+    int itemCount = sizeof(options) / sizeof(options[0]);
+    int selectedIndex = 0;
+    while (1) {
+        buildInteraction(x, y, options, selectedIndex, itemCount);
+        moveCursor(50, 50);
+        int c = getchar();
+        if (c == ' ') {  // Check for the SPACE key
+            switch (selectedIndex) {
+                case 0:
+                    //weapon
+                    break;
+                case 1:
+                    //head piece
+                    break;
+                case 2:
+                    //chest piece
+                    break;
+                case 3:
+                    //leg piece
+                    break;
+                case 4:
+                    //ring
+                    break;
+                case 5:
+                    //Items
+                    itemInteraction(x,y,player);
+                    clearFromTo(32+x-2,y-2,32+x+30,y+23);
+                    break;
+                case 6:
+                    //back
+                    return;
+                default:
+                    break;
+            }
+        } else if (c == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex--;
+                    buildInteraction(x, y, options, selectedIndex, itemCount);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex < itemCount - 1) {  // Down arrow key (ASCII 66)
+                    selectedIndex++;
+                    buildInteraction(x, y, options, selectedIndex, itemCount);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+
+        wait(100);
+//        clearAll();
+    }
+}
 void buildMapGraph(int x,int y,Player player,int ** map){
     clearAll();
     printf("\033[?1049h\033[H");
@@ -321,8 +498,17 @@ void buildMapGraph(int x,int y,Player player,int ** map){
             } else {
                 break;
             }
+        }else if(c == 'i'){
+            //TODO: inventaire
+            buildInventory(5,9,&player);
+            clearAll();
+            printLife(3,2, get_vie_P(&player),100);
+            printMana(3,3, get_mana_P(&player),100);
+            buildBoxInteraction(60,23,x,y);
+            printMap(start_x,start_y,map);
         }
         if(map[get_pos_y_P(&player)-1][get_pos_x_P(&player)-1]==1){
+            clearAll();
             //combat
             int ret = visual(&player);
             if(ret==1) {
@@ -417,7 +603,6 @@ int skillVisual(Monster * monster,Player * player){
 int itemVisual(Monster * monster,Player * player){
 
 }
-
 void buildEnnemies(int x, int y, Monster * monster) {
     char* monster_name = get_name_M(monster);
     if (monster_name == NULL) {
@@ -466,8 +651,8 @@ int visual(Player * player){
         monster_list[i] = create_monster();
     }
 
-    printf("\033[?1049h\033[H");
-    system("stty -icanon min 1");
+//    printf("\033[?1049h\033[H");
+//    system("stty -icanon min 1");
 //    clearAll();
     int selectedIndex = 0;
     char *options[] = {

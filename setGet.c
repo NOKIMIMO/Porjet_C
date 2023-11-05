@@ -91,6 +91,10 @@ Armor * get_leg_piece_P(Player * player){
 Armor * get_ring_P(Player * player){
     return player->ring;
 }
+void set_inventory_P(Player * player, Inventory * inventory){
+    player->inventory = inventory;
+}
+
 ////Monster
 //getters
 int get_vie_M(Monster * monster) {
@@ -113,5 +117,137 @@ void set_vie_M(Monster * monster, int vie) {
 }
 void set_def_M(Monster * monster,int def) {
     monster->def = (def<0)?0:def;
+}
+
+int get_size_LI(ListItem * list){
+    return list->size;
+}
+
+ListItem * get_listItem_P(Player * player){
+    return player->inventory->listItem;
+}
+
+ListWeapon * get_listWeapon_P(Player * player){
+    return player->inventory->listWeapon;
+}
+
+ListArmor * get_listArmor_P(Player * player){
+    return player->inventory->listArmor;
+}
+
+int get_size_LW(ListWeapon * list){
+    return list->size;
+}
+
+int get_size_LA(ListArmor * list){
+    return list->size;
+}
+//SKILL
+int get_mana_S(Skill * skill){
+    return skill->mana;
+}
+int get_dmg_S(Skill * skill){
+    return skill->dmg;
+}
+char * get_name_S(Skill * skill){
+    return skill->name;
+}
+
+
+//ITEM
+
+int get_mana_I(Item * item){
+    return item->mana;
+}
+
+int get_hp_I(Item * item){
+    return item->hp;
+}
+
+char * get_name_I(Item * item){
+    return item->name;
+}
+
+//WEAPON
+
+int get_dmg_W(Weapon * weapon){
+    return weapon->dmg;
+}
+
+//ARMOR
+
+int get_mana_A(Armor * armor){
+    return armor->mana;
+}
+
+int get_def_A(Armor * armor){
+    return armor->def;
+}
+
+char * get_name_A(Armor * armor){
+    return armor->name;
+}
+
+enum Armor_type get_armor_type_A(Armor * armor){
+    return armor->armor_type;
+}
+
+////LIST
+
+//ITEM
+
+Item * get_item_LI(ListItem * list, int index){
+    return list->item[index];
+}
+
+int get_potion_type_I(Player  * player,char * type){
+    int size = get_size_LI(get_listItem_P(player));
+    int cpt=0;
+    if(size>0){
+        for (int i = 0; i < size; ++i) {
+            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),type)==0){
+                cpt++;
+            }
+        }
+    }
+    return cpt;
+}
+
+//WEAPON
+
+Weapon * get_weapon_LW(ListWeapon * list, int index){
+    return list->weapon[index];
+}
+
+//ARMOR
+
+Armor * get_armor_LA(ListArmor * list, int index){
+    return list->armor[index];
+}
+
+////INVENTORY
+
+//LIST
+
+ListItem * get_listItem_I(Inventory * inventory){
+    return inventory->listItem;
+}
+
+ListWeapon * get_listWeapon_I(Inventory * inventory){
+    return inventory->listWeapon;
+}
+
+ListArmor * get_listArmor_I(Inventory * inventory){
+    return inventory->listArmor;
+}
+
+int get_capacity_LI(ListItem * list){
+    return list->capacity;
+}
+int get_capacity_LW(ListWeapon * list){
+    return list->capacity;
+}
+int get_capacity_LA(ListArmor * list){
+    return list->capacity;
 }
 
