@@ -16,24 +16,36 @@ void level_up_P(Player * player){
     while(get_xp_P(player)>=100){
         set_xp_P(player,get_xp_P(player)-100);
         set_level_P(player,get_level_P(player)+1);
-        refresh_stat_P(player);
+        refresh_stat_lvl_P(player);
     }
 }
-
-void refresh_stat_P(Player * player){
+void refresh_stat_armor_P(Player * player){
+    int def = 0;
+    if(get_head_piece_P(player)!=NULL){
+        def += get_def_A(get_head_piece_P(player));
+    }
+    if(get_chest_piece_P(player)!=NULL){
+        def += get_def_A(get_chest_piece_P(player));
+    }
+    if(get_leg_piece_P(player)!=NULL){
+        def += get_def_A(get_leg_piece_P(player));
+    }
+    if(get_ring_P(player)!=NULL){
+        def += get_def_A(get_ring_P(player));
+    }
+    set_def_P(player,def);
+}
+void refresh_stat_lvl_P(Player * player){
     //sensé arriver a chaque level up
     int vie = get_vie_P(player);
     int mana = get_mana_P(player);
     int def = get_def_P(player);
-    int speed = get_speed_P(player);
 
     vie += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
     mana += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
     def += get_level_P(player)+get_RNG_int(4+get_level_P(player),10+get_level_P(player));
-    speed += get_level_P(player)+get_RNG_int(0,1);
 
     set_vie_P(player,vie);
     set_mana_P(player,mana);
     set_def_P(player,def);
-    set_speed_P(player,speed);
 }

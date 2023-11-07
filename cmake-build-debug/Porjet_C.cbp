@@ -82,6 +82,12 @@
 		<Unit filename="/mnt/e/cours/Porjet_C/combat.h">
 			<Option target="Porjet_C"/>
 		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/deathScreen.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/deathScreen.h">
+			<Option target="Porjet_C"/>
+		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/destroy.c">
 			<Option target="Porjet_C"/>
 		</Unit>
@@ -92,6 +98,12 @@
 			<Option target="Porjet_C"/>
 		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/func.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/game.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/game.h">
 			<Option target="Porjet_C"/>
 		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/init.c">
@@ -113,6 +125,12 @@
 			<Option target="Porjet_C"/>
 		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/setGet.h">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/splashScreen.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/splashScreen.h">
 			<Option target="Porjet_C"/>
 		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/struct.h">

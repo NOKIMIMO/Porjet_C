@@ -7,21 +7,31 @@ enum Armor_type{
     head_piece,
     chest_piece,
     leg_piece,
-    boots,
     ring,
 };
 
+typedef struct Item {
+    char * name;
+    int mana;
+    int hp;
+}Item;
+
+typedef struct Skill{
+    char * name;
+    int mana;
+    int dmg;
+}Skill;
+
 typedef struct Armor{
-    int name;
+    char * name;
     int mana;
     int def;
-    int speed;
     enum Armor_type armor_type;
 }Armor;
 
 typedef struct Weapon{
+    char * name;
     int dmg;
-    int speed;
 }Weapon;
 
 typedef struct Monster{
@@ -30,12 +40,37 @@ typedef struct Monster{
     int vie;
     int def;
     int dmg;
-    int speed;
-    int momentum;
+    char* sprite;
 }Monster;
 
+typedef struct ListItem{
+    Item ** item;
+    int size;
+    int capacity;
+}ListItem;
+
+typedef struct ListWeapon {
+    Weapon **weapon;
+    int size;
+    int capacity;
+}ListWeapon;
+
+typedef struct ListArmor{
+    //chaque armor piece aura sa liste
+    Armor **armor;
+    int size;
+    int capacity;
+}ListArmor;
+
+typedef struct Inventory{
+    ListItem * listItem;
+    ListWeapon * listWeapon;
+    ListArmor * listArmor;
+}Inventory;
 
 typedef struct Player{
+    int pos_x;
+    int pos_y;
     int level;
     int exp;
     int og_vie;
@@ -45,13 +80,13 @@ typedef struct Player{
     int vie;
     int mana;
     int def;
-    int speed;
-    int momentum;
+    int ac;
     Weapon * weapon;
     Armor * head_piece;
     Armor * chest_piece;
     Armor * leg_piece;
     Armor * ring;
+    Inventory * inventory;
 }Player;
 
 #endif PORJET_C_STRUCT_H

@@ -19,4 +19,10 @@ add_executable(Porjet_C main.c
         visual.h
         visual.c
         lifeCycle.h
-        lifeCycle.c)
+        lifeCycle.c
+        splashScreen.c
+        splashScreen.h
+        deathScreen.c
+        deathScreen.h
+        game.c
+        game.h)
