@@ -8,7 +8,11 @@ SRCS = main.c \
        setGet.c \
        func.c \
        visual.c \
-       lifeCycle.c
+       lifeCycle.c \
+       deathScreen.c \
+       game.c \
+       splashScreen.c \
+       fileReader.c
 
 OBJS = $(SRCS:.c=.o)
 

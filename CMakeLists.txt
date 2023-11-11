@@ -25,4 +25,4 @@ add_executable(Porjet_C main.c
         deathScreen.c
         deathScreen.h
         game.c
-        game.h)
+        game.h fileReader.c fileReader.h)

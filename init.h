@@ -4,7 +4,11 @@
 #include "func.h"
 #include "setGet.h"
 
-Monster create_monster();
+Monster create_monster(char *name,
+                       int vie,
+                       int dmg,
+                       int def,
+                       char * sprite);
 Monster dead_monster();
 Player * create_player(int og_vie,
                      int pos_x,

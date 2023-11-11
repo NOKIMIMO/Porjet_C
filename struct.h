@@ -69,6 +69,7 @@ typedef struct Inventory{
 }Inventory;
 
 typedef struct Player{
+    char * name;
     int pos_x;
     int pos_y;
     int level;

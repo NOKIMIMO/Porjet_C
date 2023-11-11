@@ -16,17 +16,22 @@ Monster dead_monster(){
     return monstre;
 }
 
-Monster create_monster(){
+Monster create_monster(char *name,
+                       int vie,
+                       int dmg,
+                       int def,
+                       char * sprite){
     Monster monstre = {
             // a changer le systeme pour que le niveaux soit basé sur le turn
-            .name = "truc",
+            .name = name,
             .level = get_RNG_int(1,3),
             //
-            .vie = get_RNG_int(10,20),
-            .def = get_RNG_int(2,10),
-            .dmg = get_RNG_int(8,16),
+            .vie = monstre.level*get_RNG_int(1,3)+ vie,
+            .def = monstre.level*get_RNG_int(1,3) + def,
+            .dmg = monstre.level*get_RNG_int(1,3) + dmg,
+            .sprite = sprite,
     };
-    return monstre;
+    return monstre ;
 }
 
 Player* create_player(int og_vie,
@@ -39,7 +44,8 @@ Player* create_player(int og_vie,
                      Armor * head_piece,
                      Armor * chest_piece,
                      Armor * leg_piece,
-                     Armor * ring){
+                     Armor * ring
+                     ){
     Player *player = malloc(sizeof(Player));
     if (player != NULL) {
         player->og_vie = og_vie;
@@ -56,6 +62,7 @@ Player* create_player(int og_vie,
         player->ring = ring;
         player->ac = 1;
         player->inventory = NULL;
+
     }
     return player;
 }
