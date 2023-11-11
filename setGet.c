@@ -291,4 +291,3 @@ int get_capacity_LW(ListWeapon * list){
 int get_capacity_LA(ListArmor * list){
     return list->capacity;
 }
-

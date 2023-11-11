@@ -103,23 +103,166 @@ Skill * create_skill(char * name, int mana, int dmg){
     return skill;
 }
 
-int ** initMap(int rows, int cols){
+int ** initMap(int rows, int cols, int x_depart, int y_depart){
     int ** map = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
         map[i] = (int *)malloc(cols * sizeof(int));
     }
 
-    // Initialisation des valeurs du tableau temporaire
-    //TODO: changer pour la version algo
-    map[0][0] = 0; map[0][1] = 0; map[0][2] = 0; map[0][3] = 0; map[0][4] = 0; map[0][5] = 0; map[0][6] = 0;
-    map[1][0] = 0; map[1][1] = 0; map[1][2] = 1; map[1][3] = 1; map[1][4] = 3; map[1][5] = 0; map[1][6] = 0;
-    map[2][0] = 0; map[2][1] = 0; map[2][2] = 1; map[2][3] = 0; map[2][4] = 0; map[2][5] = 0; map[2][6] = 0;
-    map[3][0] = 0; map[3][1] = 0; map[3][2] = 1; map[3][3] = 1; map[3][4] = 1; map[3][5] = 0; map[3][6] = 0;
-    map[4][0] = 0; map[4][1] = 0; map[4][2] = 0; map[4][3] = 1; map[4][4] = 0; map[4][5] = 0; map[4][6] = 0;
-    map[5][0] = 0; map[5][1] = 0; map[5][2] = 0; map[5][3] = 2; map[5][4] = 2; map[5][5] = 0; map[5][6] = 0;
-    map[6][0] = 0; map[6][1] = 0; map[6][2] = 0; map[6][3] = 2; map[6][4] = 0; map[6][5] = 0; map[6][6] = 0;
+    if(x_depart < y_depart)
+    {
+        y_depart += x_depart;
+        x_depart = y_depart - x_depart;
+        y_depart -= x_depart;
+    }
+    // Initialisation de la map de départ
+    map[x_depart][y_depart] = 2;
 
-    return map;
+    //xBas permet de parcourir toutes les lignes en dessous de la case de départ
+    //initialisé à x_depart pour parcourir la ligne du depart
+    //yBas permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart
+    //initialisé à y_depart pour parcourir la colonne du depart
+    //xHaut permet de parcourir toutes les lignes en dessous de la case de départ  initialisé à x_depart+1
+    //initialisé à x_depart+1 pour parcourir seulement les lignes au dessus du depart
+    //yHaut permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart+1
+    //initialisé à y_depart+1 pour parcourir seulement les colonnes au dessus du depart
+    int xBas = x_depart, yBas = y_depart, xHaut = x_depart + 1, yHaut = y_depart + 1;
+    int ** recupPointeur = (int **)malloc(20 * sizeof(int *));
+    for (int i = 0; i < 20; i++) {
+        recupPointeur[i] = (int *)malloc(10 * sizeof(int));
+    }
+    int indexPointeur = 0;
+
+    while(xBas >= 0)
+    {
+        // Permet de ne pas écraser la première case
+        if(xBas == x_depart)
+        {
+            yBas--;
+        }
+
+        while(yBas >= 0)
+        {
+            if(verifPresenceSalle(map,xBas,yBas) == 1)
+            {
+                int salleGeneree = generationSalle(map,xBas,yBas);
+                if(salleGeneree == 0)
+                {
+                    map[xBas][yBas] = 0;
+                    recupPointeur[indexPointeur] = &map[xBas][yBas];
+                    indexPointeur++;
+                }
+                else
+                {
+                    map[xBas][yBas] = salleGeneree;
+                }
+            }
+            else
+            {
+                map[xBas][yBas] = 0;
+            }
+            yBas--;
+        }
+        while(yHaut < cols)
+        {
+            if(verifPresenceSalle(map,xBas,yHaut) == 1)
+            {
+                int salleGeneree = generationSalle(map,xBas,yHaut);
+                if(salleGeneree == 0)
+                {
+                    map[xBas][yHaut] = 0;
+                    recupPointeur[indexPointeur] = &map[xBas][yHaut];
+                    indexPointeur++;
+                }
+                else
+                {
+                    map[xBas][yHaut] = salleGeneree;
+                }
+            }
+            else
+            {
+                map[xBas][yHaut] = 0;
+            }
+            yHaut++;
+        }
+        yBas = y_depart;
+        yHaut = y_depart + 1;
+        xBas--;
+    }
+
+    while(xHaut < rows)
+    {
+        while(yBas >= 0)
+        {
+            if(verifPresenceSalle(map,xHaut,yBas) == 1)
+            {
+                int salleGeneree = generationSalle(map,xHaut,yBas);
+                if(salleGeneree == 0)
+                {
+
+                    map[xHaut][yBas] = 0;
+                    recupPointeur[indexPointeur] = &map[xHaut][yBas];
+                    indexPointeur++;
+                }
+                else
+                {
+                    map[xHaut][yBas] = salleGeneree;
+                }
+            }
+            else
+            {
+                map[xHaut][yBas] = 0;
+            }
+            yBas--;
+        }
+        while(yHaut < cols)
+        {
+            if(verifPresenceSalle(map,xHaut,yHaut))
+            {
+                int salleGeneree = generationSalle(map,xHaut,yHaut);
+                if(salleGeneree == 0)
+                {
+                    map[xHaut][yHaut] = 0;
+                    recupPointeur[indexPointeur] = &map[xHaut][yHaut];
+                    indexPointeur++;
+                }
+                else
+                {
+                    map[xHaut][yHaut] = salleGeneree;
+                }
+            }
+            else
+            {
+                map[xHaut][yHaut] = 0;
+            }
+            yHaut++;
+        }
+        yBas = y_depart;
+        yHaut = y_depart + 1;
+        xHaut++;
+    }
+
+    int salleBoss = get_RNG_int(0,indexPointeur);
+
+    *recupPointeur[salleBoss] = 3;
+
+    //Permet de calculer le nombre de salles créées
+    int compteurSalle = 0;
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            if(map[i][j] != 0){
+                compteurSalle++;
+            }
+        }
+    }
+
+    //Si le nombre de salles est inférieur à 7, on récréé la map
+    if(compteurSalle < 7){
+        return initMap(7,7,x_depart,y_depart);
+    }
+    else{
+        return map;
+    }
 }
 // Constructor for ListItemcreate_list_item
 ListItem* create_list_item(const int capacity[3]) {

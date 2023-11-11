@@ -263,3 +263,110 @@ void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player
 //        player->weapon = tmp;
 //    }
 //}
+
+int verifPresenceSalle(int **map,int x, int y)
+{
+    switch (x)
+    {
+        case 0 :
+            switch (y)
+            {
+                case 0 :
+                    if(map[x+1][y] != 0 || map[x][y+1] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+                case 6 :
+                    if(map[x+1][y] != 0 || map[x][y-1] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+                default :
+                    if(map[x+1][y] != 0 || map[x][y+1] != 0 || map[x][y-1] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+            }
+            break;
+        case 6 :
+            switch (y) {
+                case 0 :
+                    if (map[x-1][y] != 0 || map[x][y+1] != 0) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                case 6 :
+                    if (map[x-1][y] != 0 || map[x][y-1] != 0) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                default :
+                    if (map[x-1][y] != 0 || map[x][y+1] != 0 || map[x][y - 1] != 0){
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                    break;
+            }
+            break;
+        default :
+            switch (y)
+            {
+                case 0 :
+                    if(map[x-1][y] != 0 || map[x+1][y] != 0 || map[x][y+1] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+                case 6 :
+                    if(map[x-1][y] != 0 || map[x+1][y] != 0 || map[x][y-1] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+                default :
+                    if(map[x+1][y] != 0 || map[x][y+1] != 0 || map[x][y-1] != 0 || map[x-1][y] != 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                    break;
+            }
+        break;
+    }
+}
+
+int generationSalle(int **map,int x,int y)
+{
+    int isSalle = 0;
+
+    isSalle = get_RNG_int(0,2);
+
+    if(isSalle == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}

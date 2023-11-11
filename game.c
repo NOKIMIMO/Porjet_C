@@ -5,9 +5,13 @@
 #include "game.h"
 
 int game(){
+    int x_depart = 0, y_depart = 0;
+    x_depart = get_RNG_int(1,7);
+    y_depart = get_RNG_int(1,7);
+    int ** map = initMap(7,7,x_depart-1,y_depart-1);
     Player * player= create_player(100,
-                                   4,
-                                   7,
+                                   x_depart,
+                                   y_depart,
                                    100,
                                    100,
                                    100,
@@ -30,7 +34,6 @@ int game(){
     addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test2",0,10,chest_piece));
     addSkillToPlayerInventory(player,create_skill("fireball",10,10));
     refresh_stat_armor_P(player);
-    int ** map = initMap(7,7);
 
 //    int ret = visual(player);
     int ret=0;

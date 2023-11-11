@@ -716,7 +716,7 @@ void buildMapGraph(int x,int y,Player player,int ** map){
     printMap(start_x,start_y,map);
 
     while (1) {
-        moveCursor((get_pos_x_P(&player)+1)*3,(get_pos_y_P(&player)+1)*3+1);
+        moveCursor((get_pos_x_P(&player)+1)*3,((get_pos_y_P(&player)+1)*3)+1);
         int old_pos_x = get_pos_x_P(&player);
         int old_pos_y = get_pos_y_P(&player);
 
