@@ -48,6 +48,19 @@ void use_potion(Player *player,int type){
         remove_potion(player,type);
     }
 }
+int * searchEntry(int ** map, int rows, int cols){
+    int * entry = (int *)malloc(2 * sizeof(int));
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            if(map[i][j] == 2){
+                entry[0] = j;
+                entry[1] = i;
+                return entry;
+            }
+        }
+    }
+    return NULL;
+}
 void remove_potion(Player *player,int type){
     switch (type){
         case 0:

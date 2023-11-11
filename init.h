@@ -25,6 +25,7 @@ Armor * create_armor(char * name, int mana, int def, enum Armor_type armor_type)
 
 Skill * create_skill(char * name, int mana, int dmg);
 int ** initMap(int rows, int cols, int x_depart, int y_depart);
+
 ListArmor* create_list_armor(int capacity);
 ListWeapon* create_list_weapon(int capacity);
 ListItem* create_list_item(const int capacity[3]);

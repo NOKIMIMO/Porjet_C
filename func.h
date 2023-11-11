@@ -46,6 +46,6 @@ Skill* getSkillFromPlayerInventory(Player* player, int index);
 void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player,int skillIndex);
 int verifPresenceSalle(int **map,int x, int y);
 int generationSalle(int **map,int x,int y);
-
+int * searchEntry(int ** map, int rows, int cols);
 
 #endif //PORJET_C_FUNC_H

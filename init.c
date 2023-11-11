@@ -103,12 +103,12 @@ Skill * create_skill(char * name, int mana, int dmg){
     return skill;
 }
 
+
 int ** initMap(int rows, int cols, int x_depart, int y_depart){
     int ** map = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
         map[i] = (int *)malloc(cols * sizeof(int));
     }
-
     if(x_depart < y_depart)
     {
         y_depart += x_depart;
@@ -117,7 +117,6 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     }
     // Initialisation de la map de départ
     map[x_depart][y_depart] = 2;
-
     //xBas permet de parcourir toutes les lignes en dessous de la case de départ
     //initialisé à x_depart pour parcourir la ligne du depart
     //yBas permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart
@@ -192,6 +191,11 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
 
     while(xHaut < rows)
     {
+        if(xHaut == x_depart)
+        {
+            xHaut++;
+        }
+
         while(yBas >= 0)
         {
             if(verifPresenceSalle(map,xHaut,yBas) == 1)

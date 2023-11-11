@@ -34,7 +34,7 @@ void showManaReceived(int value, int x, int y);
 void showXPReceived(int value, int x, int y);
 void showBothReceived(int value1,int value2, int x, int y);
 void showDmgReceived(int value,Monster * monster,int x, int y);
-void buildMapGraph(int x,int y,Player player,int ** map);
+void buildMapGraph(int x,int y,Player *player,int ** map);
 void printMap(int x,int y, int ** map);
 int skillInteraction(int x,int y,Player * player,int skill_number);
 void itemInteraction(int x,int y, Player * player);
