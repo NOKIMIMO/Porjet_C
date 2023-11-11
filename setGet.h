@@ -43,6 +43,9 @@ Armor * get_ring_P(Player * player);
 Armor * get_armor_P(Player * player, enum Armor_type armor_type);
 Skill * get_skill_P(Player * player,int index);
 
+char* get_skill1_name_P(Player * player);
+char* get_skill2_name_P(Player * player);
+
 //Monster
 int get_vie_M(Monster * monster);
 int get_def_M(Monster * monster);

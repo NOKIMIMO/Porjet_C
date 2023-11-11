@@ -17,6 +17,9 @@ void wait(int milliseconds) {
 void mofidyMapAtPos(int x,int y,int ** map,int value){
     map[y][x]=value;
 }
+void give_hp_P(Player * player,int hp){
+    set_vie_P(player,get_vie_P(player)+hp);
+}
 
 /////ITEM
 void use_potion(Player *player,int type){
@@ -39,10 +42,13 @@ void remove_potion(Player *player,int type){
     switch (type){
         case 0:
             player->inventory->listItem->potion_hp--;
+            break;
         case 1:
             player->inventory->listItem->potion_mana--;
+            break;
         case 2:
             player->inventory->listItem->potion_double--;
+            break;
         default:
             return;
     }

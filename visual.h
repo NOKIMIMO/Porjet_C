@@ -26,16 +26,22 @@ void buildBasic(Player player);
 void printDmg(int x, int y, int currentDmg);
 void printDef(int x, int y, int currentDef);
 void printMana(int x, int y, int currentMana, int maxMana);
-int attackVisual(Monster * monster,Player * player, int nb_monster);
+int attackVisual(Monster * monster,Player * player, int nb_monster,int value);
 int itemVisual(Monster * monster,Player * player);
-int skillVisual(Monster * monster,Player * player);
+int skillVisual(Monster * monster,int nb_monster,Player * player);
 void showHPReceived(int value, int x, int y);
+void showManaReceived(int value, int x, int y);
+void showXPReceived(int value, int x, int y);
+void showBothReceived(int value1,int value2, int x, int y);
+void showDmgReceived(int value,Monster * monster,int x, int y);
 void buildMapGraph(int x,int y,Player player,int ** map);
-void showDMGReceived(int value, int x,Monster * monster, int y);
+void printMap(int x,int y, int ** map);
+int skillInteraction(int x,int y,Player * player,int skill_number);
 void itemInteraction(int x,int y, Player * player);
 int weaponInteraction(int x,int y,Player * player);
 int armorInteraction(int x,int y, Player *player ,int type);
 void buildInventory(int x, int y, Player * player);
+void buildEnnemies(int x, int y, Monster * monster);
 //retourne 0 si tout c'est bien passé et exit normal, 1 si le joueur est mort, 2 si autre (bug)
 int visual(Player * player);
 

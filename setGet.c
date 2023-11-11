@@ -36,6 +36,13 @@ int get_pos_y_P(Player * player){
     return player->pos_y;
 }
 
+char* get_skill1_name_P(Player * player){
+    return player->skill1->name;
+}
+char* get_skill2_name_P(Player * player){
+    return player->skill2->name;
+}
+
 //set
 void set_vie_P(Player * player, int vie){
     player->vie = vie;

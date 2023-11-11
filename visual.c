@@ -191,7 +191,36 @@ void showDmgReceived(int value,Monster * monster,int x, int y){
     wait(1200);
 }
 void showHPReceived(int value, int x, int y){
-
+    clearFromTo(x,y,x+50,y+5);
+    moveCursor(x,y);
+    printf(" vous avez récuperez ");
+    printf("%d HP",value);
+    fflush(stdout);
+    wait(1200);
+}
+void showXPReceived(int value, int x, int y){
+    clearFromTo(x,y,x+50,y+5);
+    moveCursor(x,y);
+    printf(" vous avez reçu ");
+    printf("%d XP",value);
+    fflush(stdout);
+    wait(1200);
+}
+void showManaReceived(int value, int x, int y){
+    clearFromTo(x,y,x+50,y+5);
+    moveCursor(x,y);
+    printf(" vous avez récuperez ");
+    printf("%d MANA",value);
+    fflush(stdout);
+    wait(1200);
+}
+void showBothReceived(int value1,int value2, int x, int y){
+    clearFromTo(x,y,x+50,y+5);
+    moveCursor(x,y);
+    printf(" vous avez récuperez ");
+    printf("%d HP et %d MANA",value1,value2);
+    fflush(stdout);
+    wait(1200);
 }
 void printMap(int x,int y, int ** map){
     int start_x=x;
@@ -225,7 +254,6 @@ void itemInteraction(int x,int y, Player * player){
     int mana_potion_number = get_quantity_popo(player,1);
     //get potion double number
     int potion_double_number = get_quantity_popo(player,2);
-    printIntAt(30, 0, hp_potion_number);
 
     // "Potion de vie x hp_potion_number"
     char po_hp[50];
@@ -257,7 +285,6 @@ void itemInteraction(int x,int y, Player * player){
                 return;
             }else{
                 //do nothing
-
             }
         } else if (c2 == 27) {  // Check for the ESC key
             int nextChar = getchar();  // Read the next character in the escape sequence
@@ -831,7 +858,7 @@ void buildMapGraph(int x,int y,Player player,int ** map){
     }
 
 }
-int attackVisual(Monster * monster,Player * player, int nb_monster){
+int attackVisual(Monster * monster,Player * player, int nb_monster,int value){
     int selectedIndex = 0;
     char **options = malloc(sizeof(char*)*nb_monster+1);
     Monster **monster_alive = malloc(sizeof(Monster*) * nb_monster);
@@ -858,13 +885,23 @@ int attackVisual(Monster * monster,Player * player, int nb_monster){
                 free(monster_alive);
                 return 0;
             }else{
-                set_vie_M((monster_alive)[selectedIndex],get_vie_M((monster_alive)[selectedIndex])- get_player_dmg(player,(monster_alive)[selectedIndex]));
-                if(get_vie_M(monster_alive[selectedIndex])<=0){
-                    *monster_alive[selectedIndex] = dead_monster();
+                if (value>0){
+                    set_vie_M((monster_alive)[selectedIndex],get_vie_M((monster_alive)[selectedIndex])- value);
+                    if(get_vie_M(monster_alive[selectedIndex])<=0){
+                        *monster_alive[selectedIndex] = dead_monster();
+                    }
+                    free(options);
+                    free(monster_alive);
+                    return 1;
+                }else{
+                    set_vie_M((monster_alive)[selectedIndex],get_vie_M((monster_alive)[selectedIndex])- get_player_dmg(player,(monster_alive)[selectedIndex]));
+                    if(get_vie_M(monster_alive[selectedIndex])<=0){
+                        *monster_alive[selectedIndex] = dead_monster();
+                    }
+                    free(options);
+                    free(monster_alive);
+                    return 1;
                 }
-                free(options);
-                free(monster_alive);
-                return 1;
             }
         } else if (c == 27) {  // Check for the ESC key
             int nextChar = getchar();  // Read the next character in the escape sequence
@@ -890,11 +927,119 @@ int attackVisual(Monster * monster,Player * player, int nb_monster){
     free(options);
     return 0;
 }
-int skillVisual(Monster * monster,Player * player){
+int skillVisual(Monster * monster,int nb_monster,Player * player){
+    int selectedIndex = 0;
+    char choice1[60];
+    sprintf(choice1,"%s | %d MP", get_name_S(get_skill_P(player,0)),get_mana_S(get_skill_P(player,0)));
+    char choice2[60];
+    sprintf(choice2,"%s | %d MP", get_name_S(get_skill_P(player,1)),get_mana_S(get_skill_P(player,1)));
+    const char *options[] = {
+            choice1,
+            choice2,
+            "Back"
+    };
+    int itemCount = sizeof(options) / sizeof(options[0]);
+    while (1) {
+        buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+        moveCursor(50, 50);
+        int c = getchar();
+        if (c == ' ') {
+            // Check for the SPACE key
+            if(selectedIndex==2){
+                return 0;
+            }else{
+                if (get_mana_S(get_skill_P(player,selectedIndex))<=get_mana_P(player)){
+                    attackVisual(monster,player,nb_monster,get_dmg_S(get_skill_P(player,selectedIndex)));
+                    set_mana_P(player,get_mana_P(player)-get_mana_S(get_skill_P(player,selectedIndex)));
+                    return 1;
+                }else{
+                    //rien
+                }
+            }
+        } else if (c == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex--;
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex < itemCount ) {  // Down arrow key (ASCII 66)
+                    selectedIndex++;
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
 
+        wait(100);
+//        clearAll();
+    }
+    free(options);
+    return 0;
 }
 int itemVisual(Monster * monster,Player * player){
+    int selectedIndex = 0;
+    //get hp potion number
+    int hp_potion_number = get_quantity_popo(player,0);
+    //get mana potion number
+    int mana_potion_number = get_quantity_popo(player,1);
+    //get potion double number
+    int potion_double_number = get_quantity_popo(player,2);
+    // "Potion de vie x hp_potion_number"
+    char po_hp[50];
+    sprintf(po_hp,"Potion de vie x %d",hp_potion_number);
+    // "Potion de mana x mana_potion_number"
+    char po_mana[50];
+    sprintf(po_mana,"Potion de mana x %d",mana_potion_number);
+    // "Potion double x potion_double_number"
+    char po_double[50];
+    sprintf(po_double,"Potion double x %d",potion_double_number);
 
+    const char *options[] = {
+            po_hp,
+            po_mana,
+            po_double,
+            "Back"
+    };
+    int itemCount = sizeof(options) / sizeof(options[0]);
+    while (1) {
+        buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+        moveCursor(50, 50);
+        int c = getchar();
+        if (c == ' ') {
+            // Check for the SPACE key
+            if(selectedIndex==3){
+                return 0;
+            }else{
+                use_potion(player,selectedIndex);
+                return 1;
+            }
+        } else if (c == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex--;
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex < itemCount ) {  // Down arrow key (ASCII 66)
+                    selectedIndex++;
+                    buildInteraction(interaction_x, interaction_y,interaction_x+16,interaction_y+4, options, selectedIndex, itemCount);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+
+        wait(100);
+//        clearAll();
+    }
+    free(options);
+    return 0;
 }
 void buildEnnemies(int x, int y, Monster * monster) {
     char* monster_name = get_name_M(monster);
@@ -935,8 +1080,6 @@ void buildEnnemies(int x, int y, Monster * monster) {
 
 }
 int visual(Player * player){
-
-
     //3 monstre max
     int nb_monster = get_RNG_int(1,3);
     Monster * monster_list = malloc(sizeof(Monster)*nb_monster);
@@ -974,13 +1117,15 @@ int visual(Player * player){
         if (c == ' ') {  // Check for the SPACE key
             switch (selectedIndex) {
                 case 0:
-                    action -= attackVisual(monster_list,player,nb_monster);
+                    action -= attackVisual(monster_list,player,nb_monster,-99);
                     break;
                 case 1:
-                    action -= skillVisual(monster_list,player);
+                    action -= skillVisual(monster_list,nb_monster,player);
                     break;
                 case 2:
                     action -= itemVisual(monster_list,player);
+                    printLife(3,2, get_vie_P(player), get_og_vie_P(player));
+                    printMana(3,3, get_mana_P(player), get_og_mana_P(player));
                     break;
                 case 3:
                     //killVisual();
