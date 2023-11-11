@@ -109,12 +109,7 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     for (int i = 0; i < rows; i++) {
         map[i] = (int *)malloc(cols * sizeof(int));
     }
-    if(x_depart < y_depart)
-    {
-        y_depart += x_depart;
-        x_depart = y_depart - x_depart;
-        y_depart -= x_depart;
-    }
+
     // Initialisation de la map de départ
     map[x_depart][y_depart] = 2;
     //xBas permet de parcourir toutes les lignes en dessous de la case de départ

@@ -8,7 +8,6 @@ int game(){
     int x_depart = 0, y_depart = 0;
     x_depart = get_RNG_int(1,7);
     y_depart = get_RNG_int(1,7);
-    printf("x_depart = %d   y_depart = %d\n",x_depart,y_depart);
 
     int ** map = initMap(7,7,x_depart-1,y_depart-1);
     int *temp=searchEntry(map,7,7);
