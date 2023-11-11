@@ -279,92 +279,39 @@ void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player
 
 int verifPresenceSalle(int **map,int x, int y)
 {
-    switch (x)
-    {
-        case 0 :
-            switch (y)
-            {
-                case 0 :
-                    if(map[x+1][y] != 0 || map[x][y+1] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-                case 6 :
-                    if(map[x+1][y] != 0 || map[x][y-1] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-                default :
-                    if(map[x+1][y] != 0 || map[x][y+1] != 0 || map[x][y-1] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-            }
-            break;
-        case 6 :
-            switch (y) {
-                case 0 :
-                    if (map[x-1][y] != 0 || map[x][y+1] != 0) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                    break;
-                case 6 :
-                    if (map[x-1][y] != 0 || map[x][y-1] != 0) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                    break;
-                default :
-                    if (map[x-1][y] != 0 || map[x][y+1] != 0 || map[x][y - 1] != 0){
-                        return 1;
-                    }
-                    else {
-                        return 0;
-                    }
-                    break;
-            }
-            break;
-        default :
-            switch (y)
-            {
-                case 0 :
-                    if(map[x-1][y] != 0 || map[x+1][y] != 0 || map[x][y+1] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-                case 6 :
-                    if(map[x-1][y] != 0 || map[x+1][y] != 0 || map[x][y-1] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-                default :
-                    if(map[x+1][y] != 0 || map[x][y+1] != 0 || map[x][y-1] != 0 || map[x-1][y] != 0){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                    break;
-            }
-        break;
+    int indiceEnXAdd = 0, indiceEnXRemove = 0, indiceEnYAdd = 0, indiceEnYRemove = 0;
+
+    if(x == 0){
+        indiceEnXAdd = 1;
+        indiceEnXRemove = 0;
+    }
+    else if (x == 6) {
+        indiceEnXAdd = 0;
+        indiceEnXRemove = 1;
+    }
+    else{
+        indiceEnXAdd++;
+        indiceEnXRemove++;
+    }
+
+    if(y == 0){
+        indiceEnYAdd = 1;
+        indiceEnYRemove = 0;
+    }
+    else if(y == 6){
+        indiceEnYAdd = 0;
+        indiceEnYRemove = 1;
+    }
+    else{
+        indiceEnYAdd++;
+        indiceEnYRemove++;
+    }
+
+    if(map[x+indiceEnXAdd][y] != 0 || map[x][y+indiceEnYAdd] != 0 || map[x][y-indiceEnYRemove] != 0 || map[x-indiceEnXRemove][y] != 0){
+        return 1;
+    }
+    else{
+        return 0;
     }
 }
 
@@ -380,6 +327,57 @@ int generationSalle(int **map,int x,int y)
     }
     else
     {
+        return 0;
+    }
+}
+
+int creationRoomBoss(int** map,int x,int y)
+{
+    int indiceEnXAdd = 0, indiceEnXRemove = 0, indiceEnYAdd = 0, indiceEnYRemove = 0;
+
+    if(x == 0){
+        indiceEnXAdd = 1;
+        indiceEnXRemove = 0;
+    }
+    else if (x == 6) {
+        indiceEnXAdd = 0;
+        indiceEnXRemove = 1;
+    }
+    else{
+        indiceEnXAdd++;
+        indiceEnXRemove++;
+    }
+
+    if(y == 0){
+        indiceEnYAdd = 1;
+        indiceEnYRemove = 0;
+    }
+    else if(y == 6){
+        indiceEnYAdd = 0;
+        indiceEnYRemove = 1;
+    }
+    else{
+        indiceEnYAdd++;
+        indiceEnYRemove++;
+    }
+
+    if(map[x+indiceEnXAdd][y] == 0){
+        map[x+indiceEnXAdd][y] = 3;
+        return 1;
+    }
+    else if (map[x][y+indiceEnYAdd] == 0) {
+        map[x][y+indiceEnYAdd] = 3;
+        return 1;
+    }
+    else if(map[x][y-indiceEnYRemove] == 0){
+        map[x][y-indiceEnYRemove] = 3;
+        return 1;
+    }
+    else if(map[x-indiceEnXRemove][y] == 0){
+        map[x-indiceEnXRemove][y] = 3;
+        return 1;
+    }
+    else{
         return 0;
     }
 }

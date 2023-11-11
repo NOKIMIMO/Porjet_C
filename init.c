@@ -121,11 +121,12 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     //yHaut permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart+1
     //initialisé à y_depart+1 pour parcourir seulement les colonnes au dessus du depart
     int xBas = x_depart, yBas = y_depart, xHaut = x_depart + 1, yHaut = y_depart + 1;
-    int ** recupPointeur = (int **)malloc(20 * sizeof(int *));
+    int ** recupSalleBossPossible = (int **)malloc(20 * sizeof(int *));
     for (int i = 0; i < 20; i++) {
-        recupPointeur[i] = (int *)malloc(10 * sizeof(int));
+        recupSalleBossPossible[i] = (int *)malloc(10 * sizeof(int));
     }
     int indexPointeur = 0;
+    int x_derniereSalle = 0, y_derniereSalle = 0;
 
     while(xBas >= 0)
     {
@@ -143,12 +144,14 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
                 if(salleGeneree == 0)
                 {
                     map[xBas][yBas] = 0;
-                    recupPointeur[indexPointeur] = &map[xBas][yBas];
+                    recupSalleBossPossible[indexPointeur] = &map[xBas][yBas];
                     indexPointeur++;
                 }
                 else
                 {
                     map[xBas][yBas] = salleGeneree;
+                    x_derniereSalle = xBas;
+                    y_derniereSalle = yBas;
                 }
             }
             else
@@ -165,12 +168,14 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
                 if(salleGeneree == 0)
                 {
                     map[xBas][yHaut] = 0;
-                    recupPointeur[indexPointeur] = &map[xBas][yHaut];
+                    recupSalleBossPossible[indexPointeur] = &map[xBas][yHaut];
                     indexPointeur++;
                 }
                 else
                 {
                     map[xBas][yHaut] = salleGeneree;
+                    x_derniereSalle = xBas;
+                    y_derniereSalle = yHaut;
                 }
             }
             else
@@ -186,11 +191,6 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
 
     while(xHaut < rows)
     {
-        if(xHaut == x_depart)
-        {
-            xHaut++;
-        }
-
         while(yBas >= 0)
         {
             if(verifPresenceSalle(map,xHaut,yBas) == 1)
@@ -198,14 +198,15 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
                 int salleGeneree = generationSalle(map,xHaut,yBas);
                 if(salleGeneree == 0)
                 {
-
                     map[xHaut][yBas] = 0;
-                    recupPointeur[indexPointeur] = &map[xHaut][yBas];
+                    recupSalleBossPossible[indexPointeur] = &map[xHaut][yBas];
                     indexPointeur++;
                 }
                 else
                 {
                     map[xHaut][yBas] = salleGeneree;
+                    x_derniereSalle = xHaut;
+                    y_derniereSalle = yBas;
                 }
             }
             else
@@ -216,18 +217,20 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
         }
         while(yHaut < cols)
         {
-            if(verifPresenceSalle(map,xHaut,yHaut))
+            if(verifPresenceSalle(map,xHaut,yHaut) == 1)
             {
                 int salleGeneree = generationSalle(map,xHaut,yHaut);
                 if(salleGeneree == 0)
                 {
                     map[xHaut][yHaut] = 0;
-                    recupPointeur[indexPointeur] = &map[xHaut][yHaut];
+                    recupSalleBossPossible[indexPointeur] = &map[xHaut][yHaut];
                     indexPointeur++;
                 }
                 else
                 {
                     map[xHaut][yHaut] = salleGeneree;
+                    x_derniereSalle = xHaut;
+                    y_derniereSalle = yHaut;
                 }
             }
             else
@@ -243,7 +246,40 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
 
     int salleBoss = get_RNG_int(0,indexPointeur);
 
-    *recupPointeur[salleBoss] = 3;
+    if(indexPointeur == 0)
+    {
+        int isFind = 0;
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                if(map[i][j] == 1)
+                {
+                    if(creationRoomBoss(map,i,j) == 1)
+                    {
+                        isFind = 1;
+                        break;
+                    }
+                }
+            }
+
+            if(isFind == 1)
+            {
+                break;
+            }
+
+            if(i == 6 && isFind == 0)
+            {
+                map[x_derniereSalle][y_derniereSalle] = 3;
+            }
+
+        }
+    }
+    else
+    {
+        *recupSalleBossPossible[salleBoss] = 3;
+    }
 
     //Permet de calculer le nombre de salles créées
     int compteurSalle = 0;

@@ -47,5 +47,6 @@ void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player
 int verifPresenceSalle(int **map,int x, int y);
 int generationSalle(int **map,int x,int y);
 int * searchEntry(int ** map, int rows, int cols);
+int creationRoomBoss(int** map,int x,int y);
 
 #endif //PORJET_C_FUNC_H
