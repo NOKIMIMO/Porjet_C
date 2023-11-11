@@ -62,7 +62,7 @@ Item* getItemFromPlayerInventory(Player* player, int index) {
     return getItemFromListItem(player->inventory->listItem, index);
 }
 
-//////
+//////WEAPON
 // Function to remove an item at index n from ListItem
 void removeWeaponFromListItem(ListWeapon* list, int index) {
     if (index >= 0 && index < list->size) {
@@ -182,3 +182,66 @@ void removeArmorFromPlayerInventory(Player* player, int index) {
 Armor * getArmorFromPlayerInventory(Player* player, int index) {
     return getArmorFromListItem(player->inventory->listArmor, index);
 }
+/////SKILL
+// Function to remove an item at index n from ListItem
+void removeSkillFromListSkill(ListSkill * list, int index) {
+    if (index >= 0 && index < list->size) {
+        //free(list->weapon[index]);
+        for (int i = index; i < list->size - 1; i++) {
+            list->skill[i] = list->skill[i + 1];
+        }
+        list->size--;
+    }
+}
+// Function to get the pointer to the item at index n in ListItem
+Skill * getSkillFromListSkill(ListSkill * list, int index) {
+    if (index >= 0 && index < list->size) {
+        return list->skill[index];
+    }
+    return NULL; // Index out of bounds
+}
+void addSkillToListSkill(ListSkill * list, Skill * skill) {
+    if (list->size >= list->capacity) {
+        // If the current size equals or exceeds the capacity, double the capacity.
+        list->capacity *= 2;
+        list->skill = (Skill **)realloc(list->skill, list->capacity * sizeof(Item*));
+        if (list->skill == NULL) {
+            // Handle memory allocation failure
+            // You can add your error-handling logic here.
+            exit(1);
+        }
+    }
+    list->skill[list->size] = skill;
+    list->size++;
+}
+// Function to add a new item to the player's inventory
+void addSkillToPlayerInventory(Player* player, Skill * skill) {
+    addSkillToListSkill(player->inventory->listSkill, skill);
+}
+// Function to remove an item at index n from the player's inventory
+void removeSkillFromPlayerInventory(Player* player, int index) {
+    removeSkillFromListSkill(player->inventory->listSkill, index);
+}
+// Function to get the pointer to the item at index n in the player's inventory
+Skill * getSkillFromPlayerInventory(Player* player, int index) {
+    return getSkillFromListSkill(player->inventory->listSkill, index);
+}
+void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player,int skillIndex) {
+    //only 2 skill
+    if (get_skill_P(player,skillIndex) == NULL) {
+        set_skill_P(player, list->skill[index], skillIndex);
+        removeSkillFromPlayerInventory(player, index);
+    }else{
+        Skill * tmp = get_skill_P(player,skillIndex);
+        set_skill_P(player,list->skill[index],skillIndex);
+        list->skill[index] = tmp;
+    }
+
+}
+//void swapWeaponFromListWeaponWithPlayer(ListWeapon* list, int index,Player * player) {
+//    if (index >= 0 && index < list->size) {
+//        Weapon * tmp = list->weapon[index];
+//        list->weapon[index] = player->weapon;
+//        player->weapon = tmp;
+//    }
+//}

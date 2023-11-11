@@ -106,6 +106,13 @@ void set_armor_P(Player * player, Armor * armor, enum Armor_type armor_type){
             break;
     }
 }
+void set_skill_P(Player * player, Skill * skill, int index){
+    if(index==0){
+        player->skill1 = skill;
+    }else if(index==1){
+        player->skill2 = skill;
+    }
+}
 Weapon * get_weapon_P(Player * player){
     return player->weapon;
 }
@@ -134,7 +141,16 @@ Armor * get_armor_P(Player * player, enum Armor_type armor_type){
         default:
             return NULL;
     }
-};
+}
+Skill * get_skill_P(Player * player,int index){
+    if(index==0){
+        return player->skill1;
+    }else if(index==1){
+        return player->skill2;
+    }else{
+        return NULL;
+    }
+}
 void set_inventory_P(Player * player, Inventory * inventory){
     player->inventory = inventory;
 }
@@ -174,6 +190,9 @@ ListItem * get_listItem_P(Player * player){
 ListWeapon * get_listWeapon_P(Player * player){
     return player->inventory->listWeapon;
 }
+ListSkill * get_listSkill_P(Player * player){
+    return player->inventory->listSkill;
+}
 
 ListArmor * get_listArmor_P(Player * player){
     return player->inventory->listArmor;
@@ -184,6 +203,9 @@ int get_size_LW(ListWeapon * list){
 }
 
 int get_size_LA(ListArmor * list){
+    return list->size;
+}
+int get_size_LS(ListSkill * list){
     return list->size;
 }
 //SKILL
@@ -267,6 +289,9 @@ Weapon * get_weapon_LW(ListWeapon * list, int index){
 
 Armor * get_armor_LA(ListArmor * list, int index){
     return list->armor[index];
+}
+Skill * get_skill_LS(ListSkill * list, int index){
+    return list->skill[index];
 }
 
 ////INVENTORY

@@ -20,6 +20,9 @@ void destroyPlayer(Player * player){
         if (player->inventory->listItem != NULL){
             free(player->inventory->listItem);
         }
+        if (player->inventory->listSkill != NULL){
+            free(player->inventory->listSkill);
+        }
         free(player->inventory);
     }
     free(player);

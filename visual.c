@@ -498,6 +498,55 @@ int weaponInteraction(int x,int y,Player * player){
         wait(100);
     }
 }
+int skillInteraction(int x,int y,Player * player,int skill_number){
+    buildBoxInteraction(30,23,42+x-2,y-2);
+    int size = get_size_LS(get_listSkill_P(player));
+    char *options[size + 1];
+    for (int i = 0; i < size; ++i) {
+        char w_name [40];
+        sprintf(w_name,"%s | %d MP", get_name_S(get_skill_LS(get_listSkill_P(player),i)),get_mana_S(get_skill_LS(get_listSkill_P(player),i)));
+        options[i]=w_name;
+    }
+    options[size]="Back";
+    int itemCount2 = sizeof(options) / sizeof(options[0]);
+    int selectedIndex2 = 0;
+
+    while(1){
+        buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
+        moveCursor(50, 50);
+        int c2 = getchar();
+        if (c2 == ' ') {  // Check for the SPACE key
+            if (selectedIndex2==size){
+                //back
+                clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                return 0;
+            }else{
+                //skill
+                swapSkillFromListSkillWithPlayer(get_listSkill_P(player),selectedIndex2,player,skill_number);
+                clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                return 1;
+            }
+        } else if (c2 == 27) {  // Check for the ESC key
+            int nextChar = getchar();  // Read the next character in the escape sequence
+            if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
+                int arrowKey = getchar();  // Read the character representing the arrow key
+                if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
+                    selectedIndex2--;
+                    buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
+                    moveCursor(30,20);
+                } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
+                    selectedIndex2++;
+                    buildInteraction(42+x, y,42+x+24,y+size, options, selectedIndex2, itemCount2);
+                    moveCursor(30, 20);
+                }
+            } else {
+                break;
+            }
+        }
+        wait(100);
+    }
+}
+
 void buildInventory(int x, int y, Player * player){
     clearAll();
     printLife(3,2, get_vie_P(player), get_og_vie_P(player));
@@ -530,12 +579,26 @@ void buildInventory(int x, int y, Player * player){
     }else{
         sprintf(r_name,"Ring : None");
     }
+    char s1_name[60];
+    if (get_skill_P(player,0)!=NULL){
+        sprintf(s1_name,"Skill 1 : %s | %d MP", get_name_S(get_skill_P(player,0)),get_mana_S(get_skill_P(player,0)));
+    }else{
+        sprintf(s1_name,"Skill 1 : None");
+    }
+    char s2_name[60];
+    if (get_skill_P(player,1)!=NULL){
+        sprintf(s2_name,"Skill 2 : %s | %d MP", get_name_S(get_skill_P(player,1)),get_mana_S(get_skill_P(player,1)));
+    }else{
+        sprintf(s2_name,"Skill 2 : None");
+    }
     char *options[] = {
             w_name,
             h_name,
             c_name,
             l_name,
             r_name,
+            s1_name,
+            s2_name,
             "Items :",
             "Back"
     };
@@ -606,11 +669,31 @@ void buildInventory(int x, int y, Player * player){
                     //ring
                     break;
                 case 5:
+                    //Skill1
+                    if (skillInteraction(x,y,player,0)==1){
+                        sprintf(s1_name,"Skill 1 : %s | %d MP", get_name_S(get_skill_P(player,0)),get_mana_S(get_skill_P(player,0)));
+                        options[5]=s1_name;
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
+                    break;
+                case 6:
+                    //Skill2
+                    if (skillInteraction(x,y,player,1)==1){
+                        sprintf(s1_name,"Skill 2 : %s | %d MP", get_name_S(get_skill_P(player,1)),get_mana_S(get_skill_P(player,1)));
+                        options[6]=s1_name;
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }else{
+                        clearFromTo(42+x-2,y-2,42+x+30,y+23);
+                    }
+                    break;
+                case 7:
                     //Items
                     itemInteraction(x,y,player);
                     clearFromTo(42+x-2,y-2,42+x+30,y+23);
                     break;
-                case 6:
+                case 8:
                     //back
                     return;
                 default:
@@ -622,11 +705,11 @@ void buildInventory(int x, int y, Player * player){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex--;
-                    buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
+                    buildInteraction(x, y,x+34,y+9, options, selectedIndex, itemCount);
                     moveCursor(30,20);
                 } else if (arrowKey == 66 && selectedIndex < itemCount - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex++;
-                    buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
+                    buildInteraction(x, y,x+34,y+9, options, selectedIndex, itemCount);
                     moveCursor(30, 20);
                 }
             } else {

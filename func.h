@@ -36,5 +36,14 @@ void addArmorToPlayerInventory(Player* player, Armor* armor);
 void removeArmorFromPlayerInventory(Player* player, int index);
 Armor* getArmorFromPlayerInventory(Player* player, int index);
 int getIndexArmorFromListArmor(ListArmor * list,enum Armor_type type,char * name);
+//Skill
+void addSkillToListSkill(ListSkill* list, Skill* skill);
+void removeSkillFromListSkill(ListSkill* list, int index);
+Skill* getSkillFromListSkill(ListSkill* list, int index);
+void addSkillToPlayerInventory(Player* player, Skill* skill);
+void removeSkillFromPlayerInventory(Player* player, int index);
+Skill* getSkillFromPlayerInventory(Player* player, int index);
+void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player,int skillIndex);
+
 
 #endif //PORJET_C_FUNC_H

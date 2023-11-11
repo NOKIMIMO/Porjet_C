@@ -15,10 +15,12 @@ int game(){
                                  NULL,
                                  create_armor( "plastron", 5, 5, chest_piece),
                                  NULL,
-                                 NULL);
+                                 NULL,
+                                 NULL,
+                                   create_skill("Ice pick",10,10));
     set_vie_P(player,10);
     set_mana_P(player,20);
-    set_inventory_P(player,create_inventory(10,10,10));
+    set_inventory_P(player,create_inventory(10,10,10,10));
     for (int i = 0; i < 4; ++i) {
         addItemToPlayerInventory(player, create_item("Potion de vie",0,20));
     }
@@ -28,6 +30,7 @@ int game(){
     addArmorToListArmor(get_listArmor_P(player),create_armor("casque",0,5,head_piece));
     addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test",0,5,chest_piece));
     addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test2",0,10,chest_piece));
+    addSkillToPlayerInventory(player,create_skill("fireball",10,10));
     refresh_stat_armor_P(player);
     int ** map = initMap(7,7);
 

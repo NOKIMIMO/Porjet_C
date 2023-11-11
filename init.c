@@ -39,7 +39,9 @@ Player* create_player(int og_vie,
                      Armor * head_piece,
                      Armor * chest_piece,
                      Armor * leg_piece,
-                     Armor * ring){
+                     Armor * ring,
+                     Skill * skill1,
+                     Skill * skill2){
     Player *player = malloc(sizeof(Player));
     if (player != NULL) {
         player->og_vie = og_vie;
@@ -56,6 +58,8 @@ Player* create_player(int og_vie,
         player->ring = ring;
         player->ac = 1;
         player->inventory = NULL;
+        player->skill1 = skill1;
+        player->skill2 = skill2;
     }
     return player;
 }
@@ -156,8 +160,15 @@ ListArmor* create_list_armor(int capacity) {
     list->capacity = capacity;
     return list;
 }
+ListSkill * create_list_skill(int capacity){
+    ListSkill * list = (ListSkill *)malloc(sizeof(ListSkill));
+    list->skill = (Skill **)malloc(capacity * sizeof(Skill*));
+    list->size = 0;
+    list->capacity = capacity;
+    return list;
+}
 
-Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int listArmorCapacity) {
+Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int listArmorCapacity,int listSkillCapacity) {
     Inventory* inventory = (Inventory*)malloc(sizeof(Inventory));
 
     if (inventory == NULL) {
@@ -168,12 +179,14 @@ Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int li
     inventory->listItem = create_list_item(listItemCapacity);
     inventory->listWeapon = create_list_weapon(listWeaponCapacity);
     inventory->listArmor = create_list_armor(listArmorCapacity);
+    inventory->listSkill = create_list_skill(listSkillCapacity);
 
     if (inventory->listItem == NULL || inventory->listWeapon == NULL || inventory->listArmor == NULL) {
         // Handle memory allocation failure
         free(inventory->listItem);
         free(inventory->listWeapon);
         free(inventory->listArmor);
+        free(inventory->listSkill);
         free(inventory);
         return NULL;
     }

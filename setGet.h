@@ -33,6 +33,7 @@ void set_chest_piece_P(Player * player, Armor * chest_piece);
 void set_leg_piece_P(Player * player, Armor * leg_piece);
 void set_ring_P(Player * player, Armor * ring);
 void set_armor_P(Player * player, Armor * armor, enum Armor_type armor_type);
+void set_skill_P(Player * player, Skill * skill, int index);
 
 Weapon * get_weapon_P(Player * player);
 Armor * get_head_piece_P(Player * player);
@@ -40,6 +41,7 @@ Armor * get_chest_piece_P(Player * player);
 Armor * get_leg_piece_P(Player * player);
 Armor * get_ring_P(Player * player);
 Armor * get_armor_P(Player * player, enum Armor_type armor_type);
+Skill * get_skill_P(Player * player,int index);
 
 //Monster
 int get_vie_M(Monster * monster);
@@ -56,6 +58,7 @@ int get_size_LW(ListWeapon * list);
 int get_size_LA(ListArmor * list);
 ListItem * get_listItem_P(Player * player);
 ListWeapon * get_listWeapon_P(Player * player);
+ListSkill * get_listSkill_P(Player * player);
 ListArmor * get_listArmor_P(Player * player);
 Armor * get_ring_P(Player * player);
 
@@ -82,6 +85,7 @@ char * get_name_S(Skill * skill);
 Item * get_item_LI(ListItem * list, int index);
 Weapon * get_weapon_LW(ListWeapon * list, int index);
 Armor * get_armor_LA(ListArmor * list, int index);
+Skill * get_skill_LS(ListSkill * list, int index);
 
 //LIST
 //ListItem * get_listItem_I(Inventory * inventory);
@@ -91,6 +95,7 @@ Armor * get_armor_LA(ListArmor * list, int index);
 int get_size_LI(ListItem * list);
 int get_size_LW(ListWeapon * list);
 int get_size_LA(ListArmor * list);
+int get_size_LS(ListSkill * list);
 
 int get_capacity_LI(ListItem * list);
 int get_capacity_LW(ListWeapon * list);

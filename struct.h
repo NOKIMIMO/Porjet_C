@@ -62,10 +62,17 @@ typedef struct ListArmor{
     int capacity;
 }ListArmor;
 
+typedef struct ListSkill{
+    Skill **skill;
+    int size;
+    int capacity;
+}ListSkill;
+
 typedef struct Inventory{
     ListItem * listItem;
     ListWeapon * listWeapon;
     ListArmor * listArmor;
+    ListSkill * listSkill;
 }Inventory;
 
 typedef struct Player{
@@ -87,6 +94,8 @@ typedef struct Player{
     Armor * leg_piece;
     Armor * ring;
     Inventory * inventory;
+    Skill * skill1;
+    Skill * skill2;
 }Player;
 
 #endif PORJET_C_STRUCT_H
