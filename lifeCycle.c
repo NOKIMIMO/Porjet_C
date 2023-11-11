@@ -21,19 +21,25 @@ void level_up_P(Player * player){
 }
 void refresh_stat_armor_P(Player * player){
     int def = 0;
+    int mana= get_og_mana_P(player);
     if(get_head_piece_P(player)!=NULL){
         def += get_def_A(get_head_piece_P(player));
+        mana+= get_mana_A(get_head_piece_P(player));
     }
     if(get_chest_piece_P(player)!=NULL){
         def += get_def_A(get_chest_piece_P(player));
+        mana+= get_mana_A(get_chest_piece_P(player));
     }
     if(get_leg_piece_P(player)!=NULL){
         def += get_def_A(get_leg_piece_P(player));
+        mana+= get_mana_A(get_leg_piece_P(player));
     }
     if(get_ring_P(player)!=NULL){
         def += get_def_A(get_ring_P(player));
+        mana+= get_mana_A(get_ring_P(player));
     }
     set_def_P(player,def);
+    set_og_mana_P(player,mana);
 }
 void refresh_stat_lvl_P(Player * player){
     //sensé arriver a chaque level up

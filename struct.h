@@ -10,12 +10,6 @@ enum Armor_type{
     ring,
 };
 
-typedef struct Item {
-    char * name;
-    int mana;
-    int hp;
-}Item;
-
 typedef struct Skill{
     char * name;
     int mana;
@@ -44,9 +38,9 @@ typedef struct Monster{
 }Monster;
 
 typedef struct ListItem{
-    Item ** item;
-    int size;
-    int capacity;
+    int potion_hp;
+    int potion_mana;
+    int potion_double;
 }ListItem;
 
 typedef struct ListWeapon {
@@ -62,10 +56,17 @@ typedef struct ListArmor{
     int capacity;
 }ListArmor;
 
+typedef struct ListSkill{
+    Skill **skill;
+    int size;
+    int capacity;
+}ListSkill;
+
 typedef struct Inventory{
     ListItem * listItem;
     ListWeapon * listWeapon;
     ListArmor * listArmor;
+    ListSkill * listSkill;
 }Inventory;
 
 typedef struct Player{
@@ -88,6 +89,8 @@ typedef struct Player{
     Armor * leg_piece;
     Armor * ring;
     Inventory * inventory;
+    Skill * skill1;
+    Skill * skill2;
 }Player;
 
 #endif PORJET_C_STRUCT_H

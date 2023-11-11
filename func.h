@@ -12,13 +12,13 @@
 int get_RNG_int(int min, int max);
 void wait(int milliseconds);
 void mofidyMapAtPos(int x,int y,int ** map,int value);
+//Player
+void give_mana_P(Player * player,int hp);
+void give_hp_P(Player * player,int hp);
 //Item
-void addItemToListItem(ListItem* list, Item* item);
-void removeItemFromListItem(ListItem* list, int index);
-Item* getItemFromListItem(ListItem* list, int index);
-void addItemToPlayerInventory(Player* player, Item* item);
-void removeItemFromPlayerInventory(Player* player, int index);
-Item* getItemFromPlayerInventory(Player* player, int index);
+void use_potion(Player *player,int type);
+void remove_potion(Player *player,int type);
+void add_potion(Player *player,int type,int quantity);
 //Weapon
 void addWeaponToListWeapon(ListWeapon* list, Weapon* weapon);
 void removeWeaponFromListItem(ListWeapon* list, int index);
@@ -36,5 +36,14 @@ void addArmorToPlayerInventory(Player* player, Armor* armor);
 void removeArmorFromPlayerInventory(Player* player, int index);
 Armor* getArmorFromPlayerInventory(Player* player, int index);
 int getIndexArmorFromListArmor(ListArmor * list,enum Armor_type type,char * name);
+//Skill
+void addSkillToListSkill(ListSkill* list, Skill* skill);
+void removeSkillFromListSkill(ListSkill* list, int index);
+Skill* getSkillFromListSkill(ListSkill* list, int index);
+void addSkillToPlayerInventory(Player* player, Skill* skill);
+void removeSkillFromPlayerInventory(Player* player, int index);
+Skill* getSkillFromPlayerInventory(Player* player, int index);
+void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player,int skillIndex);
+
 
 #endif //PORJET_C_FUNC_H

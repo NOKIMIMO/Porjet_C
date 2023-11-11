@@ -44,8 +44,9 @@ Player* create_player(int og_vie,
                      Armor * head_piece,
                      Armor * chest_piece,
                      Armor * leg_piece,
-                     Armor * ring
-                     ){
+                     Armor * ring,
+                     Skill * skill1,
+                     Skill * skill2){
     Player *player = malloc(sizeof(Player));
     if (player != NULL) {
         player->og_vie = og_vie;
@@ -62,7 +63,8 @@ Player* create_player(int og_vie,
         player->ring = ring;
         player->ac = 1;
         player->inventory = NULL;
-
+        player->skill1 = skill1;
+        player->skill2 = skill2;
     }
     return player;
 }
@@ -93,18 +95,6 @@ Armor *create_armor(char * name, int mana, int def, enum Armor_type armor_type) 
     return armor;
 }
 
-Item * create_item(char * name, int mana, int hp){
-    Item * item = (Item *)malloc(sizeof(Item));
-    if (item == NULL) {
-        // Handle allocation failure, for example, return NULL or exit the program
-        return NULL;
-    }
-
-    item->name = name;
-    item->mana = mana;
-    item->hp = hp;
-    return item;
-}
 Skill * create_skill(char * name, int mana, int dmg){
     Skill * skill = (Skill *)malloc(sizeof(Skill));
     if (skill == NULL) {
@@ -137,11 +127,12 @@ int ** initMap(int rows, int cols){
     return map;
 }
 // Constructor for ListItemcreate_list_item
-ListItem* create_list_item(int capacity) {
+ListItem* create_list_item(const int capacity[3]) {
     ListItem* list = (ListItem*)malloc(sizeof(ListItem));
-    list->item = (Item**)malloc(capacity * sizeof(Item*));
-    list->size = 0;
-    list->capacity = capacity;
+    list->potion_hp = capacity[0];
+    list->potion_mana = capacity[1];
+    list->potion_double = capacity[2];
+
     return list;
 }
 
@@ -163,8 +154,15 @@ ListArmor* create_list_armor(int capacity) {
     list->capacity = capacity;
     return list;
 }
+ListSkill * create_list_skill(int capacity){
+    ListSkill * list = (ListSkill *)malloc(sizeof(ListSkill));
+    list->skill = (Skill **)malloc(capacity * sizeof(Skill*));
+    list->size = 0;
+    list->capacity = capacity;
+    return list;
+}
 
-Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int listArmorCapacity) {
+Inventory* create_inventory(int const listItemValue[3], int listWeaponCapacity, int listArmorCapacity,int listSkillCapacity) {
     Inventory* inventory = (Inventory*)malloc(sizeof(Inventory));
 
     if (inventory == NULL) {
@@ -172,15 +170,17 @@ Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int li
         return NULL;
     }
 
-    inventory->listItem = create_list_item(listItemCapacity);
+    inventory->listItem = create_list_item(listItemValue);
     inventory->listWeapon = create_list_weapon(listWeaponCapacity);
     inventory->listArmor = create_list_armor(listArmorCapacity);
+    inventory->listSkill = create_list_skill(listSkillCapacity);
 
     if (inventory->listItem == NULL || inventory->listWeapon == NULL || inventory->listArmor == NULL) {
         // Handle memory allocation failure
         free(inventory->listItem);
         free(inventory->listWeapon);
         free(inventory->listArmor);
+        free(inventory->listSkill);
         free(inventory);
         return NULL;
     }

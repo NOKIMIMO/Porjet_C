@@ -36,6 +36,13 @@ int get_pos_y_P(Player * player){
     return player->pos_y;
 }
 
+char* get_skill1_name_P(Player * player){
+    return player->skill1->name;
+}
+char* get_skill2_name_P(Player * player){
+    return player->skill2->name;
+}
+
 //set
 void set_vie_P(Player * player, int vie){
     player->vie = vie;
@@ -106,6 +113,13 @@ void set_armor_P(Player * player, Armor * armor, enum Armor_type armor_type){
             break;
     }
 }
+void set_skill_P(Player * player, Skill * skill, int index){
+    if(index==0){
+        player->skill1 = skill;
+    }else if(index==1){
+        player->skill2 = skill;
+    }
+}
 Weapon * get_weapon_P(Player * player){
     return player->weapon;
 }
@@ -134,7 +148,16 @@ Armor * get_armor_P(Player * player, enum Armor_type armor_type){
         default:
             return NULL;
     }
-};
+}
+Skill * get_skill_P(Player * player,int index){
+    if(index==0){
+        return player->skill1;
+    }else if(index==1){
+        return player->skill2;
+    }else{
+        return NULL;
+    }
+}
 void set_inventory_P(Player * player, Inventory * inventory){
     player->inventory = inventory;
 }
@@ -163,9 +186,6 @@ void set_def_M(Monster * monster,int def) {
     monster->def = (def<0)?0:def;
 }
 
-int get_size_LI(ListItem * list){
-    return list->size;
-}
 
 ListItem * get_listItem_P(Player * player){
     return player->inventory->listItem;
@@ -173,6 +193,9 @@ ListItem * get_listItem_P(Player * player){
 
 ListWeapon * get_listWeapon_P(Player * player){
     return player->inventory->listWeapon;
+}
+ListSkill * get_listSkill_P(Player * player){
+    return player->inventory->listSkill;
 }
 
 ListArmor * get_listArmor_P(Player * player){
@@ -184,6 +207,9 @@ int get_size_LW(ListWeapon * list){
 }
 
 int get_size_LA(ListArmor * list){
+    return list->size;
+}
+int get_size_LS(ListSkill * list){
     return list->size;
 }
 //SKILL
@@ -199,17 +225,17 @@ char * get_name_S(Skill * skill){
 
 
 //ITEM
-
-int get_mana_I(Item * item){
-    return item->mana;
-}
-
-int get_hp_I(Item * item){
-    return item->hp;
-}
-
-char * get_name_I(Item * item){
-    return item->name;
+int get_quantity_popo(Player * player,int type){
+    switch (type){
+        case 0:
+            return player->inventory->listItem->potion_hp;
+        case 1:
+            return player->inventory->listItem->potion_mana;
+        case 2:
+            return player->inventory->listItem->potion_double;
+        default:
+            return 0;
+    }
 }
 
 //WEAPON
@@ -238,24 +264,7 @@ enum Armor_type get_armor_type_A(Armor * armor){
 
 ////LIST
 
-//ITEM
 
-Item * get_item_LI(ListItem * list, int index){
-    return list->item[index];
-}
-
-int get_potion_type_I(Player  * player,char * type){
-    int size = get_size_LI(get_listItem_P(player));
-    int cpt=0;
-    if(size>0){
-        for (int i = 0; i < size; ++i) {
-            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),type)==0){
-                cpt++;
-            }
-        }
-    }
-    return cpt;
-}
 
 //WEAPON
 
@@ -268,15 +277,14 @@ Weapon * get_weapon_LW(ListWeapon * list, int index){
 Armor * get_armor_LA(ListArmor * list, int index){
     return list->armor[index];
 }
+Skill * get_skill_LS(ListSkill * list, int index){
+    return list->skill[index];
+}
 
 ////INVENTORY
 
 //LIST
 
-
-int get_capacity_LI(ListItem * list){
-    return list->capacity;
-}
 int get_capacity_LW(ListWeapon * list){
     return list->capacity;
 }
