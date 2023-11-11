@@ -15,7 +15,7 @@ int game(){
                                  NULL,
                                  create_armor( "plastron", 5, 5, chest_piece),
                                  NULL,
-                                 NULL,
+                                   create_armor("anno",20,0,ring),
                                    create_skill("nuke",60,40),
                                    create_skill("Ice pick",10,10));
     set_vie_P(player,10);

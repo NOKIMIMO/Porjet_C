@@ -18,23 +18,33 @@ void mofidyMapAtPos(int x,int y,int ** map,int value){
     map[y][x]=value;
 }
 void give_hp_P(Player * player,int hp){
-    set_vie_P(player,get_vie_P(player)+hp);
+    if (get_vie_P(player)+hp> get_og_vie_P(player)){
+        set_vie_P(player,get_og_vie_P(player));
+    }else{
+        set_vie_P(player,get_vie_P(player)+hp);
+    }
 }
-
+void give_mana_P(Player * player,int hp){
+    if (get_mana_P(player)+hp> get_og_mana_P(player)){
+        set_mana_P(player,get_og_mana_P(player));
+    }else{
+        set_mana_P(player,get_mana_P(player)+hp);
+    }
+}
 /////ITEM
 void use_potion(Player *player,int type){
     if (type == 0){
         //vie
-        set_vie_P(player,get_vie_P(player)+40);
+        give_hp_P(player,40);
         remove_potion(player,type);
     }else if(type == 1){
         //mana
-        set_mana_P(player,get_mana_P(player)+40);
+        give_mana_P(player,30);
         remove_potion(player,type);
     }else if(type == 2){
         //double
-        set_vie_P(player,get_vie_P(player)+20);
-        set_mana_P(player,get_mana_P(player)+10);
+        give_hp_P(player,20);
+        give_mana_P(player,10);
         remove_potion(player,type);
     }
 }

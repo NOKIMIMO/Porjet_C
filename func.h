@@ -12,6 +12,9 @@
 int get_RNG_int(int min, int max);
 void wait(int milliseconds);
 void mofidyMapAtPos(int x,int y,int ** map,int value);
+//Player
+void give_mana_P(Player * player,int hp);
+void give_hp_P(Player * player,int hp);
 //Item
 void use_potion(Player *player,int type);
 void remove_potion(Player *player,int type);

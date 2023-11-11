@@ -162,8 +162,8 @@ void printFromToShape(int x1,int y1,int x2,int y2,char * str){
 
 }
 void buildBasic(Player player){
-    printLife(3,2, get_vie_P(&player),100);
-    printMana(3,3, get_mana_P(&player),100);
+    printLife(3,2, get_vie_P(&player), get_og_vie_P(&player));
+    printMana(3,3, get_mana_P(&player), get_og_mana_P(&player));
     buildBoxInteraction(60,10,interaction_x-5,interaction_y-2);
 }
 void showDeathMessage(int x, int y){
@@ -503,6 +503,7 @@ int skillInteraction(int x,int y,Player * player,int skill_number){
                 return 0;
             }else{
                 //skill
+                printIntAt(30,0,selectedIndex2);
                 swapSkillFromListSkillWithPlayer(get_listSkill_P(player),selectedIndex2,player,skill_number);
                 clearFromTo(42+x-2,y-2,42+x+30,y+23);
                 return 1;
@@ -661,8 +662,8 @@ void buildInventory(int x, int y, Player * player){
                 case 6:
                     //Skill2
                     if (skillInteraction(x,y,player,1)==1){
-                        sprintf(s1_name,"Skill 2 : %s | %d MP", get_name_S(get_skill_P(player,1)),get_mana_S(get_skill_P(player,1)));
-                        options[6]=s1_name;
+                        sprintf(s2_name,"Skill 2 : %s | %d MP", get_name_S(get_skill_P(player,1)),get_mana_S(get_skill_P(player,1)));
+                        options[6]=s2_name;
                         clearFromTo(42+x-2,y-2,42+x+30,y+23);
                     }else{
                         clearFromTo(42+x-2,y-2,42+x+30,y+23);
@@ -705,8 +706,8 @@ void buildMapGraph(int x,int y,Player player,int ** map){
     clearAll();
     printf("\033[?1049h\033[H");
     system("stty -icanon min 1");
-    printLife(3,2, get_vie_P(&player),100);
-    printMana(3,3, get_mana_P(&player),100);
+    printLife(3,2, get_vie_P(&player), get_og_vie_P(&player));
+    printMana(3,3, get_mana_P(&player), get_og_mana_P(&player));
     buildBoxInteraction(60,23,x,y);
     int cpt=0;
     x++;
