@@ -18,50 +18,52 @@ void mofidyMapAtPos(int x,int y,int ** map,int value){
     map[y][x]=value;
 }
 
-// Function to remove an item at index n from ListItem
-void removeItemFromListItem(ListItem* list, int index) {
-    if (index >= 0 && index < list->size) {
-        free(list->item[index]);
-        for (int i = index; i < list->size - 1; i++) {
-            list->item[i] = list->item[i + 1];
+/////ITEM
+void use_potion(Player *player,int type){
+    if (type == 0){
+        //vie
+        set_vie_P(player,get_vie_P(player)+40);
+        remove_potion(player,type);
+    }else if(type == 1){
+        //mana
+        set_mana_P(player,get_mana_P(player)+40);
+        remove_potion(player,type);
+    }else if(type == 2){
+        //double
+        set_vie_P(player,get_vie_P(player)+20);
+        set_mana_P(player,get_mana_P(player)+10);
+        remove_potion(player,type);
+    }
+}
+void remove_potion(Player *player,int type){
+    switch (type){
+        case 0:
+            player->inventory->listItem->potion_hp--;
+        case 1:
+            player->inventory->listItem->potion_mana--;
+        case 2:
+            player->inventory->listItem->potion_double--;
+        default:
+            return;
+    }
+}
+void add_potion(Player *player,int type,int quantity){
+    for (int i = 0; i < quantity; i++) {
+        switch (type){
+            case 0:
+                player->inventory->listItem->potion_hp++;
+                break;
+            case 1:
+                player->inventory->listItem->potion_mana++;
+                break;
+            case 2:
+                player->inventory->listItem->potion_double++;
+                break;
+            default:
+                return;
         }
-        list->size--;
     }
 }
-// Function to get the pointer to the item at index n in ListItem
-Item* getItemFromListItem(ListItem* list, int index) {
-    if (index >= 0 && index < list->size) {
-        return list->item[index];
-    }
-    return NULL; // Index out of bounds
-}
-void addItemToListItem(ListItem* list, Item* item) {
-    if (list->size >= list->capacity) {
-        // If the current size equals or exceeds the capacity, double the capacity.
-        list->capacity *= 2;
-        list->item = (Item**)realloc(list->item, list->capacity * sizeof(Item*));
-        if (list->item == NULL) {
-            // Handle memory allocation failure
-            // You can add your error-handling logic here.
-            exit(1);
-        }
-    }
-    list->item[list->size] = item;
-    list->size++;
-}
-// Function to add a new item to the player's inventory
-void addItemToPlayerInventory(Player* player, Item* item) {
-    addItemToListItem(player->inventory->listItem, item);
-}
-// Function to remove an item at index n from the player's inventory
-void removeItemFromPlayerInventory(Player* player, int index) {
-    removeItemFromListItem(player->inventory->listItem, index);
-}
-// Function to get the pointer to the item at index n in the player's inventory
-Item* getItemFromPlayerInventory(Player* player, int index) {
-    return getItemFromListItem(player->inventory->listItem, index);
-}
-
 //////WEAPON
 // Function to remove an item at index n from ListItem
 void removeWeaponFromListItem(ListWeapon* list, int index) {
@@ -93,7 +95,7 @@ void addWeaponToListWeapon(ListWeapon* list, Weapon* weapon) {
     if (list->size >= list->capacity) {
         // If the current size equals or exceeds the capacity, double the capacity.
         list->capacity *= 2;
-        list->weapon = (Weapon **)realloc(list->weapon, list->capacity * sizeof(Item*));
+        list->weapon = (Weapon **)realloc(list->weapon, list->capacity * sizeof(Weapon*));
         if (list->weapon == NULL) {
             // Handle memory allocation failure
             // You can add your error-handling logic here.
@@ -160,7 +162,7 @@ void addArmorToListArmor(ListArmor * list, Armor * armor) {
     if (list->size >= list->capacity) {
         // If the current size equals or exceeds the capacity, double the capacity.
         list->capacity *= 2;
-        list->armor = (Weapon **)realloc(list->armor, list->capacity * sizeof(Item*));
+        list->armor = (Weapon **)realloc(list->armor, list->capacity * sizeof(Armor*));
         if (list->armor == NULL) {
             // Handle memory allocation failure
             // You can add your error-handling logic here.
@@ -204,7 +206,7 @@ void addSkillToListSkill(ListSkill * list, Skill * skill) {
     if (list->size >= list->capacity) {
         // If the current size equals or exceeds the capacity, double the capacity.
         list->capacity *= 2;
-        list->skill = (Skill **)realloc(list->skill, list->capacity * sizeof(Item*));
+        list->skill = (Skill **)realloc(list->skill, list->capacity * sizeof(Skill*));
         if (list->skill == NULL) {
             // Handle memory allocation failure
             // You can add your error-handling logic here.

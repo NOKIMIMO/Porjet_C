@@ -90,18 +90,6 @@ Armor *create_armor(char * name, int mana, int def, enum Armor_type armor_type) 
     return armor;
 }
 
-Item * create_item(char * name, int mana, int hp){
-    Item * item = (Item *)malloc(sizeof(Item));
-    if (item == NULL) {
-        // Handle allocation failure, for example, return NULL or exit the program
-        return NULL;
-    }
-
-    item->name = name;
-    item->mana = mana;
-    item->hp = hp;
-    return item;
-}
 Skill * create_skill(char * name, int mana, int dmg){
     Skill * skill = (Skill *)malloc(sizeof(Skill));
     if (skill == NULL) {
@@ -134,11 +122,12 @@ int ** initMap(int rows, int cols){
     return map;
 }
 // Constructor for ListItemcreate_list_item
-ListItem* create_list_item(int capacity) {
+ListItem* create_list_item(const int capacity[3]) {
     ListItem* list = (ListItem*)malloc(sizeof(ListItem));
-    list->item = (Item**)malloc(capacity * sizeof(Item*));
-    list->size = 0;
-    list->capacity = capacity;
+    list->potion_hp = capacity[0];
+    list->potion_mana = capacity[1];
+    list->potion_double = capacity[2];
+
     return list;
 }
 
@@ -168,7 +157,7 @@ ListSkill * create_list_skill(int capacity){
     return list;
 }
 
-Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int listArmorCapacity,int listSkillCapacity) {
+Inventory* create_inventory(int const listItemValue[3], int listWeaponCapacity, int listArmorCapacity,int listSkillCapacity) {
     Inventory* inventory = (Inventory*)malloc(sizeof(Inventory));
 
     if (inventory == NULL) {
@@ -176,7 +165,7 @@ Inventory* create_inventory(int listItemCapacity, int listWeaponCapacity, int li
         return NULL;
     }
 
-    inventory->listItem = create_list_item(listItemCapacity);
+    inventory->listItem = create_list_item(listItemValue);
     inventory->listWeapon = create_list_weapon(listWeaponCapacity);
     inventory->listArmor = create_list_armor(listArmorCapacity);
     inventory->listSkill = create_list_skill(listSkillCapacity);

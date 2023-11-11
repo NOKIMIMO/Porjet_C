@@ -220,11 +220,12 @@ void printMap(int x,int y, int ** map){
 void itemInteraction(int x,int y, Player * player){
     buildBoxInteraction(30,23,42+x-2,y-2);
     //get hp potion number
-    int hp_potion_number = get_potion_type_I(player,"Potion de vie");
+    int hp_potion_number = get_quantity_popo(player,0);
     //get mana potion number
-    int mana_potion_number = get_potion_type_I(player,"Potion de mana");
+    int mana_potion_number = get_quantity_popo(player,1);
     //get potion double number
-    int potion_double_number = get_potion_type_I(player,"Potion double");
+    int potion_double_number = get_quantity_popo(player,2);
+    printIntAt(30, 0, hp_potion_number);
 
     // "Potion de vie x hp_potion_number"
     char po_hp[50];
@@ -246,64 +247,17 @@ void itemInteraction(int x,int y, Player * player){
     int itemCount2 = sizeof(options2) / sizeof(options2[0]);
     int selectedIndex2 = 0;
     while(1){
-        buildInteraction(42+x, y,42+x+34,y+4, options2, selectedIndex2, itemCount2);
+        buildInteraction(42+x, y,42+x+20,y+4, options2, selectedIndex2, itemCount2);
         moveCursor(50, 50);
         int c2 = getchar();
         if (c2 == ' ') {  // Check for the SPACE key
-            switch (selectedIndex2) {
-                case 0:
-                    //potion de vie
-                    if(get_size_LI(get_listItem_P(player))>0){
-                        int size = get_size_LI(get_listItem_P(player));
-                        //si il y a des potions dans l'inventaire
-                        for (int i = 0; i < size; ++i) {
-                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion de vie")==0){
-                                set_vie_P(player,get_vie_P(player)+get_hp_I(getItemFromListItem(get_listItem_P(player),i)));
-                                printLife(3,2, get_vie_P(player),100);
-                                removeItemFromListItem(get_listItem_P(player),i);
-                                return;
-                            }
-                        }
-                    }
-                    break;
-                case 1:
-                    //potion de mana
-                    if(get_size_LI(get_listItem_P(player))>0){
-                        int size = get_size_LI(get_listItem_P(player));
-                        //si il y a des potions dans l'inventaire
-                        for (int i = 0; i < size; ++i) {
-                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion de mana")==0){
-                                set_mana_P(player, get_mana_P(player)+get_mana_I(getItemFromListItem(get_listItem_P(player),i)));
-                                printMana(3,3, get_mana_P(player),100);
-                                removeItemFromListItem(get_listItem_P(player),i);
-                                return;
-                            }
-                        }
-                    }
-                    break;
-                case 2:
-                    //potion double
-                    if(get_size_LI(get_listItem_P(player))>0){
-                        int size = get_size_LI(get_listItem_P(player));
-                        //si il y a des potions dans l'inventaire
-                        for (int i = 0; i < size; ++i) {
-                            if(strcmp(get_name_I(getItemFromListItem(get_listItem_P(player),i)),"Potion double")==0){
-                                set_vie_P(player,get_vie_P(player)+get_hp_I(getItemFromListItem(get_listItem_P(player),i)));
-                                set_mana_P(player, get_mana_P(player)+get_mana_I(getItemFromListItem(get_listItem_P(player),i)));
-                                printLife(3,2, get_vie_P(player),100);
-                                printMana(3,3, get_mana_P(player),100);
-                                removeItemFromListItem(get_listItem_P(player),i);
-                                return;
-                            }
-                        }
-                    }
-                    break;
-                case 3:
-                    //back
-                    clearFromTo(42+x-2,y-2,42+x+30,y+23);
-                    return;
-                default:
-                    break;
+            if (get_quantity_popo(player,selectedIndex2)>0){
+                use_potion(player,0);
+                printLife(3,2, get_vie_P(player),100);
+                return;
+            }else{
+                //do nothing
+
             }
         } else if (c2 == 27) {  // Check for the ESC key
             int nextChar = getchar();  // Read the next character in the escape sequence
@@ -311,11 +265,11 @@ void itemInteraction(int x,int y, Player * player){
                 int arrowKey = getchar();  // Read the character representing the arrow key
                 if (arrowKey == 65 && selectedIndex2 > 0) {  // Up arrow key (ASCII 65)
                     selectedIndex2--;
-                    buildInteraction(42+x, y,42+x+30,y+4, options2, selectedIndex2, itemCount2);
+                    buildInteraction(42+x, y,42+x+20,y+4, options2, selectedIndex2, itemCount2);
                     moveCursor(30,20);
                 } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex2++;
-                    buildInteraction(42+x, y,42+x+30,y+4, options2, selectedIndex2, itemCount2);
+                    buildInteraction(42+x, y,42+x+20,y+4, options2, selectedIndex2, itemCount2);
                     moveCursor(30, 20);
                 }
             } else {
@@ -546,7 +500,6 @@ int skillInteraction(int x,int y,Player * player,int skill_number){
         wait(100);
     }
 }
-
 void buildInventory(int x, int y, Player * player){
     clearAll();
     printLife(3,2, get_vie_P(player), get_og_vie_P(player));

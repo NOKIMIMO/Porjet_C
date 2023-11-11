@@ -53,7 +53,6 @@ void set_vie_M(Monster * monster, int vie);
 void set_def_M(Monster * monster, int def);
 
 //LIST
-int get_size_LI(ListItem * list);
 int get_size_LW(ListWeapon * list);
 int get_size_LA(ListArmor * list);
 ListItem * get_listItem_P(Player * player);
@@ -63,10 +62,7 @@ ListArmor * get_listArmor_P(Player * player);
 Armor * get_ring_P(Player * player);
 
 //ITEM
-int get_mana_I(Item * item);
-int get_hp_I(Item * item);
-char * get_name_I(Item * item);
-int get_potion_type_I(Player  * player,char * type);
+int get_quantity_popo(Player * player,int type);
 
 //WEAPON
 int get_dmg_W(Weapon * weapon);
@@ -82,17 +78,11 @@ int get_mana_S(Skill * skill);
 int get_dmg_S(Skill * skill);
 char * get_name_S(Skill * skill);
 
-Item * get_item_LI(ListItem * list, int index);
 Weapon * get_weapon_LW(ListWeapon * list, int index);
 Armor * get_armor_LA(ListArmor * list, int index);
 Skill * get_skill_LS(ListSkill * list, int index);
 
 //LIST
-//ListItem * get_listItem_I(Inventory * inventory);
-//ListWeapon * get_listWeapon_I(Inventory * inventory);
-//ListArmor * get_listArmor_I(Inventory * inventory);
-
-int get_size_LI(ListItem * list);
 int get_size_LW(ListWeapon * list);
 int get_size_LA(ListArmor * list);
 int get_size_LS(ListSkill * list);

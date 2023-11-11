@@ -10,12 +10,6 @@ enum Armor_type{
     ring,
 };
 
-typedef struct Item {
-    char * name;
-    int mana;
-    int hp;
-}Item;
-
 typedef struct Skill{
     char * name;
     int mana;
@@ -44,9 +38,9 @@ typedef struct Monster{
 }Monster;
 
 typedef struct ListItem{
-    Item ** item;
-    int size;
-    int capacity;
+    int potion_hp;
+    int potion_mana;
+    int potion_double;
 }ListItem;
 
 typedef struct ListWeapon {

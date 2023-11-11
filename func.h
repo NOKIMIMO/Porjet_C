@@ -13,12 +13,9 @@ int get_RNG_int(int min, int max);
 void wait(int milliseconds);
 void mofidyMapAtPos(int x,int y,int ** map,int value);
 //Item
-void addItemToListItem(ListItem* list, Item* item);
-void removeItemFromListItem(ListItem* list, int index);
-Item* getItemFromListItem(ListItem* list, int index);
-void addItemToPlayerInventory(Player* player, Item* item);
-void removeItemFromPlayerInventory(Player* player, int index);
-Item* getItemFromPlayerInventory(Player* player, int index);
+void use_potion(Player *player,int type);
+void remove_potion(Player *player,int type);
+void add_potion(Player *player,int type,int quantity);
 //Weapon
 void addWeaponToListWeapon(ListWeapon* list, Weapon* weapon);
 void removeWeaponFromListItem(ListWeapon* list, int index);
