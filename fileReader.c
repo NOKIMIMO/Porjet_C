@@ -30,7 +30,7 @@ FILE *open_file(char *path) {
         printf("Erreur d'ouverture du fichier\n");
         printf("%s",full_path);
         free(full_path);
-        exit(-1);
+        return NULL;
     }
     free(full_path);
     return file;
@@ -280,6 +280,9 @@ Player * read_player(char * path){
     strcat(full_path,path);
     FILE * file = open_file(full_path);
     free(full_path);
+    if (file == NULL){
+        return NULL;
+    }
 
 
     int level,exp,og_vie,og_mana,vie,mana, pos_x, pos_y,mana_potion, hp_potion, double_potion;

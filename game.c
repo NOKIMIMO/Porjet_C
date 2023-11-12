@@ -11,8 +11,34 @@ int game(int save_flag){
     int ** map;
     if(save_flag == 1){
        player = read_player("save1");
-       map = player->map;
+        if (player== NULL){
+            x_depart = get_RNG_int(1, 7);
+            y_depart = get_RNG_int(1, 7);
+            map = initMap(7, 7, x_depart - 1, y_depart - 1);
+            int *temp = searchEntry(map, 7, 7);
+            x_depart = temp[0] + 1;
+            y_depart = temp[1] + 1;
+            player = create_player("save1",
+                                   100,
+                                   x_depart,
+                                   y_depart,
+                                   100,
+                                   100,
+                                   100,
+                                   read_weapon("admin_sword"),
+                                   NULL,
+                                   read_armor("warmog"),
+                                   NULL,
+                                   read_armor("anneau"),
+                                   read_skill("nuke"),
+                                   read_skill("blast"));
+            player->inventory = create_inventory((int[]) {10, 10, 10}, 10, 10, 10);
+            player->map = map;
+        }else{
+            map = player->map;
+        }
     }else {
+
         x_depart = get_RNG_int(1, 7);
         y_depart = get_RNG_int(1, 7);
         map = initMap(7, 7, x_depart - 1, y_depart - 1);
