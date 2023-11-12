@@ -47,6 +47,7 @@ int game(int save_flag){
             //Exit normal du joueur / fin de combat
             cpt++;
             map = initMap(7, 7, x_depart - 1, y_depart - 1);
+            player->map = map;
             int *temp2 = searchEntry(map, 7, 7);
             x_depart = temp2[0] + 1;
             y_depart = temp2[1] + 1;
