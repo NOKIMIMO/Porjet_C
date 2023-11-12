@@ -19,6 +19,7 @@ void moveCursor(int x, int y);
 void buildBoxInteraction(int width, int height,int x, int y);
 void buildInteraction(int x, int y,int x2,int y2, char **str, int selectedIndex, int itemCount);
 void printLife(int x, int y, int currentLife, int maxLife);
+void printXP(int x, int y, int currentXP, int maxXP);
 void killVisual();
 void printFromToShape(int x1,int y1,int x2,int y2,char * str);
 void printFromToLine(int x,int y,int width,char str);
@@ -34,7 +35,7 @@ void showManaReceived(int value, int x, int y);
 void showXPReceived(int value, int x, int y);
 void showBothReceived(int value1,int value2, int x, int y);
 void showDmgReceived(int value,Monster * monster,int x, int y);
-void buildMapGraph(int x,int y,Player player,int ** map);
+int buildMapGraph(int x,int y,Player *player,int ** map,int iteration);
 void printMap(int x,int y, int ** map);
 int skillInteraction(int x,int y,Player * player,int skill_number);
 void itemInteraction(int x,int y, Player * player);
@@ -43,6 +44,8 @@ int armorInteraction(int x,int y, Player *player ,int type);
 void buildInventory(int x, int y, Player * player);
 void buildEnnemies(int x, int y, Monster * monster);
 //retourne 0 si tout c'est bien passé et exit normal, 1 si le joueur est mort, 2 si autre (bug)
-int visual(Player * player);
+int visual(Player * player,int boss_flag,int iteration);
+void lootRoll(Player * player,int x,int y);
+
 
 #endif //PORJET_C_VISUAL_H

@@ -3,3 +3,8 @@
 //
 #include "deathScreen.h"
 //affiche monstre tué / équipement / level
+
+void deathPlayer()
+{
+
+}

@@ -48,6 +48,19 @@ void use_potion(Player *player,int type){
         remove_potion(player,type);
     }
 }
+int * searchEntry(int ** map, int rows, int cols){
+    int * entry = (int *)malloc(2 * sizeof(int));
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            if(map[i][j] == 2){
+                entry[0] = j;
+                entry[1] = i;
+                return entry;
+            }
+        }
+    }
+    return NULL;
+}
 void remove_potion(Player *player,int type){
     switch (type){
         case 0:
@@ -263,3 +276,108 @@ void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player
 //        player->weapon = tmp;
 //    }
 //}
+
+int verifPresenceSalle(int **map,int x, int y)
+{
+    int indiceEnXAdd = 0, indiceEnXRemove = 0, indiceEnYAdd = 0, indiceEnYRemove = 0;
+
+    if(x == 0){
+        indiceEnXAdd = 1;
+        indiceEnXRemove = 0;
+    }
+    else if (x == 6) {
+        indiceEnXAdd = 0;
+        indiceEnXRemove = 1;
+    }
+    else{
+        indiceEnXAdd++;
+        indiceEnXRemove++;
+    }
+
+    if(y == 0){
+        indiceEnYAdd = 1;
+        indiceEnYRemove = 0;
+    }
+    else if(y == 6){
+        indiceEnYAdd = 0;
+        indiceEnYRemove = 1;
+    }
+    else{
+        indiceEnYAdd++;
+        indiceEnYRemove++;
+    }
+
+    if(map[x+indiceEnXAdd][y] != 0 || map[x][y+indiceEnYAdd] != 0 || map[x][y-indiceEnYRemove] != 0 || map[x-indiceEnXRemove][y] != 0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int generationSalle(int **map,int x,int y)
+{
+    int isSalle = 0;
+
+    isSalle = get_RNG_int(0,2);
+
+    if(isSalle == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int creationRoomBoss(int** map,int x,int y)
+{
+    int indiceEnXAdd = 0, indiceEnXRemove = 0, indiceEnYAdd = 0, indiceEnYRemove = 0;
+
+    if(x == 0){
+        indiceEnXAdd = 1;
+        indiceEnXRemove = 0;
+    }
+    else if (x == 6) {
+        indiceEnXAdd = 0;
+        indiceEnXRemove = 1;
+    }
+    else{
+        indiceEnXAdd++;
+        indiceEnXRemove++;
+    }
+
+    if(y == 0){
+        indiceEnYAdd = 1;
+        indiceEnYRemove = 0;
+    }
+    else if(y == 6){
+        indiceEnYAdd = 0;
+        indiceEnYRemove = 1;
+    }
+    else{
+        indiceEnYAdd++;
+        indiceEnYRemove++;
+    }
+
+    if(map[x+indiceEnXAdd][y] == 0){
+        map[x+indiceEnXAdd][y] = 3;
+        return 1;
+    }
+    else if (map[x][y+indiceEnYAdd] == 0) {
+        map[x][y+indiceEnYAdd] = 3;
+        return 1;
+    }
+    else if(map[x][y-indiceEnYRemove] == 0){
+        map[x][y-indiceEnYRemove] = 3;
+        return 1;
+    }
+    else if(map[x-indiceEnXRemove][y] == 0){
+        map[x-indiceEnXRemove][y] = 3;
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}

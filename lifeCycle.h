@@ -6,9 +6,7 @@
 #include "setGet.h"
 #include "func.h"
 #include <math.h>
-
-void kill(Monster * monster, Player * player);
-
+int get_XP(Player * player,int nb_monster,int iteration);
 void level_up_P(Player * player);
 void refresh_stat_armor_P(Player * player);
 

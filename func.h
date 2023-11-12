@@ -44,6 +44,9 @@ void addSkillToPlayerInventory(Player* player, Skill* skill);
 void removeSkillFromPlayerInventory(Player* player, int index);
 Skill* getSkillFromPlayerInventory(Player* player, int index);
 void swapSkillFromListSkillWithPlayer(ListSkill* list, int index,Player * player,int skillIndex);
-
+int verifPresenceSalle(int **map,int x, int y);
+int generationSalle(int **map,int x,int y);
+int * searchEntry(int ** map, int rows, int cols);
+int creationRoomBoss(int** map,int x,int y);
 
 #endif //PORJET_C_FUNC_H
