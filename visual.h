@@ -1,6 +1,7 @@
 #ifndef PORJET_C_VISUAL_H
 #define PORJET_C_VISUAL_H
 #include "func.h"
+#include "deathScreen.h"
 
 #define interaction_x 7
 #define interaction_y 22

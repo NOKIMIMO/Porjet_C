@@ -854,7 +854,7 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             int ret = visual(player,0,iteration);
             if(ret==1) {
                 //le joueur est mort
-                showDeathMessage(7, 35);
+                deathPlayer(player);
                 killVisual();
                 free(map);
                 return 1;
@@ -881,7 +881,7 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             int ret = visual(player,1,iteration);
             if(ret==1) {
                 //le joueur est mort
-                showDeathMessage(7, 35);
+                deathPlayer(player);
                 killVisual();
                 free(map);
                 return 1;
@@ -1256,12 +1256,12 @@ void lootRoll(Player * player,int x,int y){
         add_potion(player,2,1);
         printStrAt(x,y,"Vous avez obtenu une potion double");
     } else if (lootChance <= 75) {
-        // 5% chance for armor piece
+        // 5% chance for weapon
         // Generate and add an armor piece to the player's inventory
         addWeaponToPlayerInventory(player,create_weapon(10,"loot_W"));
         printStrAt(x,y,"Vous avez obtenu une arme");
     } else if (lootChance <= 80) {
-        // 5% chance for weapon
+        // 5% chance for armor piece
         // Generate and add a weapon to the player's inventory
         addArmorToPlayerInventory(player,create_armor("loot_A",10,15,leg_piece));
         printStrAt(x,y,"Vous avez obtenu une armure");

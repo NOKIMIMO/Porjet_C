@@ -143,7 +143,7 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     int xBas = x_depart, yBas = y_depart, xHaut = x_depart + 1, yHaut = y_depart + 1;
     int ** recupSalleBossPossible = (int **)malloc(20 * sizeof(int *));
     for (int i = 0; i < 20; i++) {
-        recupSalleBossPossible[i] = (int *)malloc(10 * sizeof(int));
+        recupSalleBossPossible[i] = (int *)malloc(sizeof(int));
     }
     int indexPointeur = 0;
     int x_derniereSalle = 0, y_derniereSalle = 0;
@@ -151,55 +151,42 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     while(xBas >= 0)
     {
         // Permet de ne pas écraser la première case
-        if(xBas == x_depart)
-        {
+        if(xBas == x_depart){
             yBas--;
         }
 
         while(yBas >= 0)
         {
-            if(verifPresenceSalle(map,xBas,yBas) == 1)
-            {
+            if(verifPresenceSalle(map,xBas,yBas) == 1){
                 int salleGeneree = generationSalle(map,xBas,yBas);
-                if(salleGeneree == 0)
-                {
+                if(salleGeneree == 0){
                     map[xBas][yBas] = 0;
                     recupSalleBossPossible[indexPointeur] = &map[xBas][yBas];
                     indexPointeur++;
-                }
-                else
-                {
+                }else{
                     map[xBas][yBas] = salleGeneree;
                     x_derniereSalle = xBas;
                     y_derniereSalle = yBas;
                 }
-            }
-            else
-            {
+            }else{
                 map[xBas][yBas] = 0;
             }
             yBas--;
         }
         while(yHaut < cols)
         {
-            if(verifPresenceSalle(map,xBas,yHaut) == 1)
-            {
+            if(verifPresenceSalle(map,xBas,yHaut) == 1){
                 int salleGeneree = generationSalle(map,xBas,yHaut);
-                if(salleGeneree == 0)
-                {
+                if(salleGeneree == 0){
                     map[xBas][yHaut] = 0;
                     recupSalleBossPossible[indexPointeur] = &map[xBas][yHaut];
                     indexPointeur++;
-                }
-                else
-                {
+                }else{
                     map[xBas][yHaut] = salleGeneree;
                     x_derniereSalle = xBas;
                     y_derniereSalle = yHaut;
                 }
-            }
-            else
-            {
+            }else{
                 map[xBas][yHaut] = 0;
             }
             yHaut++;
@@ -213,48 +200,38 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
     {
         while(yBas >= 0)
         {
-            if(verifPresenceSalle(map,xHaut,yBas) == 1)
-            {
+            if(verifPresenceSalle(map,xHaut,yBas) == 1){
                 int salleGeneree = generationSalle(map,xHaut,yBas);
-                if(salleGeneree == 0)
-                {
+                if(salleGeneree == 0){
                     map[xHaut][yBas] = 0;
                     recupSalleBossPossible[indexPointeur] = &map[xHaut][yBas];
                     indexPointeur++;
                 }
-                else
-                {
+                else{
                     map[xHaut][yBas] = salleGeneree;
                     x_derniereSalle = xHaut;
                     y_derniereSalle = yBas;
                 }
-            }
-            else
-            {
+            }else{
                 map[xHaut][yBas] = 0;
             }
             yBas--;
         }
         while(yHaut < cols)
         {
-            if(verifPresenceSalle(map,xHaut,yHaut) == 1)
-            {
+            if(verifPresenceSalle(map,xHaut,yHaut) == 1){
                 int salleGeneree = generationSalle(map,xHaut,yHaut);
-                if(salleGeneree == 0)
-                {
+                if(salleGeneree == 0){
                     map[xHaut][yHaut] = 0;
                     recupSalleBossPossible[indexPointeur] = &map[xHaut][yHaut];
                     indexPointeur++;
-                }
-                else
-                {
+                }else{
                     map[xHaut][yHaut] = salleGeneree;
                     x_derniereSalle = xHaut;
                     y_derniereSalle = yHaut;
                 }
             }
-            else
-            {
+            else{
                 map[xHaut][yHaut] = 0;
             }
             yHaut++;
@@ -266,34 +243,26 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
 
     int salleBoss = get_RNG_int(0,indexPointeur);
 
-    if(indexPointeur == 0)
-    {
+    if(indexPointeur == 0){
         int isFind = 0;
 
-        for(int i = 0; i < rows; i++)
-        {
-            for(int j = 0; j < cols; j++)
-            {
-                if(map[i][j] == 1)
-                {
-                    if(creationRoomBoss(map,i,j) == 1)
-                    {
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(map[i][j] == 1){
+                    if(creationRoomBoss(map,i,j) == 1){
                         isFind = 1;
                         break;
                     }
                 }
             }
 
-            if(isFind == 1)
-            {
+            if(isFind == 1){
                 break;
             }
 
-            if(i == 6 && isFind == 0)
-            {
+            if(i == 6 && isFind == 0){
                 map[x_derniereSalle][y_derniereSalle] = 3;
             }
-
         }
     }
     else
@@ -310,6 +279,8 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
             }
         }
     }
+
+    free(recupSalleBossPossible);
 
     //Si le nombre de salles est inférieur à 7, on récréé la map
     if(compteurSalle < 7){
