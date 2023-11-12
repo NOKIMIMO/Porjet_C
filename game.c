@@ -38,7 +38,6 @@ int game(int save_flag){
             map = player->map;
         }
     }else {
-
         x_depart = get_RNG_int(1, 7);
         y_depart = get_RNG_int(1, 7);
         map = initMap(7, 7, x_depart - 1, y_depart - 1);
@@ -72,14 +71,16 @@ int game(int save_flag){
         } else if (ret == 0) {
             //Exit normal du joueur / fin de combat
             cpt++;
+            x_depart = get_RNG_int(1, 7);
+            y_depart = get_RNG_int(1, 7);
             map = initMap(7, 7, x_depart - 1, y_depart - 1);
             player->map = map;
+
             int *temp2 = searchEntry(map, 7, 7);
             x_depart = temp2[0] + 1;
             y_depart = temp2[1] + 1;
             set_pos_x_P(player, x_depart);
             set_pos_y_P(player, y_depart);
-            player->map = map;
             write_player(player);
         } else if (ret == 2) {
             //Exit complete du jeu

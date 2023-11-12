@@ -11,6 +11,7 @@ FILE * write_file(char * path){
     free(full_path);
     if(file==NULL){
         printf("Erreur d'ouverture du fichier");
+        exit(-1);
     }
     return file;
 }
