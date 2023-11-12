@@ -46,6 +46,7 @@ void buildInventory(int x, int y, Player * player);
 void buildEnnemies(int x, int y, Monster * monster);
 //retourne 0 si tout c'est bien passé et exit normal, 1 si le joueur est mort, 2 si autre (bug)
 int visual(Player * player,int boss_flag,int iteration);
+int checkMap(int ** map,int row,int col);
 void lootRoll(Player * player,int x,int y);
 
 

@@ -901,11 +901,22 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
                 //recreate map
                 return 0;
             }
+        }else if(checkMap(map,7,7)==0){
+            return 0;
         }
-
         wait(100);
     }
 
+}
+int checkMap(int ** map,int row,int col){
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (map[i][j]==1 || map[i][j]==3){
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 int attackVisual(Monster * monster,Player * player, int nb_monster,int value){
     int selectedIndex = 0;
