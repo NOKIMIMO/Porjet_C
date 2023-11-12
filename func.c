@@ -458,14 +458,13 @@ char * get_random_monster(){
         case 5:
             return "slime";
         case 6:
-            return "trol";
+            return "troll";
         case 7:
             return "werewolf";
         case 8:
             return "wyvern";
         case 9:
             return "zombie";
-
         default:
             return "slime";
     }

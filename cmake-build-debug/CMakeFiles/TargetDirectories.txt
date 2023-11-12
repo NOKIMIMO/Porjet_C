@@ -1,0 +1,3 @@
+/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles/Porjet_C.dir
+/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/e/cours/Porjet_C/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -7,6 +7,7 @@
 
 FILE *open_file(char *path) {
     // Get the path of the current source file
+
     char source_path[255];
     strcpy(source_path, __FILE__);
 
@@ -24,6 +25,7 @@ FILE *open_file(char *path) {
 
     FILE *file = fopen(full_path, "r");
 
+   //printf("%s\n",full_path);
     if (file == NULL) {
         printf("Erreur d'ouverture du fichier\n");
         printf("%s",full_path);
@@ -259,8 +261,6 @@ Armor * read_armor(char * path) {
     mana= read_line(file, &position);
     def= read_line(file, &position);
     char * armor_type = read_str(file, &position);
-
-
     int armor_t;
     if(strcmp(armor_type,"head_piece")==0)
         armor_t = head_piece;
@@ -295,6 +295,7 @@ Player * read_player(char * path){
     vie= read_line(file, &position);
     mana= read_line(file, &position);
 
+
     char * weapon_str = malloc(sizeof (char)*50);
     char * head_piece_str = malloc(sizeof (char)*50);
     char * chest_piece_str = malloc(sizeof (char)*50);
@@ -326,31 +327,46 @@ Player * read_player(char * path){
     Armor * leg = NULL;
     Armor * player_ring = NULL;
 
-    if(strcmp(head_piece_str,"null")!=0)
+    if(strcmp(head_piece_str,"null")!=0){
         head = read_armor(head_piece_str);
-    if(strcmp(chest_piece_str,"null")!=0)
+    }
+    if(strcmp(chest_piece_str,"null")!=0){
         chest = read_armor(chest_piece_str);
-    if(strcmp(leg_piece_str,"null")!=0)
+    }
+    if(strcmp(leg_piece_str,"null")!=0){
         leg = read_armor(leg_piece_str);
-    if(strcmp(ring_str,"null")!=0)
+    }
+    if(strcmp(ring_str,"null")!=0){
         player_ring = read_armor(ring_str);
-
-    if(head->armor_type != head_piece)
-        head = NULL;
-    if(chest->armor_type != chest_piece)
-        chest = NULL;
-    if(leg->armor_type != leg_piece)
-        leg = NULL;
-    if(player_ring->armor_type != ring)
-        player_ring = NULL;
-
+    }
+    if (head != NULL){
+        if(head->armor_type != head_piece){
+            head = NULL;
+        }
+    }
+    if (chest != NULL){
+        if(chest->armor_type != chest_piece){
+            chest = NULL;
+        }
+    }
+    if (leg != NULL){
+        if(leg->armor_type != leg_piece){
+            leg = NULL;
+        }
+    }
+    if (player_ring != NULL){
+        if(player_ring->armor_type != ring){
+            player_ring = NULL;
+        }
+    }
     Skill * player_skill1 = NULL;
     Skill * player_skill2 = NULL;
-    if(strcmp("null",skill1))
+    if(strcmp("null",skill1)){
         player_skill1 = read_skill(skill1);
-    if(strcmp("null",skill2))
+    }
+    if(strcmp("null",skill2)){
         player_skill2 = read_skill(skill2);
-
+    }
     Player * newPlayer = create_player(name,
                                        og_vie,
                                        pos_x,
