@@ -851,7 +851,7 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             buildBoxInteraction(60,23,x,y);
             printMap(start_x,start_y,map);
         }
-        if(map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==1){
+        if(map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==1 || map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==3){
             clearAll();
             //combat
             int ret = visual(player,0,iteration);
@@ -870,6 +870,20 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
                 printMap(start_x,start_y,map);
                 set_pos_x_P(player,old_pos_x);
                 set_pos_y_P(player,old_pos_y);
+            }else if(ret == 2){
+                //boss tué
+                int x_depart = 0, y_depart = 0;
+                x_depart = get_RNG_int(1,7);
+                y_depart = get_RNG_int(1,7);
+
+                map = initMap(7,7,x_depart-1,y_depart-1);
+                int *temp=searchEntry(map,7,7);
+                x_depart = temp[0]+1;
+                y_depart = temp[1]+1;
+                player->pos_x = x_depart;
+                player->pos_y = y_depart;
+                buildMapGraph(3,5,player,map);
+
             }else{
                 mofidyMapAtPos(get_pos_x_P(player)-1,get_pos_y_P(player)-1,map,2);
                 printLife(3,2, get_vie_P(player),get_og_vie_P(player));

@@ -5,6 +5,7 @@
 #include "setGet.h"
 
 Monster create_monster();
+Monster create_boss();
 Monster dead_monster();
 Player * create_player(int og_vie,
                      int pos_x,
