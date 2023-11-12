@@ -196,11 +196,7 @@ Monster read_monster(char * path){
     int hp, def, atk;
     int position = (int) ftell(file);
     char * name = read_str(file, &position);
-    char temp[strlen(name)-4];
-    for (int i = 0; i < strlen(name)-1; ++i) {
-        temp[i] = name[i];
-    }
-    strcpy(name,temp);
+    name[strlen(name) - 1] = '\0';
     hp= read_line(file, &position);
     atk= read_line(file, &position);
     def= read_line(file, &position);

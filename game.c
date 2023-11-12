@@ -26,7 +26,7 @@ int game(int save_flag){
                                100,
                                100,
                                100,
-                               read_weapon("admin"),
+                               read_weapon("admin_sword"),
                                NULL,
                                read_armor("warmog"),
                                NULL,
@@ -45,7 +45,6 @@ int game(int save_flag){
             return 0;
         } else if (ret == 0) {
             //Exit normal du joueur / fin de combat
-            write_player(player);
             cpt++;
             map = initMap(7, 7, x_depart - 1, y_depart - 1);
             int *temp2 = searchEntry(map, 7, 7);
@@ -53,6 +52,8 @@ int game(int save_flag){
             y_depart = temp2[1] + 1;
             set_pos_x_P(player, x_depart);
             set_pos_y_P(player, y_depart);
+            player->map = map;
+            write_player(player);
         } else if (ret == 2) {
             //Exit complete du jeu
             return 2;
