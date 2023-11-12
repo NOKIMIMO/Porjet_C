@@ -168,7 +168,7 @@ int ** read_map(FILE * file, int *position){
 }
 
 
-Monster * read_monster(char * path){
+Monster read_monster(char * path){
     char * full_path = malloc(sizeof (char)*255);
     strcpy(full_path,"monsters/");
     strcat(full_path,path);
@@ -189,7 +189,7 @@ Monster * read_monster(char * path){
                                  def,
                                  ascii
                                  );
-    return newMonster;
+    return *newMonster;
 }
 
 Weapon * read_weapon(char * path){
@@ -316,7 +316,8 @@ Player * read_player(char * path){
     if(strcmp("null",skill2))
         player_skill2 = read_skill(skill2);
 
-    Player * newPlayer = create_player(og_vie,
+    Player * newPlayer = create_player(name,
+                                       og_vie,
                                        pos_x,
                                        pos_y,
                                        og_mana,

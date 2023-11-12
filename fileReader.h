@@ -10,7 +10,7 @@
 #include "init.h"
 
 FILE * open_file(char * path);
-Monster * read_monster(char * path);
+Monster read_monster(char * path);
 Weapon * read_weapon(char * path);
 Armor * read_armor(char * path);
 Player * read_player(char * path);

@@ -12,7 +12,8 @@ SRCS = main.c \
        deathScreen.c \
        game.c \
        splashScreen.c \
-       fileReader.c
+       fileReader.c \
+       fileWriter.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -11,19 +11,20 @@ Monster create_monster(char *name,
                        char * sprite);
 Monster create_boss();
 Monster dead_monster();
-Player * create_player(int og_vie,
-                     int pos_x,
-                     int pos_y,
-                     int og_mana,
-                     int vie,
-                     int mana,
-                     Weapon * weapon,
-                     Armor * head_piece,
-                     Armor * chest_piece,
-                     Armor * leg_piece,
-                     Armor * ring,
-                     Skill * skill1,
-                     Skill * skill2);
+Player * create_player(char * name,
+                       int og_vie,
+                       int pos_x,
+                       int pos_y,
+                       int og_mana,
+                       int vie,
+                       int mana,
+                       Weapon * weapon,
+                       Armor * head_piece,
+                       Armor * chest_piece,
+                       Armor * leg_piece,
+                       Armor * ring,
+                       Skill * skill1,
+                       Skill * skill2);
 
 Weapon *create_weapon(int dmg,char * name);
 Armor * create_armor(char * name, int mana, int def, enum Armor_type armor_type);

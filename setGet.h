@@ -4,6 +4,7 @@
 #include "struct.h"
 #include "func.h"
 //Player
+char * get_name_P(Player * player);
 int get_vie_P(Player * player);
 int get_mana_P(Player * player);
 int get_og_mana_P(Player * player);
@@ -69,7 +70,7 @@ int get_quantity_popo(Player * player,int type);
 
 //WEAPON
 int get_dmg_W(Weapon * weapon);
-
+char * get_name_W(Weapon * weapon);
 //ARMOR
 int get_mana_A(Armor * armor);
 int get_def_A(Armor * armor);

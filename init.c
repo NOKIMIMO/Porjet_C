@@ -46,7 +46,8 @@ Monster create_boss(){
     };
     return monstre;
 }
-Player* create_player(int og_vie,
+Player* create_player(char * name,
+                      int og_vie,
                      int pos_x,
                      int pos_y,
                      int og_mana,
@@ -61,6 +62,7 @@ Player* create_player(int og_vie,
                      Skill * skill2){
     Player *player = malloc(sizeof(Player));
     if (player != NULL) {
+        player->name = name;
         player->og_vie = og_vie;
         player->og_mana = og_mana;
         player->pos_x = pos_x;

@@ -4,6 +4,10 @@
 #include "setGet.h"
 ////Player stats
 // get
+
+char * get_name_P(Player * player){
+    return player->name;
+}
 int get_vie_P(Player * player){
     return player->vie;
 }
@@ -242,6 +246,9 @@ int get_quantity_popo(Player * player,int type){
 
 int get_dmg_W(Weapon * weapon){
     return weapon->dmg;
+}
+char * get_name_W(Weapon * weapon){
+    return weapon->name;
 }
 
 //ARMOR
