@@ -29,6 +29,7 @@ void removeWeaponFromPlayerInventory(Player* player, int index);
 Weapon* getWeaponFromPlayerInventory(Player* player, int index);
 void swapWeaponFromListWeaponWithPlayer(ListWeapon* list, int index,Player * player);
 void swapArmorFromListArmorWithArmor(ListArmor *listArmor,enum Armor_type type,Player * player,char * name);
+
 //Armor
 void addArmorToListArmor(ListArmor* list, Armor* armor);
 void removeArmorFromListItem(ListArmor* list, int index);
@@ -49,5 +50,8 @@ int verifPresenceSalle(int **map,int x, int y);
 int generationSalle(int **map,int x,int y);
 int * searchEntry(int ** map, int rows, int cols);
 int creationRoomBoss(int** map,int x,int y);
-
+//get random X
+char * get_random_weapon();
+char * get_random_armor();
+char * get_random_monster();
 #endif //PORJET_C_FUNC_H

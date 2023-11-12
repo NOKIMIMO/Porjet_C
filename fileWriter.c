@@ -5,7 +5,7 @@
 
 FILE * write_file(char * path){
     char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"./files/");
+    strcpy(full_path,"../files/");
     strcat(full_path,path);
     FILE * file = fopen(full_path, "w");
     free(full_path);
@@ -23,7 +23,7 @@ void write_player(Player * player){
     FILE * file = write_file(full_path);
     free(full_path);
 
-    fprintf(file,"-name:%s\n  level:%d\n  exp:%d\n  pos_x:%d\n  pos_y:%d\n  og_vie:%d\n  og_mana:%d\n  vie:%d\n  mana:%d\n  weapon:%s\n  head_piece:%s\n  chest_piece:%s\n  leg_piece:%s\n  ring:%s\n  mana_potion:%d\n  vie_potion:%d\n  double_potion:%d\n  skill1:%s\n  skill2:%s"
+    fprintf(file,"-name:%s\r\n  level:%d\n  exp:%d\n  pos_x:%d\n  pos_y:%d\n  og_vie:%d\n  og_mana:%d\n  vie:%d\n  mana:%d\n  weapon:%s\n  head_piece:%s\n  chest_piece:%s\n  leg_piece:%s\n  ring:%s\n  mana_potion:%d\n  vie_potion:%d\n  double_potion:%d\n  skill1:%s\n  skill2:%s"
                  ,get_name_P(player)
                  ,get_level_P(player)
                  ,player->exp

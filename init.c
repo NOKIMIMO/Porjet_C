@@ -40,7 +40,7 @@ Monster create_boss(){
             .name = "boss",
             .level = get_RNG_int(1,3),
             //
-            .vie = get_RNG_int(100,200),
+            .vie = get_RNG_int(200,300),
             .def = get_RNG_int(5,15),
             .dmg = get_RNG_int(20,30),
     };

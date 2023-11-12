@@ -1,12 +1,12 @@
 -name:AlexOWO
   level:1
   exp:0
-  pos_x:3
-  pos_y:4
+  pos_x:4
+  pos_y:2
   og_vie:100
-  og_mana:100
-  vie:100
-  mana:100
+  og_mana:125
+  vie:50
+  mana:20
   weapon:épet des vents
   head_piece:null
   chest_piece:plastron
@@ -24,10 +24,10 @@
   -armor:plastron_test2
   -skill:fireball
 -map:
-0000000
 0000001
-0010001
-0121111
-0013000
+0002111
+0000011
+0000011
+0000003
 0000000
 0000000

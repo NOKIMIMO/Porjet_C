@@ -1,0 +1,5 @@
+-name:goblin
+  hp:50
+  atk:7
+  def:3
+-image:

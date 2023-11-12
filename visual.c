@@ -1136,7 +1136,7 @@ int visual(Player * player,int boss_flag,int iteration){
         nb_monster = get_RNG_int(1,3);
         monster_list = malloc(sizeof(Monster)*nb_monster);
         for (int i = 0; i < nb_monster; i++) {
-           monster_list[i] = read_monster("bat");
+           monster_list[i] = read_monster(get_random_monster());
         }
     } else{
         nb_monster = 1;
@@ -1263,12 +1263,12 @@ void lootRoll(Player * player,int x,int y){
     } else if (lootChance <= 75) {
         // 5% chance for armor piece
         // Generate and add an armor piece to the player's inventory
-        addWeaponToPlayerInventory(player,create_weapon(10,"loot_W"));
+        addWeaponToPlayerInventory(player, read_weapon(get_random_weapon()));
         printStrAt(x,y,"Vous avez obtenu une arme");
     } else if (lootChance <= 80) {
         // 5% chance for weapon
         // Generate and add a weapon to the player's inventory
-        addArmorToPlayerInventory(player,create_armor("loot_A",10,15,leg_piece));
+        addArmorToPlayerInventory(player, read_armor(get_random_armor()));
         printStrAt(x,y,"Vous avez obtenu une armure");
     } else {
         // 20% chance for no drop
