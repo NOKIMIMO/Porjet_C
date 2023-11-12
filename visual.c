@@ -1134,13 +1134,11 @@ int visual(Player * player,int boss_flag,int iteration){
         nb_monster = get_RNG_int(1,3);
         monster_list = malloc(sizeof(Monster)*nb_monster);
         for (int i = 0; i < nb_monster; i++) {
-            monster_list[i] = create_monster();
+           monster_list[i] = read_monster("bat");
         }
     } else{
         nb_monster = 1;
         monster_list = malloc(sizeof(Monster)*nb_monster);
-        //TODO: boss
-        //monster_list[0] = create_boss();
         monster_list[0]=create_boss();
     }
     int nb_monster_init = nb_monster;

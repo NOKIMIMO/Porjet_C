@@ -201,6 +201,30 @@ destroy.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/destroy.c.s
 .PHONY : destroy.c.s
 
+fileReader.o: fileReader.c.o
+.PHONY : fileReader.o
+
+# target to build an object file
+fileReader.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.o
+.PHONY : fileReader.c.o
+
+fileReader.i: fileReader.c.i
+.PHONY : fileReader.i
+
+# target to preprocess a source file
+fileReader.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.i
+.PHONY : fileReader.c.i
+
+fileReader.s: fileReader.c.s
+.PHONY : fileReader.s
+
+# target to generate assembly for a file
+fileReader.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.s
+.PHONY : fileReader.c.s
+
 func.o: func.c.o
 .PHONY : func.o
 
@@ -411,6 +435,9 @@ help:
 	@echo "... destroy.o"
 	@echo "... destroy.i"
 	@echo "... destroy.s"
+	@echo "... fileReader.o"
+	@echo "... fileReader.i"
+	@echo "... fileReader.s"
 	@echo "... func.o"
 	@echo "... func.i"
 	@echo "... func.s"

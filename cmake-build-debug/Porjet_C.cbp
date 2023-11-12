@@ -94,6 +94,12 @@
 		<Unit filename="/mnt/e/cours/Porjet_C/destroy.h">
 			<Option target="Porjet_C"/>
 		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/fileReader.c">
+			<Option target="Porjet_C"/>
+		</Unit>
+		<Unit filename="/mnt/e/cours/Porjet_C/fileReader.h">
+			<Option target="Porjet_C"/>
+		</Unit>
 		<Unit filename="/mnt/e/cours/Porjet_C/func.c">
 			<Option target="Porjet_C"/>
 		</Unit>
