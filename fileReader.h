@@ -12,6 +12,7 @@
 FILE * open_file(char * path);
 Monster read_monster(char * path);
 Weapon * read_weapon(char * path);
+Skill * read_skill(char * path);
 Armor * read_armor(char * path);
 Player * read_player(char * path);
 

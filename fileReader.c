@@ -7,7 +7,7 @@
 
 FILE *open_file(char *path) {
     // Get the path of the current source file
-
+    fflush(stdout);
     char source_path[255];
     strcpy(source_path, __FILE__);
 
@@ -226,6 +226,7 @@ Weapon * read_weapon(char * path){
     int atk;
     int position = ftell(file);
     char * name = read_str(file, &position);
+    name[strlen(name) - 1] = '\0';
     atk= read_line(file, &position);
 
     Weapon * newWeapon = create_weapon(atk,name);
@@ -241,6 +242,7 @@ Skill * read_skill(char * path){
     int atk, mana;
     int position = ftell(file);
     char * name = read_str(file, &position);
+    name[strlen(name) - 1] = '\0';
     atk= read_line(file, &position);
     mana= read_line(file, &position);
 
@@ -258,6 +260,7 @@ Armor * read_armor(char * path) {
     int mana, def;
     int position = ftell(file);
     char * name = read_str(file, &position);
+    name[strlen(name) - 1] = '\0';
     mana= read_line(file, &position);
     def= read_line(file, &position);
     char * armor_type = read_str(file, &position);
