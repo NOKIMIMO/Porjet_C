@@ -5,16 +5,32 @@
 #include "func.h"
 #include <string.h>
 
-FILE * open_file(char * path){
-    char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"../files/");
-    strcat(full_path,path);
-    FILE * file = fopen(full_path, "r");
-    free(full_path);
-    if(file==NULL){
-        printf("Erreur d'ouverture du fichier");
+FILE *open_file(char *path) {
+    // Get the path of the current source file
+    char source_path[255];
+    strcpy(source_path, __FILE__);
+
+    // Remove the file name from the path
+    char *last_slash = strrchr(source_path, '/');
+    if (last_slash != NULL) {
+        *(last_slash + 1) = '\0';
+    }
+
+    // Construct the full path
+    char *full_path = malloc(strlen(source_path) + strlen("../files/") + strlen(path) + 1);
+    strcpy(full_path, source_path);
+    strcat(full_path, "files/");
+    strcat(full_path, path);
+
+    FILE *file = fopen(full_path, "r");
+
+    if (file == NULL) {
+        printf("Erreur d'ouverture du fichier\n");
+        printf("%s",full_path);
+        free(full_path);
         exit(-1);
     }
+    free(full_path);
     return file;
 }
 

@@ -756,7 +756,10 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             //go back to white
             printf("\033[0m");
 
-        } else if (c == 27) {  // Check for the ESC key
+        }else if (c == 'q') {
+            return 2;
+        }
+        else if (c == 27) {  // Check for the ESC key
             int nextChar = getchar();  // Read the next character in the escape sequence
             if (nextChar == 91) {  // Check for the [ character (indicating an arrow key)
                 int arrowKey = getchar();  // Read the character representing the arrow key
