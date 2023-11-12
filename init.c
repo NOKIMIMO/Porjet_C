@@ -41,7 +41,6 @@ Monster create_boss(){
     };
     return monstre;
 }
-
 Player* create_player(int og_vie,
                      int pos_x,
                      int pos_y,

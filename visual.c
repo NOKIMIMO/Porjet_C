@@ -1155,7 +1155,7 @@ int visual(Player * player,int boss_flag,int iteration){
         monster_list = malloc(sizeof(Monster)*nb_monster);
         //TODO: boss
         //monster_list[0] = create_boss();
-        monster_list[0]=create_monster();
+        monster_list[0]=create_boss();
     }
     int nb_monster_init = nb_monster;
 
