@@ -49,6 +49,7 @@ Player* create_player(int og_vie,
         player->pos_x = pos_x;
         player->pos_y = pos_y;
         player->vie = vie;
+        player->level = 1;
         player->mana = mana;
         player->og_def = 0;
         player->weapon = weapon;

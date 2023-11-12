@@ -41,14 +41,25 @@ int game(){
     //map[get_pos_x_P(player)-1][get_pos_y_P(player)-1] = 2;
 //    int ret = visual(player);
     int ret=0;
-    if (ret==1){
-        //le joueur est mort
-        return 0;
-    }else if(ret == 0){
-        //Exit normal du joueur / fin de combat
-        buildMapGraph(3,5,player,map);
-    }else{
-        printf("Erreur");
-        return -1;
+    while(1){
+        int cpt= 0;
+        ret = buildMapGraph(3,5,player,map,cpt);
+        if (ret==1){
+            //le joueur est mort
+            return 0;
+        }else if(ret == 0){
+            //Exit normal du joueur / fin de combat
+            cpt++;
+            map = initMap(7,7,x_depart-1,y_depart-1);
+            int *temp2=searchEntry(map,7,7);
+            x_depart = temp2[0]+1;
+            y_depart = temp2[1]+1;
+            set_pos_x_P(player,x_depart);
+            set_pos_y_P(player,y_depart);
+        }else{
+            printf("Erreur");
+            return -1;
+        }
     }
+
 }

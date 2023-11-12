@@ -12,20 +12,6 @@ void printCharAt(int x, int y, char str){
 void printIntAt(int x, int y, int val){
     printf("\033[%d;%dH%d", y, x, val);
 }
-void printCharIndices(int x,int y,const char *str) {
-    moveCursor(x, y);
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (i % 7 == 0 && i != 0) {
-            y++;
-            moveCursor(x, y);
-        }
-        if (str[i] == '\n' ) {
-            printf("%d : 'end' | ", i);
-            continue;
-        }
-        printf("%d : '%c' | ", i, str[i]);
-    }
-}
 void clearAll(){
     printf("\033[2J");
 }
@@ -100,6 +86,35 @@ void printLife(int x, int y, int currentLife, int maxLife){
     printf(" %d/%d", currentLife, maxLife);
     moveCursor(0,30);
 }
+void printXP(int x, int y, int currentXP, int maxXP){
+    int currentBars = currentXP / 10;
+    int maxBars = maxXP / 10;
+
+    printf("\033[%d;%dH", y, x);
+    printf("XP: ");
+
+    // Set the text color to yellow (ANSI escape code)
+    printf("\033[33m");
+
+    for (int i = 0; i < currentBars; i++){
+        printf("█");
+    }
+
+    for (int i = 0; i < maxBars - currentBars; i++){
+        printf("#");
+    }
+    // Reset text color to default (ANSI escape code)
+    printf("\033[0m");
+    printf(" %d/%d", currentXP, maxXP);
+    moveCursor(0,30);
+}
+void printLvl(int x, int y, int currentLvl){
+    clearFromTo(x,y,x+5,y);
+    printf("\033[%d;%dH", y, x);
+    printf("LVL: ");
+    printf("%d",currentLvl);
+    moveCursor(50,50);
+}
 void printDmg(int x, int y, int currentDmg){
     clearFromTo(x,y,x+5,y);
     printf("\033[%d;%dH", y, x);
@@ -164,6 +179,7 @@ void printFromToShape(int x1,int y1,int x2,int y2,char * str){
 void buildBasic(Player player){
     printLife(3,2, get_vie_P(&player), get_og_vie_P(&player));
     printMana(3,3, get_mana_P(&player), get_og_mana_P(&player));
+    printXP(3,4,get_xp_P(&player),100);
     buildBoxInteraction(60,10,interaction_x-5,interaction_y-2);
 }
 void showDeathMessage(int x, int y){
@@ -287,6 +303,7 @@ void itemInteraction(int x,int y, Player * player){
                 use_potion(player,selectedIndex2);
                 printLife(3,2, get_vie_P(player), get_og_vie_P(player));
                 printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+                printXP(3,4,get_xp_P(player),100);
                 return;
             }else{
                 //do nothing
@@ -302,6 +319,7 @@ void itemInteraction(int x,int y, Player * player){
                 } else if (arrowKey == 66 && selectedIndex2 < itemCount2 - 1) {  // Down arrow key (ASCII 66)
                     selectedIndex2++;
                     buildInteraction(42+x, y,42+x+20,y+4, options2, selectedIndex2, itemCount2);
+                    printXP(3,4,get_xp_P(player),100);
                     moveCursor(30, 20);
                 }
             } else {
@@ -508,7 +526,6 @@ int skillInteraction(int x,int y,Player * player,int skill_number){
                 return 0;
             }else{
                 //skill
-                printIntAt(30,0,selectedIndex2);
                 swapSkillFromListSkillWithPlayer(get_listSkill_P(player),selectedIndex2,player,skill_number);
                 clearFromTo(42+x-2,y-2,42+x+30,y+23);
                 return 1;
@@ -537,6 +554,7 @@ void buildInventory(int x, int y, Player * player){
     clearAll();
     printLife(3,2, get_vie_P(player), get_og_vie_P(player));
     printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+    printXP(3,4,get_xp_P(player),100);
     buildBoxInteraction(40,23,x-2,y-2);
 
     char w_name [60];
@@ -592,6 +610,7 @@ void buildInventory(int x, int y, Player * player){
     int selectedIndex = 0;
     while (1) {
         buildInteraction(x, y,x+34,y+7, options, selectedIndex, itemCount);
+        printLvl(7,23, get_level_P(player));
         printDef(7,25, get_def_P(player));
         printDmg(7,27, get_player_dmg_stat(player));
         moveCursor(50, 50);
@@ -707,12 +726,13 @@ void buildInventory(int x, int y, Player * player){
 //        clearAll();
     }
 }
-void buildMapGraph(int x,int y,Player * player,int ** map){
+int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
     clearAll();
     printf("\033[?1049h\033[H");
     system("stty -icanon min 1");
     printLife(3,2, get_vie_P(player), get_og_vie_P(player));
     printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+    printXP(3,4,get_xp_P(player),100);
     buildBoxInteraction(60,23,x,y);
     int cpt=0;
     x++;
@@ -734,7 +754,6 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
         int c = getchar();
         if (c == ' ') {  // Check for the SPACE key
             printf("\032[31m");
-            printIntAt(7,33,map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]);
             //go back to white
             printf("\033[0m");
 
@@ -751,7 +770,7 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
                             set_pos_y_P(player,get_pos_y_P(player)-1);
 
                             if(map[old_pos_y-1][get_pos_x_P(player)-1]==0){
-                                //celui n'est sensé jamais arriver mais qui c'est
+                                //celui n'est sensé jamais arriver mais qui sais
                                 printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"█");
                             }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==1){
                                 printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"░");
@@ -770,7 +789,7 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
                             set_pos_y_P(player,get_pos_y_P(player)+1);
 
                             if(map[old_pos_y-1][get_pos_x_P(player)-1]==0){
-                                //celui n'est sensé jamais arriver mais qui c'est
+                                //celui n'est sensé jamais arriver mais qui sais
                                 printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"█");
                             }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==1){
                                 printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"░");
@@ -789,7 +808,7 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
                             set_pos_x_P(player,get_pos_x_P(player)+1);
 
                             if(map[get_pos_y_P(player)-1][old_pos_x-1]==0){
-                                //celui n'est sensé jamais arriver mais qui c'est
+                                //celui n'est sensé jamais arriver mais qui sais
                                 printStrAt((old_pos_x+1)*3,(get_pos_y_P(player)+1)*3+1,"█");
                             }else if(map[get_pos_y_P(player)-1][old_pos_x-1]==1){
                                 printStrAt((old_pos_x+1)*3,(get_pos_y_P(player)+1)*3+1,"░");
@@ -807,7 +826,7 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
 
                             set_pos_x_P(player,get_pos_x_P(player)-1);
                             if(map[get_pos_y_P(player)-1][old_pos_x-1]==0){
-                                //celui n'est sensé jamais arriver mais qui c'est
+                                //celui n'est sensé jamais arriver mais qui sais
                                 printStrAt((old_pos_x+1)*3,(get_pos_y_P(player)+1)*3+1,"█");
                             }else if(map[get_pos_y_P(player)-1][old_pos_x-1]==1){
                                 printStrAt((old_pos_x+1)*3,(get_pos_y_P(player)+1)*3+1,"░");
@@ -824,38 +843,63 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
                 break;
             }
         }else if(c == 'i'){
-            //TODO: inventaire
             buildInventory(5,9,player);
             clearAll();
-            printLife(3,2, get_vie_P(player),100);
-            printMana(3,3, get_mana_P(player),100);
+            printLife(3,2, get_vie_P(player),get_og_vie_P(player));
+            printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+            printXP(3,4,get_xp_P(player),100);
             buildBoxInteraction(60,23,x,y);
             printMap(start_x,start_y,map);
         }
         if(map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==1){
             clearAll();
             //combat
-            int ret = visual(player);
+            int ret = visual(player,0,iteration);
             if(ret==1) {
                 //le joueur est mort
                 showDeathMessage(7, 35);
                 killVisual();
                 free(map);
-                return;
+                return 1;
             }else if(ret == 3) {
                 //fuite du joueur
-                printLife(3,2, get_vie_P(player),100);
-                printMana(3,3, get_mana_P(player),100);
+                printLife(3,2, get_vie_P(player),get_og_vie_P(player));
+                printMana(3,3, get_mana_P(player),get_og_mana_P(player));
+                printXP(3,4,get_xp_P(player),100);
                 buildBoxInteraction(60,23,x,y);
                 printMap(start_x,start_y,map);
                 set_pos_x_P(player,old_pos_x);
                 set_pos_y_P(player,old_pos_y);
             }else{
                 mofidyMapAtPos(get_pos_x_P(player)-1,get_pos_y_P(player)-1,map,2);
-                printLife(3,2, get_vie_P(player),100);
-                printMana(3,3, get_mana_P(player),100);
+                printLife(3,2, get_vie_P(player),get_og_vie_P(player));
+                printMana(3,3, get_mana_P(player),get_og_mana_P(player));
+                printXP(3,4,get_xp_P(player),100);
                 buildBoxInteraction(60,23,x,y);
                 printMap(start_x,start_y,map);
+            }
+        }else if (map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==3){
+            clearAll();
+            //boss
+            int ret = visual(player,1,iteration);
+            if(ret==1) {
+                //le joueur est mort
+                showDeathMessage(7, 35);
+                killVisual();
+                free(map);
+                return 1;
+            }else if(ret == 3) {
+                //fuite du joueur
+                printLife(3,2, get_vie_P(player),get_og_vie_P(player));
+                printMana(3,3, get_mana_P(player),get_og_mana_P(player));
+                printXP(3,4,get_xp_P(player),100);
+                buildBoxInteraction(60,23,x,y);
+                printMap(start_x,start_y,map);
+                set_pos_x_P(player,old_pos_x);
+                set_pos_y_P(player,old_pos_y);
+            }else{
+                //recreate map
+                return 0;
             }
         }
 
@@ -1082,13 +1126,24 @@ void buildEnnemies(int x, int y, Monster * monster) {
     printf("╚═════════════════╝");
 
 }
-int visual(Player * player){
+int visual(Player * player,int boss_flag,int iteration){
     //3 monstre max
-    int nb_monster = get_RNG_int(1,3);
-    Monster * monster_list = malloc(sizeof(Monster)*nb_monster);
-    for (int i = 0; i < nb_monster; i++) {
-        monster_list[i] = create_monster();
+    int nb_monster =0;
+    Monster * monster_list = NULL;
+    if (boss_flag==0){
+        nb_monster = get_RNG_int(1,3);
+        monster_list = malloc(sizeof(Monster)*nb_monster);
+        for (int i = 0; i < nb_monster; i++) {
+            monster_list[i] = create_monster();
+        }
+    } else{
+        nb_monster = 1;
+        monster_list = malloc(sizeof(Monster)*nb_monster);
+        //TODO: boss
+        //monster_list[0] = create_boss();
+        monster_list[0]=create_monster();
     }
+    int nb_monster_init = nb_monster;
 
 //    printf("\033[?1049h\033[H");
 //    system("stty -icanon min 1");
@@ -1129,6 +1184,7 @@ int visual(Player * player){
                     action -= itemVisual(monster_list,player);
                     printLife(3,2, get_vie_P(player), get_og_vie_P(player));
                     printMana(3,3, get_mana_P(player), get_og_mana_P(player));
+                    printXP(3,4,get_xp_P(player),100);
                     break;
                 case 3:
                     //killVisual();
@@ -1156,6 +1212,8 @@ int visual(Player * player){
         wait(100);
         if(is_monster_list_empty(monster_list,nb_monster)){
             //plus de monstre donc go map
+            lootRoll(player,interaction_x,interaction_y);
+            showXPReceived(get_XP(player,nb_monster_init,iteration+1),interaction_x,interaction_y);
             clearAll();
             return 0;
         }
@@ -1183,4 +1241,41 @@ int visual(Player * player){
     moveCursor(0,0);
     printf("Vous avez quit");
     return 0;
+}
+void lootRoll(Player * player,int x,int y){
+    int lootChance = get_RNG_int(1, 100); // Random number between 1 and 100
+    clearFromTo(x,y,x+16,y+4);
+    if (lootChance <= 30) {
+        // 30% chance for health potion
+        // Generate and add a health potion to the player's inventory
+        add_potion(player,0,1);
+        printStrAt(x,y,"Vous avez obtenu une potion de vie");
+    } else if (lootChance <= 60) {
+        // 30% chance for mana potion
+        // Generate and add a mana potion to the player's inventory
+        add_potion(player,1,1);
+        printStrAt(x,y,"Vous avez obtenu une potion de mana");
+    } else if (lootChance <= 70) {
+        // 10% chance for double potion
+        // Generate and add a double potion to the player's inventory
+        add_potion(player,2,1);
+        printStrAt(x,y,"Vous avez obtenu une potion double");
+    } else if (lootChance <= 75) {
+        // 5% chance for armor piece
+        // Generate and add an armor piece to the player's inventory
+        addWeaponToPlayerInventory(player,create_weapon(10,"loot_W"));
+        printStrAt(x,y,"Vous avez obtenu une arme");
+    } else if (lootChance <= 80) {
+        // 5% chance for weapon
+        // Generate and add a weapon to the player's inventory
+        addArmorToPlayerInventory(player,create_armor("loot_A",10,15,leg_piece));
+        printStrAt(x,y,"Vous avez obtenu une armure");
+    } else {
+        // 20% chance for no drop
+        printStrAt(x,y,"Vous n'avez rien obtenu");
+    }
+    fflush(stdout);
+    wait(1000);
+    clearFromTo(x,y,x+16,y+4);
+    wait(100);
 }
