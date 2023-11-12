@@ -129,29 +129,317 @@ Porjet_C/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/build
 .PHONY : Porjet_C/fast
 
-hello_sdl.o: hello_sdl.c.o
-.PHONY : hello_sdl.o
+combat.o: combat.c.o
+.PHONY : combat.o
 
 # target to build an object file
-hello_sdl.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/hello_sdl.c.o
-.PHONY : hello_sdl.c.o
+combat.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/combat.c.o
+.PHONY : combat.c.o
 
-hello_sdl.i: hello_sdl.c.i
-.PHONY : hello_sdl.i
+combat.i: combat.c.i
+.PHONY : combat.i
 
 # target to preprocess a source file
-hello_sdl.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/hello_sdl.c.i
-.PHONY : hello_sdl.c.i
+combat.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/combat.c.i
+.PHONY : combat.c.i
 
-hello_sdl.s: hello_sdl.c.s
-.PHONY : hello_sdl.s
+combat.s: combat.c.s
+.PHONY : combat.s
 
 # target to generate assembly for a file
-hello_sdl.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/hello_sdl.c.s
-.PHONY : hello_sdl.c.s
+combat.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/combat.c.s
+.PHONY : combat.c.s
+
+deathScreen.o: deathScreen.c.o
+.PHONY : deathScreen.o
+
+# target to build an object file
+deathScreen.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.o
+.PHONY : deathScreen.c.o
+
+deathScreen.i: deathScreen.c.i
+.PHONY : deathScreen.i
+
+# target to preprocess a source file
+deathScreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.i
+.PHONY : deathScreen.c.i
+
+deathScreen.s: deathScreen.c.s
+.PHONY : deathScreen.s
+
+# target to generate assembly for a file
+deathScreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/deathScreen.c.s
+.PHONY : deathScreen.c.s
+
+destroy.o: destroy.c.o
+.PHONY : destroy.o
+
+# target to build an object file
+destroy.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/destroy.c.o
+.PHONY : destroy.c.o
+
+destroy.i: destroy.c.i
+.PHONY : destroy.i
+
+# target to preprocess a source file
+destroy.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/destroy.c.i
+.PHONY : destroy.c.i
+
+destroy.s: destroy.c.s
+.PHONY : destroy.s
+
+# target to generate assembly for a file
+destroy.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/destroy.c.s
+.PHONY : destroy.c.s
+
+fileReader.o: fileReader.c.o
+.PHONY : fileReader.o
+
+# target to build an object file
+fileReader.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.o
+.PHONY : fileReader.c.o
+
+fileReader.i: fileReader.c.i
+.PHONY : fileReader.i
+
+# target to preprocess a source file
+fileReader.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.i
+.PHONY : fileReader.c.i
+
+fileReader.s: fileReader.c.s
+.PHONY : fileReader.s
+
+# target to generate assembly for a file
+fileReader.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.s
+.PHONY : fileReader.c.s
+
+fileWriter.o: fileWriter.c.o
+.PHONY : fileWriter.o
+
+# target to build an object file
+fileWriter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.o
+.PHONY : fileWriter.c.o
+
+fileWriter.i: fileWriter.c.i
+.PHONY : fileWriter.i
+
+# target to preprocess a source file
+fileWriter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.i
+.PHONY : fileWriter.c.i
+
+fileWriter.s: fileWriter.c.s
+.PHONY : fileWriter.s
+
+# target to generate assembly for a file
+fileWriter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.s
+.PHONY : fileWriter.c.s
+
+func.o: func.c.o
+.PHONY : func.o
+
+# target to build an object file
+func.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/func.c.o
+.PHONY : func.c.o
+
+func.i: func.c.i
+.PHONY : func.i
+
+# target to preprocess a source file
+func.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/func.c.i
+.PHONY : func.c.i
+
+func.s: func.c.s
+.PHONY : func.s
+
+# target to generate assembly for a file
+func.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/func.c.s
+.PHONY : func.c.s
+
+game.o: game.c.o
+.PHONY : game.o
+
+# target to build an object file
+game.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/game.c.o
+.PHONY : game.c.o
+
+game.i: game.c.i
+.PHONY : game.i
+
+# target to preprocess a source file
+game.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/game.c.i
+.PHONY : game.c.i
+
+game.s: game.c.s
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/game.c.s
+.PHONY : game.c.s
+
+init.o: init.c.o
+.PHONY : init.o
+
+# target to build an object file
+init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/init.c.o
+.PHONY : init.c.o
+
+init.i: init.c.i
+.PHONY : init.i
+
+# target to preprocess a source file
+init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/init.c.i
+.PHONY : init.c.i
+
+init.s: init.c.s
+.PHONY : init.s
+
+# target to generate assembly for a file
+init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/init.c.s
+.PHONY : init.c.s
+
+lifeCycle.o: lifeCycle.c.o
+.PHONY : lifeCycle.o
+
+# target to build an object file
+lifeCycle.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.o
+.PHONY : lifeCycle.c.o
+
+lifeCycle.i: lifeCycle.c.i
+.PHONY : lifeCycle.i
+
+# target to preprocess a source file
+lifeCycle.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.i
+.PHONY : lifeCycle.c.i
+
+lifeCycle.s: lifeCycle.c.s
+.PHONY : lifeCycle.s
+
+# target to generate assembly for a file
+lifeCycle.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/lifeCycle.c.s
+.PHONY : lifeCycle.c.s
+
+main.o: main.c.o
+.PHONY : main.o
+
+# target to build an object file
+main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/main.c.o
+.PHONY : main.c.o
+
+main.i: main.c.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/main.c.s
+.PHONY : main.c.s
+
+setGet.o: setGet.c.o
+.PHONY : setGet.o
+
+# target to build an object file
+setGet.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/setGet.c.o
+.PHONY : setGet.c.o
+
+setGet.i: setGet.c.i
+.PHONY : setGet.i
+
+# target to preprocess a source file
+setGet.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/setGet.c.i
+.PHONY : setGet.c.i
+
+setGet.s: setGet.c.s
+.PHONY : setGet.s
+
+# target to generate assembly for a file
+setGet.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/setGet.c.s
+.PHONY : setGet.c.s
+
+splashScreen.o: splashScreen.c.o
+.PHONY : splashScreen.o
+
+# target to build an object file
+splashScreen.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.o
+.PHONY : splashScreen.c.o
+
+splashScreen.i: splashScreen.c.i
+.PHONY : splashScreen.i
+
+# target to preprocess a source file
+splashScreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.i
+.PHONY : splashScreen.c.i
+
+splashScreen.s: splashScreen.c.s
+.PHONY : splashScreen.s
+
+# target to generate assembly for a file
+splashScreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/splashScreen.c.s
+.PHONY : splashScreen.c.s
+
+visual.o: visual.c.o
+.PHONY : visual.o
+
+# target to build an object file
+visual.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/visual.c.o
+.PHONY : visual.c.o
+
+visual.i: visual.c.i
+.PHONY : visual.i
+
+# target to preprocess a source file
+visual.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/visual.c.i
+.PHONY : visual.c.i
+
+visual.s: visual.c.s
+.PHONY : visual.s
+
+# target to generate assembly for a file
+visual.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/visual.c.s
+.PHONY : visual.c.s
 
 # Help Target
 help:
@@ -162,9 +450,45 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Porjet_C"
-	@echo "... hello_sdl.o"
-	@echo "... hello_sdl.i"
-	@echo "... hello_sdl.s"
+	@echo "... combat.o"
+	@echo "... combat.i"
+	@echo "... combat.s"
+	@echo "... deathScreen.o"
+	@echo "... deathScreen.i"
+	@echo "... deathScreen.s"
+	@echo "... destroy.o"
+	@echo "... destroy.i"
+	@echo "... destroy.s"
+	@echo "... fileReader.o"
+	@echo "... fileReader.i"
+	@echo "... fileReader.s"
+	@echo "... fileWriter.o"
+	@echo "... fileWriter.i"
+	@echo "... fileWriter.s"
+	@echo "... func.o"
+	@echo "... func.i"
+	@echo "... func.s"
+	@echo "... game.o"
+	@echo "... game.i"
+	@echo "... game.s"
+	@echo "... init.o"
+	@echo "... init.i"
+	@echo "... init.s"
+	@echo "... lifeCycle.o"
+	@echo "... lifeCycle.i"
+	@echo "... lifeCycle.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... setGet.o"
+	@echo "... setGet.i"
+	@echo "... setGet.s"
+	@echo "... splashScreen.o"
+	@echo "... splashScreen.i"
+	@echo "... splashScreen.s"
+	@echo "... visual.o"
+	@echo "... visual.i"
+	@echo "... visual.s"
 .PHONY : help
 
 

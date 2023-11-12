@@ -39,7 +39,7 @@ CMAKE_CODEBLOCKS_MAKE_ARGUMENTS:STRING=-j16
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+CMAKE_C_COMPILER:STRING=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -212,12 +212,6 @@ ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
-//The directory containing a CMake configuration file for SDL2.
-SDL2_DIR:PATH=/usr/local/lib/cmake/SDL2
-
-//The directory containing a CMake configuration file for SDL2_ttf.
-SDL2_ttf_DIR:PATH=/mnt/c/MinGW/lib/cmake/SDL2_ttf
-
 
 ########################
 # INTERNAL cache entries
@@ -285,7 +279,7 @@ CMAKE_GENERATOR:INTERNAL=Unix Makefiles
 CMAKE_GENERATOR_INSTANCE:INTERNAL=
 //Name of generator platform.
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
-//Name of generator toolset.
+//Generator instance identifier.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project

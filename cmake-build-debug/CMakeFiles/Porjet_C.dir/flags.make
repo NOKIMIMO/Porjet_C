@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -isystem /usr/local/include/SDL2
+C_INCLUDES = 
 
 C_FLAGS = -g -std=gnu2x -fdiagnostics-color=always
 
