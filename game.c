@@ -15,16 +15,8 @@ int game(){
     int *temp=searchEntry(map,7,7);
     x_depart = temp[0]+1;
     y_depart = temp[1]+1;
-<<<<<<< Updated upstream
-    Player * player= create_player("cul",
-                                   100,
-=======
-
-    Monster monster = read_monster("bat");
-    printf("Nom du monstre : %s\n",monster.name);
     Player * player= create_player("AlexOWO",
                                     100,
->>>>>>> Stashed changes
                                    x_depart,
                                    y_depart,
                                    100,

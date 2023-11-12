@@ -65,8 +65,6 @@ void write_player(Player * player){
         fprintf(file,"\n");
     }
     fclose(file);
-    scanf("%d",&player->vie);
-
 }
 
 

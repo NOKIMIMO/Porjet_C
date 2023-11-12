@@ -7,7 +7,7 @@
 
 FILE * open_file(char * path){
     char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"../files/");
+    strcpy(full_path,"./files/");
     strcat(full_path,path);
     FILE * file = fopen(full_path, "r");
     free(full_path);
@@ -337,7 +337,8 @@ Player * read_player(char * path){
                                        player_ring,
                                        player_skill1,
                                        player_skill2);
-
+    set_level_P(newPlayer,level);
+    newPlayer->exp = exp;
 
     position = find_key(file,"inventory");
     int items[3] = {hp_potion,mana_potion,double_potion};
