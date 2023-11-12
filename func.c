@@ -180,6 +180,7 @@ void swapArmorFromListArmorWithArmor(ListArmor *listArmor,enum Armor_type type,P
     }
 
 }
+
 // Function to get the pointer to the item at index n in ListItem
 Armor * getArmorFromListItem(ListArmor * list, int index) {
     if (index >= 0 && index < list->size) {
@@ -379,5 +380,93 @@ int creationRoomBoss(int** map,int x,int y)
     }
     else{
         return 0;
+    }
+}
+
+//get random X
+char * get_random_weapon(){
+    int rng = get_RNG_int(0,10);
+    switch (rng){
+        case 0:
+            return "axe";
+        case 1:
+            return "bat";
+        case 2:
+            return "bow";
+        case 3:
+            return "club";
+        case 4:
+            return "crossbow";
+        case 5:
+            return "dagger";
+        case 6:
+            return "flail";
+        case 8:
+            return "mace";
+        case 9:
+            return "spear";
+        case 10:
+            return "BFsword";
+
+        default:
+            return "BFsword";
+    }
+}
+
+char * get_random_armor(){
+    int rng = get_RNG_int(0,10);
+    switch (rng){
+        case 0:
+            return "anneau";
+        case 1:
+            return "bottes";
+        case 2:
+            return "casque";
+        case 3:
+            return "hermes_boots";
+        case 4:
+            return "louboutin";
+        case 5:
+            return "plastron";
+        case 6:
+            return "rabadon_deathcap";
+        case 7:
+            return "tunic";
+        case 8:
+            return "warmog";
+        case 9:
+            return "yoga_pants";
+
+        default:
+            return "chest";
+    }
+}
+
+char * get_random_monster(){
+    int rng = get_RNG_int(0,10);
+    switch (rng){
+        case 0:
+            return "bat";
+        case 1:
+            return "ghoul";
+        case 2:
+            return "goblin";
+        case 3:
+            return "orc";
+        case 4:
+            return "skeleton";
+        case 5:
+            return "slime";
+        case 6:
+            return "trol";
+        case 7:
+            return "werewolf";
+        case 8:
+            return "wyvern";
+        case 9:
+            return "zombie";
+
+        default:
+            return "slime";
     }
 }

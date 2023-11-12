@@ -40,7 +40,7 @@ int game(int save_flag){
         add_potion(player,0,7);
         add_potion(player,1,5);
         add_potion(player,2,2);
-        addWeaponToPlayerInventory(player, create_weapon(10,"épée de test"));
+        addWeaponToPlayerInventory(player, create_weapon(10,"bat"));
         addArmorToListArmor(get_listArmor_P(player),create_armor("casque",0,5,head_piece));
         addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test",0,5,chest_piece));
         addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test2",0,10,chest_piece));
