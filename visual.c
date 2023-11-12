@@ -1134,7 +1134,11 @@ int visual(Player * player,int boss_flag,int iteration){
         nb_monster = get_RNG_int(1,3);
         monster_list = malloc(sizeof(Monster)*nb_monster);
         for (int i = 0; i < nb_monster; i++) {
+<<<<<<< Updated upstream
            monster_list[i] = read_monster("bat");
+=======
+            //monster_list[i] = create_monster();
+>>>>>>> Stashed changes
         }
     } else{
         nb_monster = 1;

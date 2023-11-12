@@ -3,6 +3,8 @@
 //
 
 #include "game.h"
+#include "fileWriter.h"
+#include "fileReader.h"
 
 int game(){
     int x_depart = 0, y_depart = 0;
@@ -13,8 +15,16 @@ int game(){
     int *temp=searchEntry(map,7,7);
     x_depart = temp[0]+1;
     y_depart = temp[1]+1;
+<<<<<<< Updated upstream
     Player * player= create_player("cul",
                                    100,
+=======
+
+    Monster monster = read_monster("bat");
+    printf("Nom du monstre : %s\n",monster.name);
+    Player * player= create_player("AlexOWO",
+                                    100,
+>>>>>>> Stashed changes
                                    x_depart,
                                    y_depart,
                                    100,
@@ -27,6 +37,21 @@ int game(){
                                    create_armor("anno",20,0,ring),
                                    create_skill("nuke",60,40),
                                    create_skill("Ice pick",10,10));
+    Inventory * inventory = create_inventory((int[]){0, 0, 0},10,10,10);
+    set_inventory_P(player,inventory);
+    add_potion(player,0,7);
+    add_potion(player,1,5);
+    add_potion(player,2,2);
+    addWeaponToPlayerInventory(player, create_weapon(10,"épée de test"));
+    addArmorToListArmor(get_listArmor_P(player),create_armor("casque",0,5,head_piece));
+    addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test",0,5,chest_piece));
+    addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test2",0,10,chest_piece));
+    addSkillToPlayerInventory(player,create_skill("fireball",10,10));
+    player->map = map;
+    write_player(player);
+
+
+
     set_vie_P(player,50);
     set_mana_P(player,20);
     set_inventory_P(player,create_inventory((int[]){0, 0, 0},10,10,10));

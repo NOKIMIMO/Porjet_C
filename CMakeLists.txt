@@ -27,4 +27,10 @@ add_executable(Porjet_C main.c
         game.c
         game.h
         fileReader.c
+<<<<<<< Updated upstream
         fileReader.h)
+=======
+        fileReader.h
+        fileWriter.c
+        fileWriter.h)
+>>>>>>> Stashed changes
