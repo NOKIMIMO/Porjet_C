@@ -347,19 +347,7 @@ Player * read_player(char * path){
         read_inventory_line(file, &position, key, value);
         while(read_inventory_line(file, &position, key, value ) != -1){
 
-            if(strcmp(*key,"head_piece")==0) {
-                Armor *armor = read_armor(*value);
-                addArmorToListArmor(list_armor, armor);
-            }
-            if(strcmp(*key,"chest_piece")==0) {
-                Armor *armor = read_armor(*value);
-                addArmorToListArmor(list_armor, armor);
-            }
-            if(strcmp(*key,"leg_piece")==0) {
-                Armor *armor = read_armor(*value);
-                addArmorToListArmor(list_armor, armor);
-            }
-            if(strcmp(*key,"ring")==0) {
+            if(strcmp(*key,"armor")==0) {
                 Armor *armor = read_armor(*value);
                 addArmorToListArmor(list_armor, armor);
             }
@@ -381,14 +369,11 @@ Player * read_player(char * path){
     }
 
     position = find_key(file,"map");
-    //printf("\n%d",position);
-    printf("\n");
     if(position != -1){
         int ** map = read_map(file, &position);
         newPlayer->map= map;
 
     }
-    scanf("%d",&newPlayer->mana);
     return newPlayer;
 
 }

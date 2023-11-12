@@ -19,10 +19,10 @@
   skill2:null
 -inventory:
   -weapon:bat
-  -chest_piece:plastron
-  -chest_piece:plastron
-  -leg_piece:bottes
-  -ring:anneau
+  -armor:plastron
+  -armor:plastron
+  -armor:bottes
+  -armor:anneau
   -skill:blast
 -map:
 5000000

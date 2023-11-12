@@ -1,0 +1,33 @@
+-name:AlexOWO
+  level:1
+  exp:0
+  pos_x:2
+  pos_y:2
+  og_vie:100
+  og_mana:100
+  vie:100
+  mana:100
+  weapon:épet des vents
+  head_piece:null
+  chest_piece:plastron
+  leg_piece:null
+  ring:anno
+  mana_potion:5
+  vie_potion:7
+  double_potion:2
+  skill1:nuke
+  skill2:Ice pick
+-inventory:
+  -weapon:épée de test
+  -armor:casque
+  -armor:plastron_test
+  -armor:plastron_test2
+  -skill:fireball
+-map:
+1000000
+1200000
+0100000
+0100000
+0111000
+0101000
+1130000
