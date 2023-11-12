@@ -832,10 +832,10 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
             buildBoxInteraction(60,23,x,y);
             printMap(start_x,start_y,map);
         }
-        if(map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==1){
+        if(map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==1 || map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]==3){
             clearAll();
             //combat
-            int ret = visual(player);
+            int ret = visual(player,map[get_pos_y_P(player)-1][get_pos_x_P(player)-1]);
             if(ret==1) {
                 //le joueur est mort
                 showDeathMessage(7, 35);
@@ -850,6 +850,20 @@ void buildMapGraph(int x,int y,Player * player,int ** map){
                 printMap(start_x,start_y,map);
                 set_pos_x_P(player,old_pos_x);
                 set_pos_y_P(player,old_pos_y);
+            }else if(ret == 2){
+                //boss tué
+                int x_depart = 0, y_depart = 0;
+                x_depart = get_RNG_int(1,7);
+                y_depart = get_RNG_int(1,7);
+
+                map = initMap(7,7,x_depart-1,y_depart-1);
+                int *temp=searchEntry(map,7,7);
+                x_depart = temp[0]+1;
+                y_depart = temp[1]+1;
+                player->pos_x = x_depart;
+                player->pos_y = y_depart;
+                buildMapGraph(3,5,player,map);
+
             }else{
                 mofidyMapAtPos(get_pos_x_P(player)-1,get_pos_y_P(player)-1,map,2);
                 printLife(3,2, get_vie_P(player),100);
@@ -1082,13 +1096,23 @@ void buildEnnemies(int x, int y, Monster * monster) {
     printf("╚═════════════════╝");
 
 }
-int visual(Player * player){
+int visual(Player * player,int typeFight){
+
     //3 monstre max
     int nb_monster = get_RNG_int(1,3);
     Monster * monster_list = malloc(sizeof(Monster)*nb_monster);
-    for (int i = 0; i < nb_monster; i++) {
-        monster_list[i] = create_monster();
+    if(typeFight == 1)
+    {
+        for (int i = 0; i < nb_monster; i++) {
+            monster_list[i] = create_monster();
+        }
     }
+    else
+    {
+        nb_monster = 1;
+        monster_list[0] = create_boss();
+    }
+
 
 //    printf("\033[?1049h\033[H");
 //    system("stty -icanon min 1");
@@ -1155,9 +1179,16 @@ int visual(Player * player){
 
         wait(100);
         if(is_monster_list_empty(monster_list,nb_monster)){
-            //plus de monstre donc go map
-            clearAll();
-            return 0;
+            if(typeFight == 1){
+                //plus de monstre donc go map
+                clearAll();
+                return 0;
+            }else{
+                //plus de boss, on retourne 2 pour dire que c'est le boss qui a été tué
+                clearAll();
+                return 2;
+            }
+
         }
 
         //ennemy turn
