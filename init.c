@@ -125,16 +125,14 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
 
     // Initialisation de la map de départ
     map[x_depart][y_depart] = 2;
-    /*
-    xBas permet de parcourir toutes les lignes en dessous de la case de départ
-    initialisé à x_depart pour parcourir la ligne du depart
-    yBas permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart
-    initialisé à y_depart pour parcourir la colonne du depart
-    xHaut permet de parcourir toutes les lignes en dessous de la case de départ  initialisé à x_depart+1
-    initialisé à x_depart+1 pour parcourir seulement les lignes au dessus du depart
-    yHaut permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart+1
-    initialisé à y_depart+1 pour parcourir seulement les colonnes au dessus du depart
-     */
+    //xBas permet de parcourir toutes les lignes en dessous de la case de départ
+    //initialisé à x_depart pour parcourir la ligne du depart
+    //yBas permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart
+    //initialisé à y_depart pour parcourir la colonne du depart
+    //xHaut permet de parcourir toutes les lignes en dessous de la case de départ  initialisé à x_depart+1
+    //initialisé à x_depart+1 pour parcourir seulement les lignes au dessus du depart
+    //yHaut permet de parcourir toutes les colonnes en dessous de la case de départ  initialisé à y_depart+1
+    //initialisé à y_depart+1 pour parcourir seulement les colonnes au dessus du depart
     int xBas = x_depart, yBas = y_depart, xHaut = x_depart + 1, yHaut = y_depart + 1;
     int ** recupSalleBossPossible = (int **)malloc(20 * sizeof(int *));
     for (int i = 0; i < 20; i++) {
@@ -288,6 +286,7 @@ int ** initMap(int rows, int cols, int x_depart, int y_depart){
             {
                 map[x_derniereSalle][y_derniereSalle] = 3;
             }
+
         }
     }
     else

@@ -47,4 +47,5 @@ void buildEnnemies(int x, int y, Monster * monster);
 int visual(Player * player,int boss_flag,int iteration);
 void lootRoll(Player * player,int x,int y);
 
+
 #endif //PORJET_C_VISUAL_H
