@@ -34,20 +34,24 @@ int game(int save_flag){
                                        create_skill("nuke",60,40),
                                        create_skill("Ice pick",10,10));
 
-        set_vie_P(player,50);
-        set_mana_P(player,20);
-        set_inventory_P(player,create_inventory((int[]){0, 0, 0},10,10,10));
-        add_potion(player,0,7);
-        add_potion(player,1,5);
-        add_potion(player,2,2);
-        addWeaponToPlayerInventory(player, create_weapon(10,"bat"));
-        addArmorToListArmor(get_listArmor_P(player),create_armor("casque",0,5,head_piece));
-        addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test",0,5,chest_piece));
-        addArmorToListArmor(get_listArmor_P(player),create_armor("plastron_test2",0,10,chest_piece));
-        addSkillToPlayerInventory(player,create_skill("fireball",10,10));
-        refresh_stat_armor_P(player);
-        player->map = map;
-    }
+    int ** map = initMap(7,7,x_depart-1,y_depart-1);
+    int *temp=searchEntry(map,7,7);
+    x_depart = temp[0]+1;
+    y_depart = temp[1]+1;
+    Player * player= create_player("save1",
+                                   100,
+                                   x_depart,
+                                   y_depart,
+                                   100,
+                                   100,
+                                   100,
+                                   create_weapon(100,"épet des vents"),
+                                   NULL,
+                                   create_armor( "plastron", 5, 5, chest_piece),
+                                   NULL,
+                                   create_armor("anno",20,0,ring),
+                                   create_skill("nuke",60,40),
+                                   create_skill("Ice pick",10,10));
 
     int ret=0;
     while(1){

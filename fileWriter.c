@@ -19,7 +19,7 @@ void write_player(Player * player){
     char * full_path = malloc(sizeof (char)*255);
     //printf("Nom du joueur : %s\n", get_name_P(player));
     strcpy(full_path,"players/");
-    strcat(full_path,get_name_P(player));
+    strcat(full_path,"save1");
     FILE * file = write_file(full_path);
     free(full_path);
 
