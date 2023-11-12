@@ -3,8 +3,7 @@
 //
 
 #include "game.h"
-#include "fileWriter.h"
-#include "fileReader.h"
+
 
 int game(){
     int x_depart = 0, y_depart = 0;

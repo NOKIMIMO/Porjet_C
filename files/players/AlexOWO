@@ -2,7 +2,7 @@
   level:1
   exp:0
   pos_x:6
-  pos_y:3
+  pos_y:4
   og_vie:100
   og_mana:125
   vie:50
@@ -24,10 +24,10 @@
   -armor:plastron_test2
   -skill:fireball
 -map:
-0000010
-0031010
-0001121
-0000001
 0000000
+0000010
+0000010
+0003120
+0001110
 0000000
 0000000
