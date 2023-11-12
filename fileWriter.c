@@ -5,7 +5,7 @@
 
 FILE * write_file(char * path){
     char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"./files/");
+    strcpy(full_path,"../files/");
     strcat(full_path,path);
     FILE * file = fopen(full_path, "w");
     free(full_path);

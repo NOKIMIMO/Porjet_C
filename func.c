@@ -191,7 +191,7 @@ void addArmorToListArmor(ListArmor * list, Armor * armor) {
     if (list->size >= list->capacity) {
         // If the current size equals or exceeds the capacity, double the capacity.
         list->capacity *= 2;
-        list->armor = (Weapon **)realloc(list->armor, list->capacity * sizeof(Armor*));
+        list->armor = (Armor **)realloc(list->armor, list->capacity * sizeof(Armor*));
         if (list->armor == NULL) {
             // Handle memory allocation failure
             // You can add your error-handling logic here.

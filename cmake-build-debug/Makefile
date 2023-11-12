@@ -225,6 +225,30 @@ fileReader.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileReader.c.s
 .PHONY : fileReader.c.s
 
+fileWriter.o: fileWriter.c.o
+.PHONY : fileWriter.o
+
+# target to build an object file
+fileWriter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.o
+.PHONY : fileWriter.c.o
+
+fileWriter.i: fileWriter.c.i
+.PHONY : fileWriter.i
+
+# target to preprocess a source file
+fileWriter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.i
+.PHONY : fileWriter.c.i
+
+fileWriter.s: fileWriter.c.s
+.PHONY : fileWriter.s
+
+# target to generate assembly for a file
+fileWriter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Porjet_C.dir/build.make CMakeFiles/Porjet_C.dir/fileWriter.c.s
+.PHONY : fileWriter.c.s
+
 func.o: func.c.o
 .PHONY : func.o
 
@@ -438,6 +462,9 @@ help:
 	@echo "... fileReader.o"
 	@echo "... fileReader.i"
 	@echo "... fileReader.s"
+	@echo "... fileWriter.o"
+	@echo "... fileWriter.i"
+	@echo "... fileWriter.s"
 	@echo "... func.o"
 	@echo "... func.i"
 	@echo "... func.s"
