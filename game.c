@@ -13,7 +13,8 @@ int game(){
     int *temp=searchEntry(map,7,7);
     x_depart = temp[0]+1;
     y_depart = temp[1]+1;
-    Player * player= create_player(100,
+    Player * player= create_player("cul",
+                                   100,
                                    x_depart,
                                    y_depart,
                                    100,

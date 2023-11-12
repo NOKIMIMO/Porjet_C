@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/e/cours/Porjet_C/combat.c" "CMakeFiles/Porjet_C.dir/combat.c.o" "gcc" "CMakeFiles/Porjet_C.dir/combat.c.o.d"
   "/mnt/e/cours/Porjet_C/deathScreen.c" "CMakeFiles/Porjet_C.dir/deathScreen.c.o" "gcc" "CMakeFiles/Porjet_C.dir/deathScreen.c.o.d"
   "/mnt/e/cours/Porjet_C/destroy.c" "CMakeFiles/Porjet_C.dir/destroy.c.o" "gcc" "CMakeFiles/Porjet_C.dir/destroy.c.o.d"
+  "/mnt/e/cours/Porjet_C/fileReader.c" "CMakeFiles/Porjet_C.dir/fileReader.c.o" "gcc" "CMakeFiles/Porjet_C.dir/fileReader.c.o.d"
   "/mnt/e/cours/Porjet_C/func.c" "CMakeFiles/Porjet_C.dir/func.c.o" "gcc" "CMakeFiles/Porjet_C.dir/func.c.o.d"
   "/mnt/e/cours/Porjet_C/game.c" "CMakeFiles/Porjet_C.dir/game.c.o" "gcc" "CMakeFiles/Porjet_C.dir/game.c.o.d"
   "/mnt/e/cours/Porjet_C/init.c" "CMakeFiles/Porjet_C.dir/init.c.o" "gcc" "CMakeFiles/Porjet_C.dir/init.c.o.d"

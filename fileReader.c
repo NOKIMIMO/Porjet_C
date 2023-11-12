@@ -7,12 +7,13 @@
 
 FILE * open_file(char * path){
     char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"./files/");
+    strcpy(full_path,"../files/");
     strcat(full_path,path);
     FILE * file = fopen(full_path, "r");
     free(full_path);
     if(file==NULL){
         printf("Erreur d'ouverture du fichier");
+        exit(-1);
     }
     return file;
 }
@@ -65,6 +66,7 @@ int find_key(FILE * file, char * key){
 }
 
 char * read_ascii(FILE * file, int * index){
+
     fseek(file, *index, SEEK_SET);
 
     char * buffer = malloc(sizeof (char)*200);
@@ -167,7 +169,6 @@ int ** read_map(FILE * file, int *position){
     return map;
 }
 
-
 Monster read_monster(char * path){
     char * full_path = malloc(sizeof (char)*255);
     strcpy(full_path,"monsters/");
@@ -175,8 +176,13 @@ Monster read_monster(char * path){
     FILE * file = open_file(full_path);
     free(full_path);
     int hp, def, atk;
-    int position = ftell(file);
+    int position = (int) ftell(file);
     char * name = read_str(file, &position);
+    char temp[strlen(name)-4];
+    for (int i = 0; i < strlen(name)-1; ++i) {
+        temp[i] = name[i];
+    }
+    strcpy(name,temp);
     hp= read_line(file, &position);
     atk= read_line(file, &position);
     def= read_line(file, &position);
@@ -188,8 +194,9 @@ Monster read_monster(char * path){
                                  atk,
                                  def,
                                  ascii
-                                 );
+    );
     return *newMonster;
+
 }
 
 Weapon * read_weapon(char * path){

@@ -8,6 +8,7 @@
 #include "init.h"
 #include "combat.h"
 #include "lifeCycle.h"
+#include "fileReader.h"
 
 int get_RNG_int(int min, int max);
 void wait(int milliseconds);
