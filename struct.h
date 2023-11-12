@@ -91,6 +91,7 @@ typedef struct Player{
     Inventory * inventory;
     Skill * skill1;
     Skill * skill2;
+    int ** map;
 }Player;
 
-#endif PORJET_C_STRUCT_H
+#endif //PORJET_C_STRUCT_H

@@ -2,15 +2,14 @@
 // Created by Alexis on 14/10/2023.
 //
 #include "fileReader.h"
+#include "func.h"
 #include <string.h>
 
 FILE * open_file(char * path){
     char * full_path = malloc(sizeof (char)*255);
     strcpy(full_path,"./files/");
     strcat(full_path,path);
-    printf("\n%s",full_path);
     FILE * file = fopen(full_path, "r");
-    printf("\n%s",full_path);
     free(full_path);
     if(file==NULL){
         printf("Erreur d'ouverture du fichier");
@@ -24,11 +23,9 @@ int read_line(FILE * file, int * index){
     char c = fgetc(file);
     int i =0;
     while (c!=':') {
-        //printf("%c",c);
         c= fgetc(file);
     }
     while (c!=' ' && c!=EOF && c!='\n') {
-        //printf("%c",c);
         c = fgetc(file);
         buffer[i] = c;
         ++i;
@@ -36,32 +33,55 @@ int read_line(FILE * file, int * index){
     int ret = atoi(buffer);
     free(buffer);
     *index = ftell(file);
-//    printf("\n%d",ret);
     return ret;
 }
-int find_key(char * key){
-    return 0;
+
+int find_key(FILE * file, char * key){
+    fseek(file, 0, SEEK_SET);
+    char * cur_key = malloc(sizeof (char)*50);
+    int i = 0;
+    char c = fgetc(file);
+    while (strcmp(cur_key,key)!=0 && c!=EOF){
+        while (c==' ' || c=='\n' || c=='-') {
+            c= fgetc(file);
+        }
+        while (c!=':') {
+            cur_key[i] = c;
+            ++i;
+            c= fgetc(file);
+        }
+        cur_key[i]='\0';
+        i=0;
+        c= fgetc(file);
+        while (c!='\n' && c!=EOF) {
+            c= fgetc(file);
+        }
+    }
+    if(c ==EOF){
+        return -1;
+    }
+    free(cur_key);
+    return ftell(file);
 }
+
 char * read_ascii(FILE * file, int * index){
     fseek(file, *index, SEEK_SET);
 
     char * buffer = malloc(sizeof (char)*200);
     char c = fgetc(file);
     int i =0;
-    while (c!='-' && c!=EOF){
-        c= fgetc(file);
-    }
-
     while (c!=':'){
         c= fgetc(file);
     }
     while (c!=EOF) {
         c = fgetc(file);
         buffer[i] = c;
+        if(buffer[i]=='\n')
+            buffer[i]='&';
         ++i;
     }
     *index = ftell(file);
-    buffer[i-2]='\0';
+    buffer[i-1]='\0';
     buffer = realloc(buffer, sizeof (char)* strlen(buffer)+1);
     return buffer;
 }
@@ -85,6 +105,69 @@ char * read_str(FILE * file, int * index){
     return name;
 }
 
+int read_inventory_line(FILE * file, int * position, char ** key, char ** value){
+    fseek(file, *position, SEEK_SET);
+    char * buffer = malloc(sizeof (char)*50);
+    char c = fgetc(file);
+    int i =0;
+    char * newKey = malloc(sizeof (char)*50);
+    while (c!='-') {
+        c= fgetc(file);
+    }
+    c= fgetc(file);
+    while (c!=':') {
+        newKey[i] = c;
+        ++i;
+        c= fgetc(file);
+    }
+
+    strcpy(*key,newKey);
+    i=0;
+    while (c!='\n'&& c!=EOF) {
+        c = fgetc(file);
+        buffer[i] = c;
+        ++i;
+    }
+
+    if(strcmp(*key,"map")==0){
+        return -1;
+    }
+    buffer[i-1]='\0';
+    strcpy(*value,buffer);
+    *position = ftell(file);
+    return 0;
+}
+
+int ** read_map(FILE * file, int *position){
+    fseek(file, *position-2, SEEK_SET);
+    char * buffer = malloc(sizeof (char)*50);
+    char c = fgetc(file);
+    int i =0;
+    int ** map = malloc(sizeof(int*)*7);
+    for (int j = 0; j < 7; ++j) {
+        map[j] = malloc(sizeof(int)*7);
+    }
+    c= fgetc(file);
+    while (c!=EOF) {
+        c = fgetc(file);
+        buffer[i] = c;
+        ++i;
+    }
+
+    buffer[i-1]='\0';
+    printf("\n%s\n",buffer);
+    int k = 0;
+    for (int j = 0; j < 7; ++j) {
+        for (int l = 0; l < 7; ++l) {
+            map[j][l] = buffer[k+j]-'0';
+            ++k;
+        }
+    }
+    *position = ftell(file);
+    return map;
+}
+
+
 Monster * read_monster(char * path){
     char * full_path = malloc(sizeof (char)*255);
     strcpy(full_path,"monsters/");
@@ -92,7 +175,6 @@ Monster * read_monster(char * path){
     FILE * file = open_file(full_path);
     free(full_path);
     int hp, def, atk;
-    char c= fgetc(file);
     int position = ftell(file);
     char * name = read_str(file, &position);
     hp= read_line(file, &position);
@@ -141,22 +223,6 @@ Skill * read_skill(char * path){
     return newSkill;
 }
 
-Item * read_item(char * path){
-    char * full_path = malloc(sizeof (char)*255);
-    strcpy(full_path,"items/");
-    strcat(full_path,path);
-    FILE * file = open_file(full_path);
-    free(full_path);
-    int hp, mana;
-    int position = ftell(file);
-    char * name = read_str(file, &position);
-    hp= read_line(file, &position);
-    mana= read_line(file, &position);
-
-    Item * newItem = create_item(name,mana,hp);
-    return newItem;
-}
-
 Armor * read_armor(char * path) {
     char * full_path = malloc(sizeof (char)*255);
     strcpy(full_path,"armors/");
@@ -191,7 +257,6 @@ Player * read_player(char * path){
     strcpy(full_path,"players/");
     strcat(full_path,path);
     FILE * file = open_file(full_path);
-    printf("\n%s",full_path);
     free(full_path);
 
 
@@ -223,8 +288,11 @@ Player * read_player(char * path){
     hp_potion = read_line(file, &position);
     double_potion = read_line(file, &position);
 
+    char * skill1 = malloc(sizeof (char)*50);
+    char * skill2 = malloc(sizeof (char)*50);
 
-
+    skill1 = read_str(file, &position);
+    skill2 = read_str(file, &position);
 
     Weapon * weapon = read_weapon(weapon_str);
     Armor * head = read_armor(head_piece_str);
@@ -241,6 +309,13 @@ Player * read_player(char * path){
     if(player_ring->armor_type != ring)
         player_ring = NULL;
 
+    Skill * player_skill1 = NULL;
+    Skill * player_skill2 = NULL;
+    if(strcmp("null",skill1))
+        player_skill1 = read_skill(skill1);
+    if(strcmp("null",skill2))
+        player_skill2 = read_skill(skill2);
+
     Player * newPlayer = create_player(og_vie,
                                        pos_x,
                                        pos_y,
@@ -251,12 +326,68 @@ Player * read_player(char * path){
                                        head,
                                        chest,
                                        leg,
-                                       player_ring
+                                       player_ring,
+                                       player_skill1,
+                                       player_skill2);
 
-                                       );
-    //print player
-    printf("\n%d",newPlayer->vie);
-    //scanf("%d",&level);
+
+    position = find_key(file,"inventory");
+    int items[3] = {hp_potion,mana_potion,double_potion};
+
+    ListArmor * list_armor = create_list_armor(10);
+    ListWeapon *  list_weapon = create_list_weapon(10);
+    ListSkill * list_skill = create_list_skill(10);
+
+    if(position != -1){
+        char ** key = malloc(sizeof(char));
+        char **value = malloc(sizeof(char));
+        *key = malloc(sizeof(char)*50);
+        *value = malloc(sizeof(char)*50);
+        read_inventory_line(file, &position, key, value);
+        while(read_inventory_line(file, &position, key, value ) != -1){
+
+            if(strcmp(*key,"head_piece")==0) {
+                Armor *armor = read_armor(*value);
+                addArmorToListArmor(list_armor, armor);
+            }
+            if(strcmp(*key,"chest_piece")==0) {
+                Armor *armor = read_armor(*value);
+                addArmorToListArmor(list_armor, armor);
+            }
+            if(strcmp(*key,"leg_piece")==0) {
+                Armor *armor = read_armor(*value);
+                addArmorToListArmor(list_armor, armor);
+            }
+            if(strcmp(*key,"ring")==0) {
+                Armor *armor = read_armor(*value);
+                addArmorToListArmor(list_armor, armor);
+            }
+            if(strcmp(*key,"weapon")==0) {
+                Weapon *weapon = read_weapon(*value);
+                addWeaponToListWeapon(list_weapon, weapon);
+            }
+            if(strcmp(*key,"skill")==0) {
+                Skill *skill = read_skill(*value);
+                addSkillToListSkill(list_skill, skill);
+            }
+
+        }
+        Inventory * inventory = create_inventory(items, 10,10,10);
+        inventory->listArmor = list_armor;
+        inventory->listWeapon = list_weapon;
+        inventory->listSkill = list_skill;
+        newPlayer->inventory = inventory;
+    }
+
+    position = find_key(file,"map");
+    //printf("\n%d",position);
+    printf("\n");
+    if(position != -1){
+        int ** map = read_map(file, &position);
+        newPlayer->map= map;
+
+    }
+    scanf("%d",&newPlayer->mana);
     return newPlayer;
 
 }

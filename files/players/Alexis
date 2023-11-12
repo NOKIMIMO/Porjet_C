@@ -15,5 +15,20 @@
   mana_potion:0
   vie_potion:1
   double_potion:2
-  skill1:
-  skill2:
+  skill1:blast
+  skill2:null
+-inventory:
+  -weapon:bat
+  -chest_piece:plastron
+  -chest_piece:plastron
+  -leg_piece:bottes
+  -ring:anneau
+  -skill:blast
+-map:
+5000000
+0000000
+0003330
+0000000
+0000000
+0000000
+0000000
