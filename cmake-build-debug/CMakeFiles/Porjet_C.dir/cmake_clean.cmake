@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Porjet_C.dir/destroy.c.o.d"
   "CMakeFiles/Porjet_C.dir/fileReader.c.o"
   "CMakeFiles/Porjet_C.dir/fileReader.c.o.d"
+  "CMakeFiles/Porjet_C.dir/fileWriter.c.o"
+  "CMakeFiles/Porjet_C.dir/fileWriter.c.o.d"
   "CMakeFiles/Porjet_C.dir/func.c.o"
   "CMakeFiles/Porjet_C.dir/func.c.o.d"
   "CMakeFiles/Porjet_C.dir/game.c.o"

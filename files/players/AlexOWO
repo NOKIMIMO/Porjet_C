@@ -1,8 +1,8 @@
 -name:AlexOWO
   level:1
   exp:0
-  pos_x:4
-  pos_y:2
+  pos_x:6
+  pos_y:4
   og_vie:100
   og_mana:125
   vie:50
@@ -24,10 +24,10 @@
   -armor:plastron_test2
   -skill:fireball
 -map:
-0000001
-0002111
-0000011
-0000011
-0000003
+0000000
+0000010
+0000010
+0003120
+0001110
 0000000
 0000000

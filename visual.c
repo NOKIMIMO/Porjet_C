@@ -750,9 +750,6 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
         //go back to white
         printf("\033[0m");
         moveCursor(50, 50);
-        printIntAt(30, 0, get_pos_x_P(player));
-        printIntAt(35, 0, get_pos_y_P(player));
-        moveCursor(50, 50);
         int c = getchar();
         if (c == ' ') {  // Check for the SPACE key
             printf("\032[31m");
@@ -767,21 +764,19 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
                     case 65:
                         // Up arrow key (ASCII 65)
                         //check if not out of bound and if not wall
-                        if(get_pos_y_P(player)>1){
-                            if (map[get_pos_y_P(player)-2][get_pos_x_P(player)-1]!=0){
-                                set_pos_y_P(player,get_pos_y_P(player)-1);
-
-                                if(map[old_pos_y-1][get_pos_x_P(player)-1]==0){
-                                    //celui n'est sensé jamais arriver mais qui sais
-                                    printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"█");
-                                }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==1){
-                                    printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"░");
-                                }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==2){
-                                    printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"▓");
-                                }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==3){
-                                    printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"▒");
-                                }
+                        if(get_pos_y_P(player)>1 && map[get_pos_y_P(player)-2][get_pos_x_P(player)-1]!=0){
+                            set_pos_y_P(player,get_pos_y_P(player)-1);
+                            if(map[old_pos_y-1][get_pos_x_P(player)-1]==0){
+                                //celui n'est sensé jamais arriver mais qui sais
+                                printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"█");
+                            }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==1){
+                                printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"░");
+                            }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==2){
+                                printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"▓");
+                            }else if(map[old_pos_y-1][get_pos_x_P(player)-1]==3){
+                                printStrAt((get_pos_x_P(player)+1)*3,(old_pos_y+1)*3+1,"▒");
                             }
+
                         }
                         break;
                     case 66:
@@ -859,7 +854,7 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             int ret = visual(player,0,iteration);
             if(ret==1) {
                 //le joueur est mort
-                showDeathMessage(7, 35);
+                deathPlayer(player);
                 killVisual();
                 free(map);
                 return 1;
@@ -886,7 +881,7 @@ int buildMapGraph(int x,int y,Player * player,int ** map,int iteration){
             int ret = visual(player,1,iteration);
             if(ret==1) {
                 //le joueur est mort
-                showDeathMessage(7, 35);
+                deathPlayer(player);
                 killVisual();
                 free(map);
                 return 1;
@@ -1261,12 +1256,12 @@ void lootRoll(Player * player,int x,int y){
         add_potion(player,2,1);
         printStrAt(x,y,"Vous avez obtenu une potion double");
     } else if (lootChance <= 75) {
-        // 5% chance for armor piece
+        // 5% chance for weapon
         // Generate and add an armor piece to the player's inventory
         addWeaponToPlayerInventory(player, read_weapon(get_random_weapon()));
         printStrAt(x,y,"Vous avez obtenu une arme");
     } else if (lootChance <= 80) {
-        // 5% chance for weapon
+        // 5% chance for armor piece
         // Generate and add a weapon to the player's inventory
         addArmorToPlayerInventory(player, read_armor(get_random_armor()));
         printStrAt(x,y,"Vous avez obtenu une armure");
