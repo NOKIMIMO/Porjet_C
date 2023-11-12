@@ -317,11 +317,23 @@ Player * read_player(char * path){
     skill1 = read_str(file, &position);
     skill2 = read_str(file, &position);
 
+    if(strcmp(weapon_str,"null")==0)
+        weapon_str = "sword";
     Weapon * weapon = read_weapon(weapon_str);
-    Armor * head = read_armor(head_piece_str);
-    Armor * chest = read_armor(chest_piece_str);
-    Armor * leg = read_armor(leg_piece_str);
-    Armor * player_ring = read_armor(ring_str);
+
+    Armor * head = NULL;
+    Armor * chest = NULL;
+    Armor * leg = NULL;
+    Armor * player_ring = NULL;
+
+    if(strcmp(head_piece_str,"null")!=0)
+        head = read_armor(head_piece_str);
+    if(strcmp(chest_piece_str,"null")!=0)
+        chest = read_armor(chest_piece_str);
+    if(strcmp(leg_piece_str,"null")!=0)
+        leg = read_armor(leg_piece_str);
+    if(strcmp(ring_str,"null")!=0)
+        player_ring = read_armor(ring_str);
 
     if(head->armor_type != head_piece)
         head = NULL;
